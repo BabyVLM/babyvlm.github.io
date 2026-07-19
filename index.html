@@ -351,13 +351,13 @@
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="#hero" class="active">Home</a></li>
-          <li><a href="#challenge">Challenge</a></li>
-          <li><a href="#cfp">Call for Papers</a></li>
           <li><a href="#overview">About</a></li>
-          <li><a href="#speakers">Speakers</a></li>
+          <li><a href="#cfp">Call for Papers</a></li>
           <li><a href="#organizers">Organizers</a></li>
+          <li><a href="#speakers">Speakers</a></li>
           <li><a href="#schedule">Schedule</a></li>
           <li><a href="#venue">Venue</a></li>
+          <li><a href="#challenge">Challenge</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -387,8 +387,8 @@
           <span><i class="bi bi-emoji-smile"></i> Development</span>
         </div>
         <div class="hero-cta-row" data-aos="fade-up" data-aos-delay="500">
-          <a class="cta-btn cta-primary" href="#challenge">Join the BabyVLM Challenge</a>
-          <a class="cta-btn cta-ghost" href="#cfp">Call for Papers</a>
+          <a class="cta-btn cta-primary" href="#cfp">Call for Papers</a>
+          <a class="cta-btn cta-ghost" href="#challenge">The BabyVLM Challenge</a>
         </div>
         <br>
       </div>
@@ -435,7 +435,7 @@
                 <li>New benchmarks that assess the learning of language and its grounding</li>
                 <li>Computational cognitive science&mdash;e.g., learnability with or without visual signals</li>
               </ul>
-              <p class="about-cta"><a class="cta-btn" href="#challenge">Get involved in the Challenge <i class="bi bi-arrow-right"></i></a></p>
+              <p class="about-cta"><a class="cta-btn" href="#cfp">Read the Call for Papers <i class="bi bi-arrow-right"></i></a></p>
             </div>
           </div>
 
@@ -459,64 +459,6 @@
           </div>
 
         </div>
-      </div>
-
-    </section>
-
-    <section id="challenge" class="overview section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2><i class="bi bi-trophy"></i>The BabyVLM Challenge</h2>
-      </div><!-- End Section Title -->
-
-      <div class="container">
-
-        <p>
-          In partnership with organizers of the BabyLM Challenge, we will launch the BabyVLM Challenge at the workshop.
-          This is a shared task focused on developmentally plausible and sample-efficient vision language modeling. We
-          have designed this challenge with new datasets and evaluations specifically designed for small vision language
-          models. We are planning a tutorial at the workshop to introduce attendees to the challenge. It will be
-          advertised to BabyLM Challenge participants.
-        </p>
-
-        <h3>How to Participate</h3>
-        <div class="steps">
-          <div class="step" data-aos="fade-up" data-aos-delay="100">
-            <div class="step-n">1</div>
-            <h4>Explore the task &amp; data</h4>
-            <p>New datasets and evaluations designed specifically for small vision language models.</p>
-          </div>
-          <div class="step" data-aos="fade-up" data-aos-delay="200">
-            <div class="step-n">2</div>
-            <h4>Train a sample-efficient VLM</h4>
-            <p>Pretrain on developmentally plausible data&mdash;roughly what a child sees and hears.</p>
-          </div>
-          <div class="step" data-aos="fade-up" data-aos-delay="300">
-            <div class="step-n">3</div>
-            <h4>Submit &amp; present</h4>
-            <p>Submit on OpenReview and present your results at BabyVLM @ NeurIPS 2026.</p>
-          </div>
-        </div>
-
-        <div class="text-center mb-4">
-          <a class="cta-btn" href="https://openreview.net/group?id=NeurIPS.cc/2026/Workshop/BabyVLM" target="_blank" rel="noopener">Submit on OpenReview</a>
-        </div>
-
-        <p><em>A tutorial at the workshop will introduce attendees to the challenge&mdash;no prior BabyLM experience required.</em></p>
-
-        <details class="disclosure">
-          <summary>Challenge Steering Committee (confirmed) <i class="bi bi-chevron-right chev"></i></summary>
-          <div class="disclosure-body">
-            <ul>
-              <li>Michael C. Frank (Psychology, Stanford)</li>
-              <li>Chen Yu (Psychology, UT Austin)</li>
-              <li>Kristen Grauman (CS, UT Austin)</li>
-              <li>Kate Saenko (CS, Boston University)</li>
-            </ul>
-          </div>
-        </details>
-
       </div>
 
     </section>
@@ -605,179 +547,6 @@
             longitudinal, egocentric datasets. Studying and improving them may enable high-impact research.
           </li>
         </ul>
-
-      </div>
-
-    </section>
-
-    <section id="trajectory" class="trajectory section">
-
-      <div class="container section-title" data-aos="fade-up">
-        <h2><i class="bi bi-graph-up-arrow"></i>From Babble to Grounding</h2>
-        <p>BabyVLM asks how multimodal learners might traverse a developmental trajectory&mdash;much like children do&mdash;rather than memorising trillions of words.</p>
-      </div>
-
-      <div class="container">
-        <div class="dev-timeline">
-          <div class="dev-step" data-aos="fade-up" data-aos-delay="100">
-            <div class="dot"><i class="bi bi-soundwave"></i></div>
-            <h4>Perception</h4>
-            <p>Sights &amp; sounds ground the earliest learning</p>
-          </div>
-          <div class="dev-step" data-aos="fade-up" data-aos-delay="200">
-            <div class="dot"><i class="bi bi-hand-index-thumb"></i></div>
-            <h4>First words</h4>
-            <p>Mapping words to objects and actions</p>
-          </div>
-          <div class="dev-step" data-aos="fade-up" data-aos-delay="300">
-            <div class="dot"><i class="bi bi-link-45deg"></i></div>
-            <h4>Grounding</h4>
-            <p>Language meets the visual world</p>
-          </div>
-          <div class="dev-step" data-aos="fade-up" data-aos-delay="400">
-            <div class="dot"><i class="bi bi-puzzle"></i></div>
-            <h4>Syntax</h4>
-            <p>Compositional structure emerges</p>
-          </div>
-          <div class="dev-step" data-aos="fade-up" data-aos-delay="500">
-            <div class="dot"><i class="bi bi-lightbulb"></i></div>
-            <h4>Generalization</h4>
-            <p>Rich meaning learned from little data</p>
-          </div>
-        </div>
-      </div>
-
-    </section>
-
-    <section id="speakers" class="speakers section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2><i class="bi bi-mic"></i>Invited Speakers<br></h2>
-      </div><!-- End Section Title -->
-
-      <div class="container">
-
-        <div class="row gy-4">
-
-          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="member">
-              <img src="assets/img/people/frank.jpg" class="img-fluid" alt="Michael C. Frank">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>Michael C. Frank</h4>
-                  <span>Stanford University (confirmed)</span>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="150">
-            <div class="member">
-              <img src="assets/img/people/hasson.jpg" class="img-fluid" alt="Uri Hasson">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>Uri Hasson</h4>
-                  <span>Princeton University (confirmed)</span>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="member">
-              <img src="assets/img/people/shi.jpg" class="img-fluid" alt="Freda Shi">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>Freda Shi</h4>
-                  <span>University of Waterloo (confirmed)</span>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="250">
-            <div class="member">
-              <img src="assets/img/people/grauman.jpg" class="img-fluid" alt="Kristen Grauman">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>Kristen Grauman</h4>
-                  <span>UT Austin (confirmed)</span>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="member">
-              <img src="assets/img/people/schmid.jpg" class="img-fluid" alt="Cordelia Schmid">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>Cordelia Schmid</h4>
-                  <span>Inria, France (unconfirmed)</span>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-        </div>
-
-        <div class="section-title mt-5" data-aos="fade-up">
-          <h2>Confirmed Panelists<br></h2>
-          <p>Panel discussion: Closing the Data Efficiency Gap</p>
-        </div>
-
-        <div class="row gy-4">
-
-          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="member">
-              <img src="assets/img/people/frank.jpg" class="img-fluid" alt="Michael C. Frank">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>Michael C. Frank</h4>
-                  <span>Stanford University</span>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="150">
-            <div class="member">
-              <img src="assets/img/people/grauman.jpg" class="img-fluid" alt="Kristen Grauman">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>Kristen Grauman</h4>
-                  <span>UT Austin</span>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="member">
-              <img src="assets/img/people/shi.jpg" class="img-fluid" alt="Freda Shi">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>Freda Shi</h4>
-                  <span>University of Waterloo</span>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="250">
-            <div class="member">
-              <img src="assets/img/people/hasson.jpg" class="img-fluid" alt="Uri Hasson">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>Uri Hasson</h4>
-                  <span>Princeton University</span>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-        </div>
 
       </div>
 
@@ -970,6 +739,140 @@
 
     </section>
 
+    <section id="speakers" class="speakers section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2><i class="bi bi-mic"></i>Invited Speakers<br></h2>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="member">
+              <img src="assets/img/people/frank.jpg" class="img-fluid" alt="Michael C. Frank">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Michael C. Frank</h4>
+                  <span>Stanford University (confirmed)</span>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="150">
+            <div class="member">
+              <img src="assets/img/people/hasson.jpg" class="img-fluid" alt="Uri Hasson">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Uri Hasson</h4>
+                  <span>Princeton University (confirmed)</span>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="member">
+              <img src="assets/img/people/shi.jpg" class="img-fluid" alt="Freda Shi">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Freda Shi</h4>
+                  <span>University of Waterloo (confirmed)</span>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="250">
+            <div class="member">
+              <img src="assets/img/people/grauman.jpg" class="img-fluid" alt="Kristen Grauman">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Kristen Grauman</h4>
+                  <span>UT Austin (confirmed)</span>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="member">
+              <img src="assets/img/people/schmid.jpg" class="img-fluid" alt="Cordelia Schmid">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Cordelia Schmid</h4>
+                  <span>Inria, France (unconfirmed)</span>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+        </div>
+
+        <div class="section-title mt-5" data-aos="fade-up">
+          <h2>Confirmed Panelists<br></h2>
+          <p>Panel discussion: Closing the Data Efficiency Gap</p>
+        </div>
+
+        <div class="row gy-4">
+
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="member">
+              <img src="assets/img/people/frank.jpg" class="img-fluid" alt="Michael C. Frank">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Michael C. Frank</h4>
+                  <span>Stanford University</span>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="150">
+            <div class="member">
+              <img src="assets/img/people/grauman.jpg" class="img-fluid" alt="Kristen Grauman">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Kristen Grauman</h4>
+                  <span>UT Austin</span>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="member">
+              <img src="assets/img/people/shi.jpg" class="img-fluid" alt="Freda Shi">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Freda Shi</h4>
+                  <span>University of Waterloo</span>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="250">
+            <div class="member">
+              <img src="assets/img/people/hasson.jpg" class="img-fluid" alt="Uri Hasson">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Uri Hasson</h4>
+                  <span>Princeton University</span>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+        </div>
+
+      </div>
+
+    </section>
+
     <section id="schedule" class="schedule section">
 
       <!-- Section Title -->
@@ -1098,6 +1001,63 @@
             </div>
           </div>
         </div>
+
+      </div>
+
+    </section>
+
+    <section id="challenge" class="overview section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2><i class="bi bi-trophy"></i>The BabyVLM Challenge</h2>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <p>
+          The BabyVLM Challenge is a <strong>separate but related shared task</strong>, run in partnership with organizers
+          of the BabyLM Challenge and focused on developmentally plausible, sample-efficient vision language modeling. It
+          comes with new datasets and evaluations designed specifically for small vision language models.
+        </p>
+        <p>
+          We will <strong>announce and promote the challenge at the workshop</strong>&mdash;including a tutorial to
+          introduce attendees to the task&mdash;and then aim to have <strong>results presented at CVPR the following
+          year</strong>. No prior BabyLM experience is required.
+        </p>
+
+        <h3>How It Will Run</h3>
+        <div class="steps">
+          <div class="step" data-aos="fade-up" data-aos-delay="100">
+            <div class="step-n">1</div>
+            <h4>Announced at NeurIPS 2026</h4>
+            <p>The task is launched and promoted at the workshop, with a tutorial introducing the data and evaluations.</p>
+          </div>
+          <div class="step" data-aos="fade-up" data-aos-delay="200">
+            <div class="step-n">2</div>
+            <h4>Build a sample-efficient VLM</h4>
+            <p>Pretrain on developmentally plausible data&mdash;roughly what a child sees and hears&mdash;and evaluate.</p>
+          </div>
+          <div class="step" data-aos="fade-up" data-aos-delay="300">
+            <div class="step-n">3</div>
+            <h4>Results at CVPR</h4>
+            <p>Findings and winning entries are aimed for presentation at CVPR the following year.</p>
+          </div>
+        </div>
+
+        <p><em>Details, datasets, and timeline will be released around the workshop&mdash;check back for updates.</em></p>
+
+        <details class="disclosure">
+          <summary>Challenge Steering Committee (confirmed) <i class="bi bi-chevron-right chev"></i></summary>
+          <div class="disclosure-body">
+            <ul>
+              <li>Michael C. Frank (Psychology, Stanford)</li>
+              <li>Chen Yu (Psychology, UT Austin)</li>
+              <li>Kristen Grauman (CS, UT Austin)</li>
+              <li>Kate Saenko (CS, Boston University)</li>
+            </ul>
+          </div>
+        </details>
 
       </div>
 
