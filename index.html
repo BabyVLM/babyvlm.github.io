@@ -185,6 +185,36 @@
     .schedule-legend .contributed { background: #a4c2f4; }
     .schedule-legend .poster { background: #ffbaab; }
     .schedule-legend .break { background: #b6d7a8; }
+
+    /* ---- Thematic touches ---- */
+
+    /* Modality chips in the hero */
+    .hero-modalities { margin-top: 18px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    .hero-modalities span {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 7px 16px; border-radius: 50px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      color: #fff; font-size: 14px;
+    }
+    .hero-modalities i { font-size: 16px; }
+
+    /* Icons on section titles */
+    .section-title h2 i { color: var(--accent-color); margin-right: 10px; font-size: 0.85em; }
+
+    /* "The Human–Machine Gap" stat band */
+    .gap-band { background: linear-gradient(180deg, #f7f6fe 0%, #ffffff 100%); }
+    .stat-card {
+      text-align: center; padding: 32px 22px; border-radius: 20px; height: 100%;
+      color: #fff; box-shadow: 0 12px 34px rgba(33, 31, 69, 0.14);
+    }
+    .stat-card i { font-size: 34px; opacity: 0.92; }
+    .stat-num { font-size: 46px; font-weight: 800; line-height: 1.05; margin: 12px 0 6px; }
+    .stat-label { font-size: 15px; opacity: 0.96; }
+    .stat-human { background: linear-gradient(160deg, #7fb2ff, #5b8def); }
+    .stat-machine { background: linear-gradient(160deg, #8a7bf0, #6d5ae0); }
+    .stat-gap { background: linear-gradient(160deg, #ffb28a, #ff7a9c); }
+    .gap-note { text-align: center; font-size: 14px; color: color-mix(in srgb, var(--default-color), transparent 35%); margin-top: 22px; }
   </style>
 
   <!-- =======================================================
@@ -240,6 +270,11 @@
           How can we get multimodal models to learn as efficiently as human infants?
         </h3>
         <span class="neurips-badge" data-aos="fade-up" data-aos-delay="300">NeurIPS 2026 &middot; Atlanta, Georgia, USA</span>
+        <div class="hero-modalities" data-aos="fade-up" data-aos-delay="400">
+          <span><i class="bi bi-eye"></i> Vision</span>
+          <span><i class="bi bi-chat-dots"></i> Language</span>
+          <span><i class="bi bi-emoji-smile"></i> Development</span>
+        </div>
         <br> <br>
       </div>
 
@@ -250,7 +285,7 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Workshop Summary</h2>
+        <h2><i class="bi bi-mortarboard"></i>Workshop Summary</h2>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -303,12 +338,55 @@
 
     </section><!-- /Overview Section -->
 
+    <!-- Data-Efficiency Gap Band -->
+    <section id="gap" class="gap-band section">
+
+      <div class="container section-title" data-aos="fade-up">
+        <h2>The Human&ndash;Machine Gap</h2>
+        <p>Children learn language and its grounding from a tiny fraction of the data used to train today's models.
+          Closing that gap is what BabyVLM is about.</p>
+      </div>
+
+      <div class="container">
+        <div class="row gy-4 justify-content-center">
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="stat-card stat-human">
+              <i class="bi bi-emoji-smile"></i>
+              <div class="stat-num">~100M</div>
+              <div class="stat-label">words a child hears during typical development</div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="stat-card stat-machine">
+              <i class="bi bi-cpu"></i>
+              <div class="stat-num">1T+</div>
+              <div class="stat-label">words used to train today's frontier language models</div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="stat-card stat-gap">
+              <i class="bi bi-arrows-collapse"></i>
+              <div class="stat-num">~10,000&times;</div>
+              <div class="stat-label">the data-efficiency gap we aim to close</div>
+            </div>
+          </div>
+
+        </div>
+        <p class="gap-note">Can engagement with other modalities&mdash;vision, and beyond&mdash;help machines learn
+          language as efficiently as human infants?</p>
+      </div>
+
+    </section><!-- /Data-Efficiency Gap Band -->
+
     <!-- Themes Section -->
     <section id="themes" class="cfp section">
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Workshop Themes</h2>
+        <h2><i class="bi bi-diagram-3"></i>Workshop Themes</h2>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -344,7 +422,7 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Call for Papers</h2>
+        <h2><i class="bi bi-file-earmark-text"></i>Call for Papers</h2>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -386,7 +464,7 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>The BabyVLM Challenge</h2>
+        <h2><i class="bi bi-trophy"></i>The BabyVLM Challenge</h2>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -416,7 +494,7 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Organizers<br></h2>
+        <h2><i class="bi bi-people"></i>Organizers<br></h2>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -606,7 +684,7 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Invited Speakers<br></h2>
+        <h2><i class="bi bi-mic"></i>Invited Speakers<br></h2>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -741,7 +819,7 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Tentative Schedule</h2>
+        <h2><i class="bi bi-calendar2-week"></i>Tentative Schedule</h2>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -839,7 +917,7 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Workshop Venue<br></h2>
+        <h2><i class="bi bi-geo-alt"></i>Workshop Venue<br></h2>
       </div><!-- End Section Title -->
 
       <div class="container-fluid" data-aos="fade-up">
@@ -871,7 +949,7 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Contact</h2>
+        <h2><i class="bi bi-envelope"></i>Contact</h2>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
