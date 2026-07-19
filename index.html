@@ -269,6 +269,65 @@
     .partners .partner-line { font-size: 17px; }
     .partners .partner-line a { color: #c9bfff; text-decoration: underline; }
     .partners .partner-sub { font-size: 14px; opacity: 0.72; margin-top: 8px; }
+
+    /* ---- Host / partner bar (NeurIPS + BabyLM), high up ---- */
+    .hostbar { background: #f2f0fb; border-top: 1px solid #e6e1f7; border-bottom: 1px solid #e6e1f7; padding: 18px 0; }
+    .hostbar-grid { display: flex; align-items: center; justify-content: center; gap: 28px; flex-wrap: wrap; }
+    .host-item { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--heading-color); }
+    .host-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: #6b6788; }
+    .host-item .neurips-mark { height: 34px; width: auto; }
+    .host-babylm { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: 16px; }
+    .host-babylm img { height: 30px; width: 30px; margin: 0; }
+    .host-divider { width: 1px; height: 34px; background: #d9d3ef; }
+    @media (max-width: 575px) { .host-divider { display: none; } }
+
+    /* ---- About + gap side-by-side ---- */
+    .about .about-text p { font-size: 16px; }
+    .about .about-cta { margin-top: 18px; margin-bottom: 0; }
+    .gap-panel { background: linear-gradient(160deg, #f7f6fe, #efeaff); border: 1px solid #e4ddf7; border-radius: 20px; padding: 24px 22px; height: 100%; }
+    .gap-panel h3 { font-size: 18px; margin: 0 0 16px; text-align: left; }
+    .stat-row { display: flex; align-items: center; gap: 14px; padding: 12px 16px; border-radius: 14px; color: #fff; margin-bottom: 10px; }
+    .stat-row .stat-num { font-size: 28px; font-weight: 800; line-height: 1; min-width: 108px; }
+    .stat-row .stat-label { font-size: 12.5px; opacity: 0.96; }
+    .stat-row.stat-human { background: linear-gradient(160deg, #7fb2ff, #5b8def); }
+    .stat-row.stat-machine { background: linear-gradient(160deg, #8a7bf0, #6d5ae0); }
+    .stat-row.stat-gap { background: linear-gradient(160deg, #ffb28a, #ff7a9c); }
+    .gap-panel .gap-note { margin: 14px 2px 0; font-size: 13px; text-align: left; }
+
+    /* ---- Collapsible dropdowns (bios, program committee) ---- */
+    details.disclosure { border: 1px solid #e4ddf7; border-radius: 14px; margin-top: 16px; background: #faf9ff; overflow: hidden; }
+    details.disclosure > summary { cursor: pointer; list-style: none; padding: 15px 22px; font-weight: 600; font-family: var(--heading-font); color: var(--heading-color); display: flex; align-items: center; justify-content: space-between; }
+    details.disclosure > summary::-webkit-details-marker { display: none; }
+    details.disclosure > summary .chev { transition: transform 0.25s; color: var(--accent-color); }
+    details.disclosure[open] > summary .chev { transform: rotate(90deg); }
+    details.disclosure[open] > summary { border-bottom: 1px solid #ece7fa; }
+    details.disclosure .disclosure-body { padding: 18px 22px 20px; }
+    details.disclosure .disclosure-body p:first-child { margin-top: 0; }
+
+    /* ---- "How to participate" steps ---- */
+    .steps { display: flex; gap: 18px; flex-wrap: wrap; margin: 6px 0 26px; }
+    .step { flex: 1 1 0; min-width: 220px; background: #fff; border: 1px solid #ece7fa; border-radius: 16px; padding: 24px 20px; text-align: center; box-shadow: 0 4px 16px rgba(33, 31, 69, 0.06); }
+    .step .step-n { width: 40px; height: 40px; border-radius: 50%; background: var(--accent-color); color: #fff; font-weight: 700; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; }
+    .step h4 { font-size: 17px; margin: 0 0 6px; }
+    .step p { font-size: 14px; margin: 0; color: color-mix(in srgb, var(--default-color), transparent 25%); }
+
+    /* ---- Date cards ---- */
+    .date-cards { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 8px; }
+    .date-card { flex: 1 1 0; min-width: 165px; background: #fff; border: 1px solid #ece7fa; border-left: 4px solid var(--accent-color); border-radius: 12px; padding: 16px 18px; }
+    .date-card .d-when { font-weight: 700; font-size: 16px; color: var(--heading-color); }
+    .date-card .d-what { font-size: 13px; color: color-mix(in srgb, var(--default-color), transparent 25%); margin-top: 3px; }
+
+    /* ---- Footer NeurIPS + BabyLM brand row ---- */
+    .footer-brand { text-align: center; padding: 6px 0 26px; }
+    .footer-brand img { height: 40px; width: auto; margin: 0 16px; vertical-align: middle; opacity: 0.95; }
+    .footer-brand .fb-babylm { height: 38px; width: 38px; }
+
+    /* ---- Hero CTA buttons ---- */
+    .hero-cta-row { margin-top: 22px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .hero .cta-btn { color: #fff; background: var(--accent-color); font-weight: 600; font-size: 15px; padding: 11px 26px; border-radius: 50px; text-decoration: none; transition: 0.3s; }
+    .hero .cta-btn.cta-primary:hover { background: #5a49c9; }
+    .hero .cta-btn.cta-ghost { background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.5); }
+    .hero .cta-btn.cta-ghost:hover { background: rgba(255, 255, 255, 0.22); }
   </style>
 
   <!-- =======================================================
@@ -291,13 +350,12 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="#hero" class="active">Home<br></a></li>
-          <li><a href="#overview">Overview</a></li>
-          <li><a href="#themes">Themes</a></li>
-          <li><a href="#cfp">Call for Papers</a></li>
+          <li><a href="#hero" class="active">Home</a></li>
           <li><a href="#challenge">Challenge</a></li>
-          <li><a href="#organizers">Organizers</a></li>
+          <li><a href="#cfp">Call for Papers</a></li>
+          <li><a href="#overview">About</a></li>
           <li><a href="#speakers">Speakers</a></li>
+          <li><a href="#organizers">Organizers</a></li>
           <li><a href="#schedule">Schedule</a></li>
           <li><a href="#venue">Venue</a></li>
           <li><a href="#contact">Contact</a></li>
@@ -312,7 +370,6 @@
 
   <main class="main">
 
-    <!-- Hero Section -->
     <section id="hero" class="hero section dark-background">
 
       <div class="container d-flex flex-column align-items-center text-center mt-auto">
@@ -329,113 +386,195 @@
           <span><i class="bi bi-chat-dots"></i> Language</span>
           <span><i class="bi bi-emoji-smile"></i> Development</span>
         </div>
-        <br> <br>
+        <div class="hero-cta-row" data-aos="fade-up" data-aos-delay="500">
+          <a class="cta-btn cta-primary" href="#challenge">Join the BabyVLM Challenge</a>
+          <a class="cta-btn cta-ghost" href="#cfp">Call for Papers</a>
+        </div>
+        <br>
       </div>
 
-    </section><!-- /Hero Section -->
+    </section>
 
-    <!-- Overview Section -->
-    <section id="overview" class="overview section">
+    <section class="hostbar" data-aos="fade-up">
+      <div class="container">
+        <div class="hostbar-grid">
+          <a class="host-item" href="https://neurips.cc/" target="_blank" rel="noopener">
+            <span class="host-label">Presented at</span>
+            <img src="assets/img/neurips-logo.svg" alt="NeurIPS 2026" class="neurips-mark">
+          </a>
+          <span class="host-divider"></span>
+          <a class="host-item" href="https://babylm.github.io/" target="_blank" rel="noopener">
+            <span class="host-label">In partnership with</span>
+            <span class="host-babylm"><img src="assets/img/logo.png" alt=""> the BabyLM Challenge</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="overview" class="about section">
+
+      <div class="container section-title" data-aos="fade-up">
+        <h2><i class="bi bi-mortarboard"></i>About the Workshop</h2>
+      </div>
+
+      <div class="container">
+        <div class="row g-4 align-items-stretch">
+
+          <div class="col-lg-7" data-aos="fade-up">
+            <div class="about-text">
+              <p>Leading language models are trained on <strong>well over a trillion words</strong>&mdash;vastly more than
+                the <strong>~100&nbsp;million words</strong> a child hears during typical development. The BabyVLM Workshop
+                asks how we can close this gap, building on the idea that engagement with other modalities&mdash;especially
+                vision&mdash;may be key to <strong>sample-efficient</strong> language learning.</p>
+              <p>We bring together <strong>machine learning, computer vision, cognitive science, and developmental
+                psychology</strong> around learnability, sample-efficient multimodal pretraining, and human-inspired
+                evaluation. In partnership with the BabyLM Challenge team, we invite contributions&mdash;from full papers to
+                challenge entries&mdash;on:</p>
+              <ul>
+                <li>Effectively integrating other modalities into LM training to improve sample-efficiency</li>
+                <li>New benchmarks that assess the learning of language and its grounding</li>
+                <li>Computational cognitive science&mdash;e.g., learnability with or without visual signals</li>
+              </ul>
+              <p class="about-cta"><a class="cta-btn" href="#challenge">Get involved in the Challenge <i class="bi bi-arrow-right"></i></a></p>
+            </div>
+          </div>
+
+          <div class="col-lg-5" data-aos="fade-up" data-aos-delay="100">
+            <aside class="gap-panel">
+              <h3><i class="bi bi-bar-chart-line"></i> The Human&ndash;Machine Gap</h3>
+              <div class="stat-row stat-human">
+                <div class="stat-num" data-count="100" data-prefix="~" data-suffix="M">~100M</div>
+                <div class="stat-label">words a child hears during development</div>
+              </div>
+              <div class="stat-row stat-machine">
+                <div class="stat-num" data-count="1" data-prefix="" data-suffix="T+">1T+</div>
+                <div class="stat-label">words used to train frontier language models</div>
+              </div>
+              <div class="stat-row stat-gap">
+                <div class="stat-num" data-count="10000" data-prefix="~" data-suffix="&times;">~10,000&times;</div>
+                <div class="stat-label">the data-efficiency gap we aim to close</div>
+              </div>
+              <p class="gap-note">Can other modalities help machines learn as efficiently as human infants?</p>
+            </aside>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <section id="challenge" class="overview section">
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2><i class="bi bi-mortarboard"></i>Workshop Summary</h2>
+        <h2><i class="bi bi-trophy"></i>The BabyVLM Challenge</h2>
       </div><!-- End Section Title -->
 
       <div class="container">
 
         <p>
-          Great effort has been invested into optimizing language model (LM) pretraining at massive scales in terms of
-          pretraining dataset size; leading models today are trained on datasets of well over a trillion words. This is
-          significantly more than the 100 million words that humans hear during typical development. How can we close the
-          gap between human and machine language learners? Recent work suggests that engagement with other modalities may
-          be the key to unlocking sample-efficient language learning.
+          In partnership with organizers of the BabyLM Challenge, we will launch the BabyVLM Challenge at the workshop.
+          This is a shared task focused on developmentally plausible and sample-efficient vision language modeling. We
+          have designed this challenge with new datasets and evaluations specifically designed for small vision language
+          models. We are planning a tutorial at the workshop to introduce attendees to the challenge. It will be
+          advertised to BabyLM Challenge participants.
         </p>
 
-        <p>
-          Integrating more modalities raises critical new research questions and challenges relative to the text-only
-          settings observed so far:
-        </p>
+        <h3>How to Participate</h3>
+        <div class="steps">
+          <div class="step" data-aos="fade-up" data-aos-delay="100">
+            <div class="step-n">1</div>
+            <h4>Explore the task &amp; data</h4>
+            <p>New datasets and evaluations designed specifically for small vision language models.</p>
+          </div>
+          <div class="step" data-aos="fade-up" data-aos-delay="200">
+            <div class="step-n">2</div>
+            <h4>Train a sample-efficient VLM</h4>
+            <p>Pretrain on developmentally plausible data&mdash;roughly what a child sees and hears.</p>
+          </div>
+          <div class="step" data-aos="fade-up" data-aos-delay="300">
+            <div class="step-n">3</div>
+            <h4>Submit &amp; present</h4>
+            <p>Submit on OpenReview and present your results at BabyVLM @ NeurIPS 2026.</p>
+          </div>
+        </div>
 
-        <ul>
-          <li>How can we effectively integrate other modalities into LM training? Can this improve sample-efficiency
-            relative to text-only training?</li>
-          <li>By what standards should multimodal language learners be evaluated? What new benchmarks are needed to
-            accurately assess learning of language and its grounding?</li>
-          <li>Can we foster new kinds of research questions in computational cognitive science—for example, learnability
-            in the presence or absence of visual signals?</li>
-        </ul>
+        <div class="text-center mb-4">
+          <a class="cta-btn" href="https://openreview.net/group?id=NeurIPS.cc/2026/Workshop/BabyVLM" target="_blank" rel="noopener">Submit on OpenReview</a>
+        </div>
 
-        <p>
-          The BabyVLM Workshop is designed to be the central forum for addressing these questions. In partnership with
-          members of the BabyLM Challenge team, we invite researchers to contribute to the development of a community
-          centered on questions of learnability, sample-efficient multimodal pretraining, cognition, and human-inspired
-          evaluation of multimodal systems. The workshop will concentrate on key questions where the interaction of
-          language and other modalities is key for learning, or for evaluating the capabilities of sample-efficient
-          language learners.
-        </p>
+        <p><em>A tutorial at the workshop will introduce attendees to the challenge&mdash;no prior BabyLM experience required.</em></p>
 
-        <p>
-          Overall, we intend to establish a community of researchers interested in the intersection of multimodal machine
-          learning, cognitive science, and developmental psychology. We therefore invite work and perspectives focused on
-          the underexplored intersection of these key themes. We are proud to host invited keynotes and panel discussions
-          featuring leading scholars from each theme area, such that we can create dialogues centered on questions enabled
-          by the rich interaction of these disciplines.
-        </p>
-
-        <p class="mt-4">
-          <strong>Advertisement:</strong> How can we get multimodal models to learn as efficiently as human infants?
-          Learn with us at the BabyVLM workshop!
-        </p>
+        <details class="disclosure">
+          <summary>Challenge Steering Committee (confirmed) <i class="bi bi-chevron-right chev"></i></summary>
+          <div class="disclosure-body">
+            <ul>
+              <li>Michael C. Frank (Psychology, Stanford)</li>
+              <li>Chen Yu (Psychology, UT Austin)</li>
+              <li>Kristen Grauman (CS, UT Austin)</li>
+              <li>Kate Saenko (CS, Boston University)</li>
+            </ul>
+          </div>
+        </details>
 
       </div>
 
-    </section><!-- /Overview Section -->
+    </section>
 
-    <!-- Data-Efficiency Gap Band -->
-    <section id="gap" class="gap-band section">
+    <section id="cfp" class="cfp section">
 
+      <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>The Human&ndash;Machine Gap</h2>
-        <p>Children learn language and its grounding from a tiny fraction of the data used to train today's models.
-          Closing that gap is what BabyVLM is about.</p>
-      </div>
+        <h2><i class="bi bi-file-earmark-text"></i>Call for Papers</h2>
+      </div><!-- End Section Title -->
 
       <div class="container">
-        <div class="row gy-4 justify-content-center">
 
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="stat-card stat-human">
-              <i class="bi bi-emoji-smile"></i>
-              <div class="stat-num" data-count="100" data-prefix="~" data-suffix="M">~100M</div>
-              <div class="stat-label">words a child hears during typical development</div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="stat-card stat-machine">
-              <i class="bi bi-cpu"></i>
-              <div class="stat-num" data-count="1" data-prefix="" data-suffix="T+">1T+</div>
-              <div class="stat-label">words used to train today's frontier language models</div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="stat-card stat-gap">
-              <i class="bi bi-arrows-collapse"></i>
-              <div class="stat-num" data-count="10000" data-prefix="~" data-suffix="&times;">~10,000&times;</div>
-              <div class="stat-label">the data-efficiency gap we aim to close</div>
-            </div>
-          </div>
-
+        <div class="text-center mb-4">
+          <a class="cta-btn" href="https://openreview.net/group?id=NeurIPS.cc/2026/Workshop/BabyVLM" target="_blank" rel="noopener">Submit on OpenReview</a>
         </div>
-        <p class="gap-note">Can engagement with other modalities&mdash;vision, and beyond&mdash;help machines learn
-          language as efficiently as human infants?</p>
+
+        <h3>Submission Format</h3>
+        <ul>
+          <li><strong>Non-archival submissions.</strong> Calls for non-archival submissions will be made in July.</li>
+          <li><strong>Page limit.</strong> Submissions will be solicited as full papers of at most 8 pages.</li>
+          <li><strong>Scope.</strong> Paper submissions should discuss research or deployed work.</li>
+        </ul>
+
+        <h3>Important Dates</h3>
+        <div class="date-cards">
+          <div class="date-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="d-when">July 2026</div>
+            <div class="d-what">Call for Papers opens</div>
+          </div>
+          <div class="date-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="d-when">Aug 22, 2026</div>
+            <div class="d-what">Submission deadline</div>
+          </div>
+          <div class="date-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="d-when">Sep 29, 2026</div>
+            <div class="d-what">Notification of acceptance</div>
+          </div>
+          <div class="date-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="d-when">NeurIPS 2026</div>
+            <div class="d-what">Workshop day, Atlanta</div>
+          </div>
+        </div>
+
+        <h3>Reviewing</h3>
+        <p>
+          The initial review of submissions will be handled by the program committee via a double-blind review process on
+          OpenReview. We will continue to invite additional reviewers as needed to ensure that each paper receives at
+          least three reviews, with a maximum of three papers assigned to any given reviewer. To manage conflicts of
+          interest, no organizer will be involved in assessing a submission from someone within the same organization, and
+          no organizers nor any students with a conflict of interest with the organizers will submit papers to the
+          workshop.
+        </p>
+
       </div>
 
-    </section><!-- /Data-Efficiency Gap Band -->
+    </section>
 
-    <!-- Themes Section -->
     <section id="themes" class="cfp section">
 
       <!-- Section Title -->
@@ -469,9 +608,8 @@
 
       </div>
 
-    </section><!-- /Themes Section -->
+    </section>
 
-    <!-- Developmental Trajectory Timeline -->
     <section id="trajectory" class="trajectory section">
 
       <div class="container section-title" data-aos="fade-up">
@@ -509,271 +647,8 @@
         </div>
       </div>
 
-    </section><!-- /Developmental Trajectory Timeline -->
+    </section>
 
-    <!-- CfP Section -->
-    <section id="cfp" class="cfp section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2><i class="bi bi-file-earmark-text"></i>Call for Papers</h2>
-      </div><!-- End Section Title -->
-
-      <div class="container">
-
-        <div class="text-center mb-4">
-          <a class="cta-btn" href="https://openreview.net/group?id=NeurIPS.cc/2026/Workshop/BabyVLM" target="_blank" rel="noopener">Submit on OpenReview</a>
-        </div>
-
-        <h3>Submission Format</h3>
-        <ul>
-          <li><strong>Non-archival submissions.</strong> Calls for non-archival submissions will be made in July.</li>
-          <li><strong>Page limit.</strong> Submissions will be solicited as full papers of at most 8 pages.</li>
-          <li><strong>Scope.</strong> Paper submissions should discuss research or deployed work.</li>
-        </ul>
-
-        <h3>Important Dates</h3>
-        <ul>
-          <li><strong>Call for Papers:</strong> July 2026</li>
-          <li><strong>Submission Deadline:</strong> August 22, 2026</li>
-          <li><strong>Notification of Acceptance:</strong> September 29, 2026</li>
-        </ul>
-
-        <h3>Reviewing</h3>
-        <p>
-          The initial review of submissions will be handled by the program committee via a double-blind review process on
-          OpenReview. We will continue to invite additional reviewers as needed to ensure that each paper receives at
-          least three reviews, with a maximum of three papers assigned to any given reviewer. To manage conflicts of
-          interest, no organizer will be involved in assessing a submission from someone within the same organization, and
-          no organizers nor any students with a conflict of interest with the organizers will submit papers to the
-          workshop.
-        </p>
-
-      </div>
-
-    </section><!-- /CfP Section -->
-
-    <!-- Challenge Section -->
-    <section id="challenge" class="overview section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2><i class="bi bi-trophy"></i>The BabyVLM Challenge</h2>
-      </div><!-- End Section Title -->
-
-      <div class="container">
-
-        <p>
-          In partnership with organizers of the BabyLM Challenge, we will launch the BabyVLM Challenge at the workshop.
-          This is a shared task focused on developmentally plausible and sample-efficient vision language modeling. We
-          have designed this challenge with new datasets and evaluations specifically designed for small vision language
-          models. We are planning a tutorial at the workshop to introduce attendees to the challenge. It will be
-          advertised to BabyLM Challenge participants.
-        </p>
-
-        <h3>Steering Committee (Confirmed)</h3>
-        <ul>
-          <li>Michael C. Frank (Psychology, Stanford)</li>
-          <li>Chen Yu (Psychology, UT Austin)</li>
-          <li>Kristen Grauman (CS, UT Austin)</li>
-          <li>Kate Saenko (CS, Boston University)</li>
-        </ul>
-
-      </div>
-
-    </section><!-- /Challenge Section -->
-
-    <!-- Organizers Section -->
-    <section id="organizers" class="speakers section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2><i class="bi bi-people"></i>Organizers<br></h2>
-      </div><!-- End Section Title -->
-
-      <div class="container">
-
-        <div class="row gy-4 justify-content-center">
-
-          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="member">
-              <img src="assets/img/people/buttery.jpg" class="img-fluid" alt="Paula Buttery">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4><a href="https://www.cl.cam.ac.uk/~pjb48/" target="_blank" rel="noopener">Paula Buttery</a></h4>
-                  <span>University of Cambridge</span>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="150">
-            <div class="member">
-              <img src="assets/img/people/choshen.jpg" class="img-fluid" alt="Leshem Choshen">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4><a href="https://ktilana.wixsite.com/leshem-choshen" target="_blank" rel="noopener">Leshem Choshen</a></h4>
-                  <span>Weizmann Institute of Science</span>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="member">
-              <img src="assets/img/people/gong.jpg" class="img-fluid" alt="Boqing Gong">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4><a href="https://boqinggong.info/" target="_blank" rel="noopener">Boqing Gong</a></h4>
-                  <span>Boston University / Google DeepMind</span>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="250">
-            <div class="member">
-              <img src="assets/img/people/mueller.jpg" class="img-fluid" alt="Aaron Mueller">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4><a href="https://aaronmueller.github.io/" target="_blank" rel="noopener">Aaron Mueller</a></h4>
-                  <span>Boston University</span>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="member">
-              <img src="assets/img/people/salhan.jpg" class="img-fluid" alt="Suchir Salhan">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4><a href="https://www.cst.cam.ac.uk/people/sas245" target="_blank" rel="noopener">Suchir Salhan</a></h4>
-                  <span>University of Cambridge</span>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="350">
-            <div class="member">
-              <img src="assets/img/people/swang.jpg" class="img-fluid" alt="Shengao Wang">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>Shengao Wang</h4>
-                  <span>Boston University</span>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="400">
-            <div class="member">
-              <img src="assets/img/people/wwang.jpg" class="img-fluid" alt="Wenqi Wang">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>Wenqi Wang</h4>
-                  <span>Boston University</span>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="450">
-            <div class="member">
-              <img src="assets/img/people/whitton.jpg" class="img-fluid" alt="Max Whitton">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>Max Whitton</h4>
-                  <span>Boston University</span>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-        </div>
-
-        <div class="section-title mt-5" data-aos="fade-up">
-          <h2>Bios<br></h2>
-        </div>
-
-        <div class="pastel-box">
-        <p>
-          <strong>Paula Buttery</strong> (pjb48@cam.ac.uk) is the Deputy Head of the Department of Computer Science &amp;
-          Technology at the University of Cambridge and a Full Professor of Language and Machine Learning. She is
-          co-Director of the Cambridge Language Sciences Interdisciplinary Research Centre and Principal Investigator of
-          the Cambridge Institute for Automated Language Teaching and Assessment (ALTA). Paula, together with her research
-          group, focuses on designing and pretraining performant Small (and Baby) Language Models, developing
-          interpretable and efficient text-based and multimodal language model architectures. Her group has won four
-          outstanding paper awards for their research on BabyLM.
-        </p>
-        <p>
-          <strong>Leshem Choshen</strong> (leshem.choshen@weizmann.ac.il) is a Zuckerman Faculty Senior Scientist (eq.
-          Assistant Professor) at the Weizmann Institute of Science. He co-founded the BabyLM challenge and has led
-          various open science and community research efforts, including TextArena (supporting millions of users at its
-          peak) and EveryEvalEver (including a shared task and wide community outreach). His work on future humane AI
-          includes broad evaluation efforts and human-focused research.
-        </p>
-        <p>
-          <strong>Boqing Gong</strong> (bgong@bu.edu) is a computer science faculty member at Boston University and a
-          part-time research scientist at Google DeepMind. His research on machine learning and computer vision focuses on
-          visual recognition, video, and AI models' generalization and efficiency. He received an NSF CAREER award for his
-          project on BabyVLM.
-        </p>
-        <p>
-          <strong>Aaron Mueller</strong> (amueller@bu.edu) is an Assistant Professor of CS at Boston University. His
-          research centers on language modeling, developmentally inspired evaluation methods, and interpretability. He
-          co-founded and regularly organizes the BabyLM Challenge. He is actively involved in the NLP and ML communities
-          through research, as well as event planning and conference chairing (e.g., publicity chair for EMNLP 2025,
-          program chair for the New England Mechanistic Interpretability Workshop).
-        </p>
-        <p>
-          <strong>Suchir Salhan</strong> (sas245@cam.ac.uk) is a PhD Candidate at the University of Cambridge, working on
-          Small Language Models and Cognitively-Inspired AI. He is an organiser of the BabyLM Shared Task and Workshop at
-          EMNLP 2026, and has won an Outstanding Paper Award for his work on interpretable approaches for multimodal
-          language modeling. His research focuses on developmental interpretability, language model learning dynamics, and
-          tokenization.
-        </p>
-        <p>
-          <strong>Shengao Wang</strong> (wsashawn@bu.edu) is a Ph.D. student at Boston University co-advised by Prof.
-          Boqing Gong and Prof. Venkatesh Saligrama. His research interests lie among vision language model pretraining,
-          developmental learning, and robotics. He was the team lead of the BabyVLM-v2 project. He also participated in
-          the second BabyLM challenge and contributed to the evaluation codebase.
-        </p>
-        <p>
-          <strong>Wenqi Wang</strong> (wqwang@bu.edu) is a second-year Ph.D. student at Boston University, advised by
-          Prof. Boqing Gong. His research focuses on vision language model evaluation and world models. He was a co-author
-          on the BabyVLM-v2 team.
-        </p>
-        <p>
-          <strong>Max Whitton</strong> (maxwh@bu.edu) is pursuing his Ph.D. at Boston University, advised by Prof. Boqing
-          Gong. He does research at the intersection of computer vision and developmental learning, and was a co-author on
-          the BabyVLM-v2 team.
-        </p>
-        </div>
-
-        <div class="section-title mt-5" data-aos="fade-up">
-          <h2>Program Committee<br></h2>
-        </div>
-
-        <div class="pastel-box">
-        <p>
-          Our program committee draws on eight institutions across four countries (the US, the UK, the Netherlands, and
-          Germany), with expertise in multimodal machine learning, language modeling, evaluation, and training dynamics:
-          Canaan Breiss (U Chicago), Bastian Bunzeck (Bielefeld U), Andrew Caines (U Cambridge), Arjun Chandra (Boston U),
-          Bianca-Mihaela Ganescu (U Cambridge), Fuhang Kuang (Boston U), Lingxiao Li (Boston U), Mahir Patel (Boston U),
-          Yulu Qin (Boston U), Yuan Qing (Boston U), Maan Qraitem (Boston U), Arijit Ray (Boston U / Ai2), Naomi Saphra
-          (Harvard, Kempner Institute), Ece Takmaz (Utrecht U), Yuwen Tan (Boston U), Zilu Tang (Boston U), Nazia Tasnim
-          (Boston U), Piotr Teterwak (Boston U), Dheeraj Varghese (U Amsterdam), Manushree Vasu (Boston U), and Michael
-          Wakeham (Boston U).
-        </p>
-        </div>
-
-      </div>
-
-    </section><!-- /Organizers Section -->
-
-    <!-- Speakers Section -->
     <section id="speakers" class="speakers section">
 
       <!-- Section Title -->
@@ -906,9 +781,195 @@
 
       </div>
 
-    </section><!-- /Speakers Section -->
+    </section>
 
-    <!-- Schedule Section -->
+    <section id="organizers" class="speakers section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2><i class="bi bi-people"></i>Organizers<br></h2>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-4 justify-content-center">
+
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="member">
+              <img src="assets/img/people/buttery.jpg" class="img-fluid" alt="Paula Buttery">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4><a href="https://www.cl.cam.ac.uk/~pjb48/" target="_blank" rel="noopener">Paula Buttery</a></h4>
+                  <span>University of Cambridge</span>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="150">
+            <div class="member">
+              <img src="assets/img/people/choshen.jpg" class="img-fluid" alt="Leshem Choshen">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4><a href="https://ktilana.wixsite.com/leshem-choshen" target="_blank" rel="noopener">Leshem Choshen</a></h4>
+                  <span>Weizmann Institute of Science</span>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="member">
+              <img src="assets/img/people/gong.jpg" class="img-fluid" alt="Boqing Gong">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4><a href="https://boqinggong.info/" target="_blank" rel="noopener">Boqing Gong</a></h4>
+                  <span>Boston University / Google DeepMind</span>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="250">
+            <div class="member">
+              <img src="assets/img/people/mueller.jpg" class="img-fluid" alt="Aaron Mueller">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4><a href="https://aaronmueller.github.io/" target="_blank" rel="noopener">Aaron Mueller</a></h4>
+                  <span>Boston University</span>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="member">
+              <img src="assets/img/people/salhan.jpg" class="img-fluid" alt="Suchir Salhan">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4><a href="https://www.cst.cam.ac.uk/people/sas245" target="_blank" rel="noopener">Suchir Salhan</a></h4>
+                  <span>University of Cambridge</span>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="350">
+            <div class="member">
+              <img src="assets/img/people/swang.jpg" class="img-fluid" alt="Shengao Wang">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Shengao Wang</h4>
+                  <span>Boston University</span>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="member">
+              <img src="assets/img/people/wwang.jpg" class="img-fluid" alt="Wenqi Wang">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Wenqi Wang</h4>
+                  <span>Boston University</span>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="450">
+            <div class="member">
+              <img src="assets/img/people/whitton.jpg" class="img-fluid" alt="Max Whitton">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Max Whitton</h4>
+                  <span>Boston University</span>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+        </div>
+
+        <details class="disclosure" data-aos="fade-up">
+          <summary>Read organizer bios <i class="bi bi-chevron-right chev"></i></summary>
+          <div class="disclosure-body">
+        <p>
+          <strong>Paula Buttery</strong> (pjb48@cam.ac.uk) is the Deputy Head of the Department of Computer Science &amp;
+          Technology at the University of Cambridge and a Full Professor of Language and Machine Learning. She is
+          co-Director of the Cambridge Language Sciences Interdisciplinary Research Centre and Principal Investigator of
+          the Cambridge Institute for Automated Language Teaching and Assessment (ALTA). Paula, together with her research
+          group, focuses on designing and pretraining performant Small (and Baby) Language Models, developing
+          interpretable and efficient text-based and multimodal language model architectures. Her group has won four
+          outstanding paper awards for their research on BabyLM.
+        </p>
+        <p>
+          <strong>Leshem Choshen</strong> (leshem.choshen@weizmann.ac.il) is a Zuckerman Faculty Senior Scientist (eq.
+          Assistant Professor) at the Weizmann Institute of Science. He co-founded the BabyLM challenge and has led
+          various open science and community research efforts, including TextArena (supporting millions of users at its
+          peak) and EveryEvalEver (including a shared task and wide community outreach). His work on future humane AI
+          includes broad evaluation efforts and human-focused research.
+        </p>
+        <p>
+          <strong>Boqing Gong</strong> (bgong@bu.edu) is a computer science faculty member at Boston University and a
+          part-time research scientist at Google DeepMind. His research on machine learning and computer vision focuses on
+          visual recognition, video, and AI models' generalization and efficiency. He received an NSF CAREER award for his
+          project on BabyVLM.
+        </p>
+        <p>
+          <strong>Aaron Mueller</strong> (amueller@bu.edu) is an Assistant Professor of CS at Boston University. His
+          research centers on language modeling, developmentally inspired evaluation methods, and interpretability. He
+          co-founded and regularly organizes the BabyLM Challenge. He is actively involved in the NLP and ML communities
+          through research, as well as event planning and conference chairing (e.g., publicity chair for EMNLP 2025,
+          program chair for the New England Mechanistic Interpretability Workshop).
+        </p>
+        <p>
+          <strong>Suchir Salhan</strong> (sas245@cam.ac.uk) is a PhD Candidate at the University of Cambridge, working on
+          Small Language Models and Cognitively-Inspired AI. He is an organiser of the BabyLM Shared Task and Workshop at
+          EMNLP 2026, and has won an Outstanding Paper Award for his work on interpretable approaches for multimodal
+          language modeling. His research focuses on developmental interpretability, language model learning dynamics, and
+          tokenization.
+        </p>
+        <p>
+          <strong>Shengao Wang</strong> (wsashawn@bu.edu) is a Ph.D. student at Boston University co-advised by Prof.
+          Boqing Gong and Prof. Venkatesh Saligrama. His research interests lie among vision language model pretraining,
+          developmental learning, and robotics. He was the team lead of the BabyVLM-v2 project. He also participated in
+          the second BabyLM challenge and contributed to the evaluation codebase.
+        </p>
+        <p>
+          <strong>Wenqi Wang</strong> (wqwang@bu.edu) is a second-year Ph.D. student at Boston University, advised by
+          Prof. Boqing Gong. His research focuses on vision language model evaluation and world models. He was a co-author
+          on the BabyVLM-v2 team.
+        </p>
+        <p>
+          <strong>Max Whitton</strong> (maxwh@bu.edu) is pursuing his Ph.D. at Boston University, advised by Prof. Boqing
+          Gong. He does research at the intersection of computer vision and developmental learning, and was a co-author on
+          the BabyVLM-v2 team.
+        </p>
+          </div>
+        </details>
+
+        <details class="disclosure" data-aos="fade-up">
+          <summary>View the program committee <i class="bi bi-chevron-right chev"></i></summary>
+          <div class="disclosure-body">
+        <p>
+          Our program committee draws on eight institutions across four countries (the US, the UK, the Netherlands, and
+          Germany), with expertise in multimodal machine learning, language modeling, evaluation, and training dynamics:
+          Canaan Breiss (U Chicago), Bastian Bunzeck (Bielefeld U), Andrew Caines (U Cambridge), Arjun Chandra (Boston U),
+          Bianca-Mihaela Ganescu (U Cambridge), Fuhang Kuang (Boston U), Lingxiao Li (Boston U), Mahir Patel (Boston U),
+          Yulu Qin (Boston U), Yuan Qing (Boston U), Maan Qraitem (Boston U), Arijit Ray (Boston U / Ai2), Naomi Saphra
+          (Harvard, Kempner Institute), Ece Takmaz (Utrecht U), Yuwen Tan (Boston U), Zilu Tang (Boston U), Nazia Tasnim
+          (Boston U), Piotr Teterwak (Boston U), Dheeraj Varghese (U Amsterdam), Manushree Vasu (Boston U), and Michael
+          Wakeham (Boston U).
+        </p>
+          </div>
+        </details>
+
+      </div>
+
+    </section>
+
     <section id="schedule" class="schedule section">
 
       <!-- Section Title -->
@@ -1004,9 +1065,8 @@
 
       </div>
 
-    </section><!-- /Schedule Section -->
+    </section>
 
-    <!-- Venue Section -->
     <section id="venue" class="venue section">
 
       <!-- Section Title -->
@@ -1027,8 +1087,13 @@
             <div class="row justify-content-center">
               <div class="col-11 col-lg-8 position-relative">
                 <h3>Atlanta, Georgia, USA</h3>
-                <p>Co-located with NeurIPS 2026.</p>
-                <p>Exact venue and room to be announced.</p>
+                <p>The BabyVLM Workshop is co-located with <strong>NeurIPS 2026</strong> in Atlanta&mdash;the capital
+                  of Georgia and the largest city in the US Southeast, home to Georgia Tech, Emory, and a thriving AI and
+                  research community.</p>
+                <p>NeurIPS is expected to take place at the <strong>Georgia World Congress Center</strong> in downtown
+                  Atlanta. The airport (ATL) is one of the world's best-connected hubs, and the venue sits near
+                  Centennial Olympic Park, the Georgia Aquarium, and ample hotels.</p>
+                <p><em>Exact room and session details will be announced closer to the workshop.</em></p>
               </div>
             </div>
           </div>
@@ -1036,20 +1101,8 @@
 
       </div>
 
-    </section><!-- /Venue Section -->
+    </section>
 
-    <!-- Partner / Lineage Strip -->
-    <section class="partners" data-aos="fade-up">
-      <div class="container">
-        <div class="partner-line">
-          <img src="assets/img/logo.png" alt="BabyLM">In partnership with the
-          <a href="https://babylm.github.io/" target="_blank" rel="noopener">BabyLM Challenge</a> team.
-        </div>
-        <div class="partner-sub">Hosted at NeurIPS 2026 &middot; Atlanta, Georgia, USA</div>
-      </div>
-    </section><!-- /Partner Strip -->
-
-    <!-- Contact Section -->
     <section id="contact" class="contact section">
 
       <!-- Section Title -->
@@ -1090,11 +1143,16 @@
 
       </div>
 
-    </section><!-- /Contact Section -->
+    </section>
 
   </main>
 
   <footer id="footer" class="footer dark-background">
+
+    <div class="footer-brand">
+      <a href="https://babylm.github.io/" target="_blank" rel="noopener"><img src="assets/img/logo.png" class="fb-babylm" alt="BabyLM Challenge"></a>
+      <a href="https://neurips.cc/" target="_blank" rel="noopener"><img src="assets/img/neurips-logo-white.svg" alt="NeurIPS 2026"></a>
+    </div>
 
     <div class="copyright text-center">
       <div
