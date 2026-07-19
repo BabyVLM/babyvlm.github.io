@@ -29,9 +29,49 @@
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
-  <!-- Site-specific overrides -->
+  <!-- Site-specific overrides: BabyVLM @ NeurIPS 2026 theme -->
   <style>
-    /* Style .cta-btn buttons used outside the header (e.g. Call for Papers) */
+    /* ---- BabyVLM palette (replaces the template's brown + red) ---- */
+    :root {
+      --accent-color: #6d5ae0;          /* BabyVLM indigo-violet */
+      --heading-color: #211f45;         /* deep indigo for headings */
+      --nav-dropdown-hover-color: #6d5ae0;
+    }
+
+    .dark-background {
+      --background-color: #211f45;      /* deep indigo instead of brown */
+      --surface-color: #2d2a5e;
+    }
+
+    /* Section-title underline + hero accents pick up the new accent color */
+    .section-title h2:after { background: var(--accent-color); }
+
+    /* ---- Header ---- */
+    .header .logo img { max-height: 44px; }
+
+    /* ---- Hero: NeurIPS/BabyVLM gradient + logo + badge ---- */
+    .hero {
+      background: linear-gradient(135deg, #1a1836 0%, #3a2e7a 55%, #6d5ae0 100%) !important;
+    }
+    .hero .baby-logo {
+      width: 108px;
+      height: 108px;
+      margin: 0 auto 20px;
+      filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.35));
+    }
+    .hero .neurips-badge {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 7px 20px;
+      border: 1.5px solid rgba(255, 255, 255, 0.6);
+      border-radius: 50px;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    /* ---- .cta-btn buttons used outside the header ---- */
     .main .cta-btn,
     .main .cta-btn:focus {
       color: var(--contrast-color);
@@ -44,10 +84,44 @@
       text-decoration: none;
       transition: 0.3s;
     }
-
     .main .cta-btn:hover {
       background: color-mix(in srgb, var(--accent-color), transparent 15%);
     }
+
+    /* ---- FIX: always show member name/affiliation (no hover required) ---- */
+    .speakers .member {
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 3px 16px rgba(33, 31, 69, 0.08);
+      background: #ffffff;
+    }
+    .speakers .member .member-info {
+      position: static;
+      inset: auto;
+      background: #f6f5fd;               /* soft lavender card footer */
+      padding: 14px 10px 16px;
+    }
+    .speakers .member .member-info-content h4,
+    .speakers .member .member-info-content h4 a {
+      color: var(--heading-color);
+    }
+    .speakers .member .member-info-content h4 a:hover {
+      color: var(--accent-color);
+    }
+    .speakers .member .member-info-content span {
+      color: color-mix(in srgb, var(--default-color), transparent 25%);
+    }
+
+    /* ---- FIX: never let AOS leave content (bios, committee, etc.) invisible ---- */
+    [data-aos] {
+      opacity: 1 !important;
+      transform: none !important;
+      visibility: visible !important;
+    }
+
+    /* ---- Bios / program committee readability ---- */
+    #organizers .org-bios { margin-top: 10px; }
+    #organizers .org-bios p { margin-bottom: 14px; }
   </style>
 
   <!-- =======================================================
@@ -75,9 +149,9 @@
           <li><a href="#themes">Themes</a></li>
           <li><a href="#cfp">Call for Papers</a></li>
           <li><a href="#challenge">Challenge</a></li>
+          <li><a href="#organizers">Organizers</a></li>
           <li><a href="#speakers">Speakers</a></li>
           <li><a href="#schedule">Schedule</a></li>
-          <li><a href="#organizers">Organizers</a></li>
           <li><a href="#venue">Venue</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -95,14 +169,14 @@
     <section id="hero" class="hero section dark-background">
 
       <div class="container d-flex flex-column align-items-center text-center mt-auto">
+        <img src="assets/img/logo.png" class="baby-logo" alt="BabyVLM logo" data-aos="zoom-in">
         <h2 data-aos="fade-up" data-aos-delay="100" class="">The BabyVLM Workshop<br><span>Toward Developmentally
             Plausible Multimodal Systems</span></h2>
         <br>
         <h3 data-aos="fade-up" data-aos-delay="200">
-          NeurIPS 2026 &middot; Atlanta, Georgia, USA
-          <br>
           How can we get multimodal models to learn as efficiently as human infants?
         </h3>
+        <span class="neurips-badge" data-aos="fade-up" data-aos-delay="300">NeurIPS 2026 &middot; Atlanta, Georgia, USA</span>
         <br> <br>
       </div>
 
@@ -273,6 +347,192 @@
       </div>
 
     </section><!-- /Challenge Section -->
+
+    <!-- Organizers Section -->
+    <section id="organizers" class="speakers section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Organizers<br></h2>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-4 justify-content-center">
+
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="member">
+              <img src="assets/img/avatar.png" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4><a href="https://www.cl.cam.ac.uk/~pjb48/" target="_blank" rel="noopener">Paula Buttery</a></h4>
+                  <span>University of Cambridge</span>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="150">
+            <div class="member">
+              <img src="assets/img/avatar.png" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4><a href="https://ktilana.wixsite.com/leshem-choshen" target="_blank" rel="noopener">Leshem Choshen</a></h4>
+                  <span>Weizmann Institute of Science</span>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="member">
+              <img src="assets/img/avatar.png" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4><a href="https://boqinggong.info/" target="_blank" rel="noopener">Boqing Gong</a></h4>
+                  <span>Boston University / Google DeepMind</span>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="250">
+            <div class="member">
+              <img src="assets/img/avatar.png" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4><a href="https://aaronmueller.github.io/" target="_blank" rel="noopener">Aaron Mueller</a></h4>
+                  <span>Boston University</span>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="member">
+              <img src="assets/img/avatar.png" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4><a href="https://www.cst.cam.ac.uk/people/sas245" target="_blank" rel="noopener">Suchir Salhan</a></h4>
+                  <span>University of Cambridge</span>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="350">
+            <div class="member">
+              <img src="assets/img/avatar.png" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Shengao Wang</h4>
+                  <span>Boston University</span>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="member">
+              <img src="assets/img/avatar.png" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Wenqi Wang</h4>
+                  <span>Boston University</span>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="450">
+            <div class="member">
+              <img src="assets/img/avatar.png" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Max Whitton</h4>
+                  <span>Boston University</span>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+        </div>
+
+        <div class="section-title mt-5" data-aos="fade-up">
+          <h2>Bios<br></h2>
+        </div>
+
+        <p>
+          <strong>Paula Buttery</strong> (pjb48@cam.ac.uk) is the Deputy Head of the Department of Computer Science &amp;
+          Technology at the University of Cambridge and a Full Professor of Language and Machine Learning. She is
+          co-Director of the Cambridge Language Sciences Interdisciplinary Research Centre and Principal Investigator of
+          the Cambridge Institute for Automated Language Teaching and Assessment (ALTA). Paula, together with her research
+          group, focuses on designing and pretraining performant Small (and Baby) Language Models, developing
+          interpretable and efficient text-based and multimodal language model architectures. Her group has won four
+          outstanding paper awards for their research on BabyLM.
+        </p>
+        <p>
+          <strong>Leshem Choshen</strong> (leshem.choshen@weizmann.ac.il) is a Zuckerman Faculty Senior Scientist (eq.
+          Assistant Professor) at the Weizmann Institute of Science. He co-founded the BabyLM challenge and has led
+          various open science and community research efforts, including TextArena (supporting millions of users at its
+          peak) and EveryEvalEver (including a shared task and wide community outreach). His work on future humane AI
+          includes broad evaluation efforts and human-focused research.
+        </p>
+        <p>
+          <strong>Boqing Gong</strong> (bgong@bu.edu) is a computer science faculty member at Boston University and a
+          part-time research scientist at Google DeepMind. His research on machine learning and computer vision focuses on
+          visual recognition, video, and AI models' generalization and efficiency. He received an NSF CAREER award for his
+          project on BabyVLM.
+        </p>
+        <p>
+          <strong>Aaron Mueller</strong> (amueller@bu.edu) is an Assistant Professor of CS at Boston University. His
+          research centers on language modeling, developmentally inspired evaluation methods, and interpretability. He
+          co-founded and regularly organizes the BabyLM Challenge. He is actively involved in the NLP and ML communities
+          through research, as well as event planning and conference chairing (e.g., publicity chair for EMNLP 2025,
+          program chair for the New England Mechanistic Interpretability Workshop).
+        </p>
+        <p>
+          <strong>Suchir Salhan</strong> (sas245@cam.ac.uk) is a PhD Candidate at the University of Cambridge, working on
+          Small Language Models and Cognitively-Inspired AI. He is an organiser of the BabyLM Shared Task and Workshop at
+          EMNLP 2026, and has won an Outstanding Paper Award for his work on interpretable approaches for multimodal
+          language modeling. His research focuses on developmental interpretability, language model learning dynamics, and
+          tokenization.
+        </p>
+        <p>
+          <strong>Shengao Wang</strong> (wsashawn@bu.edu) is a Ph.D. student at Boston University co-advised by Prof.
+          Boqing Gong and Prof. Venkatesh Saligrama. His research interests lie among vision language model pretraining,
+          developmental learning, and robotics. He was the team lead of the BabyVLM-v2 project. He also participated in
+          the second BabyLM challenge and contributed to the evaluation codebase.
+        </p>
+        <p>
+          <strong>Wenqi Wang</strong> (wqwang@bu.edu) is a second-year Ph.D. student at Boston University, advised by
+          Prof. Boqing Gong. His research focuses on vision language model evaluation and world models. He was a co-author
+          on the BabyVLM-v2 team.
+        </p>
+        <p>
+          <strong>Max Whitton</strong> (maxwh@bu.edu) is pursuing his Ph.D. at Boston University, advised by Prof. Boqing
+          Gong. He does research at the intersection of computer vision and developmental learning, and was a co-author on
+          the BabyVLM-v2 team.
+        </p>
+
+        <div class="section-title mt-5" data-aos="fade-up">
+          <h2>Program Committee<br></h2>
+        </div>
+
+        <p>
+          Our program committee draws on eight institutions across four countries (the US, the UK, the Netherlands, and
+          Germany), with expertise in multimodal machine learning, language modeling, evaluation, and training dynamics:
+          Canaan Breiss (U Chicago), Bastian Bunzeck (Bielefeld U), Andrew Caines (U Cambridge), Arjun Chandra (Boston U),
+          Bianca-Mihaela Ganescu (U Cambridge), Fuhang Kuang (Boston U), Lingxiao Li (Boston U), Mahir Patel (Boston U),
+          Yulu Qin (Boston U), Yuan Qing (Boston U), Maan Qraitem (Boston U), Arijit Ray (Boston U / Ai2), Naomi Saphra
+          (Harvard, Kempner Institute), Ece Takmaz (Utrecht U), Yuwen Tan (Boston U), Zilu Tang (Boston U), Nazia Tasnim
+          (Boston U), Piotr Teterwak (Boston U), Dheeraj Varghese (U Amsterdam), Manushree Vasu (Boston U), and Michael
+          Wakeham (Boston U).
+        </p>
+
+      </div>
+
+    </section><!-- /Organizers Section -->
 
     <!-- Speakers Section -->
     <section id="speakers" class="speakers section">
@@ -498,192 +758,6 @@
       </div>
 
     </section><!-- /Schedule Section -->
-
-    <!-- Organizers Section -->
-    <section id="organizers" class="speakers section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Organizers<br></h2>
-      </div><!-- End Section Title -->
-
-      <div class="container">
-
-        <div class="row gy-4 justify-content-center">
-
-          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="member">
-              <img src="assets/img/avatar.png" class="img-fluid" alt="">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4><a href="https://www.cl.cam.ac.uk/~pjb48/" target="_blank" rel="noopener">Paula Buttery</a></h4>
-                  <span>University of Cambridge</span>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="150">
-            <div class="member">
-              <img src="assets/img/avatar.png" class="img-fluid" alt="">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4><a href="https://ktilana.wixsite.com/leshem-choshen" target="_blank" rel="noopener">Leshem Choshen</a></h4>
-                  <span>Weizmann Institute of Science</span>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="member">
-              <img src="assets/img/avatar.png" class="img-fluid" alt="">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4><a href="https://boqinggong.info/" target="_blank" rel="noopener">Boqing Gong</a></h4>
-                  <span>Boston University / Google DeepMind</span>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="250">
-            <div class="member">
-              <img src="assets/img/avatar.png" class="img-fluid" alt="">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4><a href="https://aaronmueller.github.io/" target="_blank" rel="noopener">Aaron Mueller</a></h4>
-                  <span>Boston University</span>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="member">
-              <img src="assets/img/avatar.png" class="img-fluid" alt="">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4><a href="https://www.cst.cam.ac.uk/people/sas245" target="_blank" rel="noopener">Suchir Salhan</a></h4>
-                  <span>University of Cambridge</span>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="350">
-            <div class="member">
-              <img src="assets/img/avatar.png" class="img-fluid" alt="">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>Shengao Wang</h4>
-                  <span>Boston University</span>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="400">
-            <div class="member">
-              <img src="assets/img/avatar.png" class="img-fluid" alt="">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>Wenqi Wang</h4>
-                  <span>Boston University</span>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="450">
-            <div class="member">
-              <img src="assets/img/avatar.png" class="img-fluid" alt="">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>Max Whitton</h4>
-                  <span>Boston University</span>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-        </div>
-
-        <div class="section-title mt-5" data-aos="fade-up">
-          <h2>Bios<br></h2>
-        </div>
-
-        <p>
-          <strong>Paula Buttery</strong> (pjb48@cam.ac.uk) is the Deputy Head of the Department of Computer Science &amp;
-          Technology at the University of Cambridge and a Full Professor of Language and Machine Learning. She is
-          co-Director of the Cambridge Language Sciences Interdisciplinary Research Centre and Principal Investigator of
-          the Cambridge Institute for Automated Language Teaching and Assessment (ALTA). Paula, together with her research
-          group, focuses on designing and pretraining performant Small (and Baby) Language Models, developing
-          interpretable and efficient text-based and multimodal language model architectures. Her group has won four
-          outstanding paper awards for their research on BabyLM.
-        </p>
-        <p>
-          <strong>Leshem Choshen</strong> (leshem.choshen@weizmann.ac.il) is a Zuckerman Faculty Senior Scientist (eq.
-          Assistant Professor) at the Weizmann Institute of Science. He co-founded the BabyLM challenge and has led
-          various open science and community research efforts, including TextArena (supporting millions of users at its
-          peak) and EveryEvalEver (including a shared task and wide community outreach). His work on future humane AI
-          includes broad evaluation efforts and human-focused research.
-        </p>
-        <p>
-          <strong>Boqing Gong</strong> (bgong@bu.edu) is a computer science faculty member at Boston University and a
-          part-time research scientist at Google DeepMind. His research on machine learning and computer vision focuses on
-          visual recognition, video, and AI models' generalization and efficiency. He received an NSF CAREER award for his
-          project on BabyVLM.
-        </p>
-        <p>
-          <strong>Aaron Mueller</strong> (amueller@bu.edu) is an Assistant Professor of CS at Boston University. His
-          research centers on language modeling, developmentally inspired evaluation methods, and interpretability. He
-          co-founded and regularly organizes the BabyLM Challenge. He is actively involved in the NLP and ML communities
-          through research, as well as event planning and conference chairing (e.g., publicity chair for EMNLP 2025,
-          program chair for the New England Mechanistic Interpretability Workshop).
-        </p>
-        <p>
-          <strong>Suchir Salhan</strong> (sas245@cam.ac.uk) is a PhD Candidate at the University of Cambridge, working on
-          Small Language Models and Cognitively-Inspired AI. He is an organiser of the BabyLM Shared Task and Workshop at
-          EMNLP 2026, and has won an Outstanding Paper Award for his work on interpretable approaches for multimodal
-          language modeling. His research focuses on developmental interpretability, language model learning dynamics, and
-          tokenization.
-        </p>
-        <p>
-          <strong>Shengao Wang</strong> (wsashawn@bu.edu) is a Ph.D. student at Boston University co-advised by Prof.
-          Boqing Gong and Prof. Venkatesh Saligrama. His research interests lie among vision language model pretraining,
-          developmental learning, and robotics. He was the team lead of the BabyVLM-v2 project. He also participated in
-          the second BabyLM challenge and contributed to the evaluation codebase.
-        </p>
-        <p>
-          <strong>Wenqi Wang</strong> (wqwang@bu.edu) is a second-year Ph.D. student at Boston University, advised by
-          Prof. Boqing Gong. His research focuses on vision language model evaluation and world models. He was a co-author
-          on the BabyVLM-v2 team.
-        </p>
-        <p>
-          <strong>Max Whitton</strong> (maxwh@bu.edu) is pursuing his Ph.D. at Boston University, advised by Prof. Boqing
-          Gong. He does research at the intersection of computer vision and developmental learning, and was a co-author on
-          the BabyVLM-v2 team.
-        </p>
-
-        <div class="section-title mt-5" data-aos="fade-up">
-          <h2>Program Committee<br></h2>
-        </div>
-
-        <p>
-          Our program committee draws on eight institutions across four countries (the US, the UK, the Netherlands, and
-          Germany), with expertise in multimodal machine learning, language modeling, evaluation, and training dynamics:
-          Canaan Breiss (U Chicago), Bastian Bunzeck (Bielefeld U), Andrew Caines (U Cambridge), Arjun Chandra (Boston U),
-          Bianca-Mihaela Ganescu (U Cambridge), Fuhang Kuang (Boston U), Lingxiao Li (Boston U), Mahir Patel (Boston U),
-          Yulu Qin (Boston U), Yuan Qing (Boston U), Maan Qraitem (Boston U), Arijit Ray (Boston U / Ai2), Naomi Saphra
-          (Harvard, Kempner Institute), Ece Takmaz (Utrecht U), Yuwen Tan (Boston U), Zilu Tang (Boston U), Nazia Tasnim
-          (Boston U), Piotr Teterwak (Boston U), Dheeraj Varghese (U Amsterdam), Manushree Vasu (Boston U), and Michael
-          Wakeham (Boston U).
-        </p>
-
-      </div>
-
-    </section><!-- /Organizers Section -->
 
     <!-- Venue Section -->
     <section id="venue" class="venue section">
