@@ -13,6 +13,9 @@
             <div class="supertitle">{{ .Site.Params.Supertitle | safeHTML }}</div>
             <div class="title"><a href="/">{{ .Site.Params.Title | safeHTML }}</a></div>
             <div class="subtitle">{{ .Site.Params.Subtitle | safeHTML }}</div>
+            {{ if .Site.Params.openreview }}
+            <div id="header-cta"><a class="cta-btn" href="{{ .Site.Params.openreview }}" target="_blank" rel="noopener">Submit on OpenReview</a></div>
+            {{ end }}
         </div>
     </div>
 

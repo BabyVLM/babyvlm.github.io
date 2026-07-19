@@ -13,6 +13,7 @@ disableKinds = ["taxonomy", "term"]
   description = "The BabyVLM Workshop — toward developmentally plausible, sample-efficient multimodal systems (NeurIPS 2026)."
   keywords = ["workshop", "BabyVLM", "BabyLM", "vision language models", "multimodal", "sample-efficient", "developmental", "NeurIPS 2026"]
   logo = "/logo.png"  # BabyLM "pacifier" logo, ported from https://babylm.github.io/
+  openreview = "https://openreview.net/group?id=NeurIPS.cc/2026/Workshop/BabyVLM"  # placeholder — update once the OpenReview venue is created
 
 # Options for Markdown renderer
 [markup.goldmark.renderer]

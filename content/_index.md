@@ -3,7 +3,7 @@ title: "Home"
 ---
 
 
-Welcome to the **BabyVLM Workshop: Toward Developmentally Plausible Multimodal Systems**, to be held at [**NeurIPS 2026**](https://neurips.cc/).
+Welcome to the **BabyVLM Workshop: Toward Developmentally Plausible Multimodal Systems**, to be held at [**NeurIPS 2026**](https://neurips.cc/) in Atlanta, Georgia, USA.
 
 
 ## Workshop Summary
@@ -27,17 +27,136 @@ The BabyVLM Workshop is designed to be the central forum for addressing these qu
 
 3. **Longitudinal egocentric learning.** Cognitive scientists and machine learning researchers alike have benefited from the development of longitudinal, egocentric datasets. Studying and improving them may enable high-impact research.
 
-Overall, we intend to establish a community of researchers interested in the intersection of multimodal machine learning, cognitive science, and developmental psychology. We are proud to host invited keynotes and panel discussions featuring leading scholars from each theme area, such that we can create dialogues centered on questions enabled by the rich interaction of these disciplines.
 
+## Submission Format
 
-## Important Dates
+<div id="header-cta" style="text-align:center;"><a class="cta-btn" href="https://openreview.net/group?id=NeurIPS.cc/2026/Workshop/BabyVLM" target="_blank" rel="noopener">Submit on OpenReview</a></div>
 
-<div id="dates" style="margin-bottom: 1em"></div>
+* **Page Limit:** Submissions will be solicited as full papers of at most **8 pages**. Paper submissions should discuss research or deployed work.
+* **Archival Option:** This is a **non-archival** workshop. Calls for non-archival submissions will be made in July 2026.
+* **Reviewing:** Submissions will be reviewed via a double-blind review process on [OpenReview](https://openreview.net/group?id=NeurIPS.cc/2026/Workshop/BabyVLM). Each paper will receive at least three reviews. See the full [Call for Papers]({{< ref "/call-for-papers" >}}) for details.
+
+**Important Dates** (all times AoE):
 
 * **Call for Papers:** July 2026
-* **Submission Deadline:** August 22, 2026  (midnight AoE)
+* **Submission Deadline:** August 22, 2026
 * **Notification of Acceptance:** September 29, 2026
 * **Workshop Date:** NeurIPS 2026
+
+
+## Keynote Speakers
+
+<div class="speaker-grid">
+  <div class="speaker-card">
+    <span class="name"><a href="https://web.stanford.edu/group/langcog/" target="_blank">Michael C. Frank</a></span>
+    <span class="affil">Stanford University</span>
+    <span class="status">Confirmed</span>
+  </div>
+  <div class="speaker-card">
+    <span class="name"><a href="https://www.hassonlab.com/" target="_blank">Uri Hasson</a></span>
+    <span class="affil">Princeton University</span>
+    <span class="status">Confirmed</span>
+  </div>
+  <div class="speaker-card">
+    <span class="name"><a href="https://cs.uwaterloo.ca/~fhs/" target="_blank">Freda Shi</a></span>
+    <span class="affil">University of Waterloo</span>
+    <span class="status">Confirmed</span>
+  </div>
+  <div class="speaker-card">
+    <span class="name"><a href="https://www.cs.utexas.edu/~grauman/" target="_blank">Kristen Grauman</a></span>
+    <span class="affil">UT Austin</span>
+    <span class="status">Confirmed</span>
+  </div>
+  <div class="speaker-card">
+    <span class="name"><a href="https://www.di.ens.fr/~schmid/" target="_blank">Cordelia Schmid</a></span>
+    <span class="affil">Inria, France</span>
+    <span class="status">Unconfirmed</span>
+  </div>
+</div>
+
+See the [Speakers & Panelists]({{< ref "/speakers" >}}) page for bios and the confirmed panel.
+
+
+## Schedule
+
+All talks include a Q&A. The schedule is tentative and subject to change. Full details are on the [Schedule]({{< ref "/schedule" >}}) page.
+
+<div class="schedule-timeline">
+  <div class="schedule-item">
+    <time>8:50 – 9:00</time>
+    <h4>Opening Remarks <span>Organizers</span></h4>
+  </div>
+  <div class="schedule-item">
+    <time>9:00 – 9:35</time>
+    <h4>Invited Talk 1 <span>Michael C. Frank (Stanford, confirmed)</span></h4>
+  </div>
+  <div class="schedule-item">
+    <time>9:35 – 10:10</time>
+    <h4>Invited Talk 2 <span>Uri Hasson (Princeton, confirmed)</span></h4>
+  </div>
+  <div class="schedule-item">
+    <time>10:10 – 10:40</time>
+    <h4>Oral Highlights 1</h4>
+  </div>
+  <div class="schedule-item">
+    <time>10:40 – 11:00</time>
+    <h4>Coffee Break</h4>
+  </div>
+  <div class="schedule-item">
+    <time>11:00 – 12:00</time>
+    <h4>Poster Session</h4>
+  </div>
+  <div class="schedule-item">
+    <time>12:00 – 13:30</time>
+    <h4>Lunch</h4>
+  </div>
+  <div class="schedule-item">
+    <time>13:30 – 14:05</time>
+    <h4>Invited Talk 3 <span>Freda Shi (U Waterloo, confirmed)</span></h4>
+  </div>
+  <div class="schedule-item">
+    <time>14:05 – 14:40</time>
+    <h4>Invited Talk 4 <span>Kristen Grauman (UT Austin, confirmed)</span></h4>
+  </div>
+  <div class="schedule-item">
+    <time>14:40 – 15:15</time>
+    <h4>BabyVLM: Kickoff &amp; Tutorial <span>Organizers</span></h4>
+  </div>
+  <div class="schedule-item">
+    <time>15:15 – 15:30</time>
+    <h4>Coffee Break</h4>
+  </div>
+  <div class="schedule-item">
+    <time>15:30 – 16:05</time>
+    <h4>Invited Talk 5 <span>Cordelia Schmid (Inria, France)</span></h4>
+  </div>
+  <div class="schedule-item">
+    <time>16:05 – 16:35</time>
+    <h4>Oral Highlights 2</h4>
+  </div>
+  <div class="schedule-item">
+    <time>16:35 – 17:35</time>
+    <h4>Panel Discussion <span>Closing the Data Efficiency Gap</span></h4>
+  </div>
+  <div class="schedule-item">
+    <time>17:35 – 17:45</time>
+    <h4>Paper Award &amp; Closing Remarks <span>Organizers</span></h4>
+  </div>
+</div>
+
+
+## Workshop Venue
+
+The workshop will be co-located with **NeurIPS 2026** in **Atlanta, Georgia, USA**.
+
+<div class="venue-map">
+  <iframe src="https://maps.google.com/maps?q=Atlanta,Georgia,USA&t=&z=11&ie=UTF8&iwloc=&output=embed" frameborder="0" style="border:0" allowfullscreen loading="lazy"></iframe>
+</div>
+
+<div class="venue-info">
+  <span class="venue-name">Atlanta, Georgia, USA</span>
+  <span>Exact venue and room to be announced.</span>
+</div>
 
 
 ---

@@ -390,4 +390,147 @@ li {
         width: 100%;
     }
 
+    .speaker-card {
+        width: 100%;
+    }
+
+    .schedule-item h4 {
+        font-size: 16px;
+    }
+
+}
+
+
+/*  PORTED COMPONENTS (OpenReview button, speaker cards, schedule timeline, venue) */
+
+.cta-btn,
+.cta-btn:focus {
+    display: inline-block;
+    color: white;
+    background: black;
+    font-size: 15px;
+    font-weight: 400;
+    padding: 9px 26px;
+    border-radius: 50px;
+    text-decoration: none !important;
+    border: 2px solid black;
+    transition: 0.3s;
+}
+
+.cta-btn:hover {
+    color: black;
+    background: white;
+}
+
+#header-cta {
+    margin-top: 14px;
+}
+
+#content #header-cta a {
+    text-decoration: none;
+}
+
+.speaker-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 26px;
+}
+
+.speaker-card {
+    width: 30%;
+    min-width: 190px;
+    box-sizing: border-box;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 18px 14px;
+    text-align: center;
+}
+
+.speaker-card .name {
+    font-weight: 700;
+    font-size: 16px;
+    display: block;
+}
+
+#content .speaker-card .name a {
+    text-decoration: none;
+}
+
+#content .speaker-card .name a:hover {
+    text-decoration: underline;
+}
+
+.speaker-card .affil {
+    font-style: italic;
+    font-size: 14px;
+    color: #444444;
+    display: block;
+    margin-top: 6px;
+}
+
+.speaker-card .status {
+    font-size: 11px;
+    color: #777777;
+    display: block;
+    margin-top: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.schedule-timeline {
+    margin-top: 20px;
+}
+
+.schedule-item {
+    border-bottom: 1px solid #dddddd;
+    padding: 14px 0;
+}
+
+.schedule-item:first-child {
+    border-top: 1px solid #dddddd;
+}
+
+.schedule-item time {
+    display: inline-block;
+    font-weight: 700;
+    padding-bottom: 4px;
+}
+
+.schedule-item h4 {
+    margin: 4px 0 0;
+    font-size: 17px;
+    font-weight: 600;
+    text-align: left;
+}
+
+.schedule-item h4 span {
+    font-style: italic;
+    font-weight: normal;
+    color: #666666;
+    font-size: 15px;
+}
+
+.venue-map {
+    margin-top: 24px;
+}
+
+.venue-map iframe {
+    width: 100%;
+    height: 320px;
+    border: 2px solid black;
+    display: block;
+    margin: 0;
+}
+
+.venue-info {
+    text-align: center;
+    margin-top: 16px;
+}
+
+.venue-info .venue-name {
+    font-weight: 700;
+    font-size: 18px;
+    display: block;
 }
