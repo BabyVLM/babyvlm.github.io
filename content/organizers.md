@@ -7,7 +7,7 @@ title: "Organizers"
 <div class="list-of-people">
     <div class="person">
         <div class="details">
-            <a href="https://www.cst.cam.ac.uk/people/pjb48" target="_blank">Paula Buttery</a>
+            <a href="https://www.cl.cam.ac.uk/~pjb48/" target="_blank">Paula Buttery</a>
             <div class="talk-title">University of Cambridge</div>
         </div>
     </div>
