@@ -12,7 +12,7 @@ disableKinds = ["taxonomy", "term"]
   author = "BabyVLM Organizers"
   description = "The BabyVLM Workshop — toward developmentally plausible, sample-efficient multimodal systems (NeurIPS 2026)."
   keywords = ["workshop", "BabyVLM", "BabyLM", "vision language models", "multimodal", "sample-efficient", "developmental", "NeurIPS 2026"]
-  # logo = "/logo.png"  # uncomment once a logo image is added to static/
+  logo = "/logo.png"  # BabyLM "pacifier" logo, ported from https://babylm.github.io/
 
 # Options for Markdown renderer
 [markup.goldmark.renderer]
