@@ -49,6 +49,13 @@
     /* ---- Header ---- */
     .header .logo img { max-height: 44px; }
 
+    /* Scrolled header: light-blue BabyVLM brand banner (was brown) with dark nav text */
+    .scrolled .header {
+      --background-color: rgba(206, 227, 255, 0.96);
+      --nav-color: #211f45;
+      --nav-hover-color: #6d5ae0;
+    }
+
     /* ---- Hero: NeurIPS/BabyVLM gradient + logo + badge ---- */
     .hero {
       background: linear-gradient(135deg, #1a1836 0%, #3a2e7a 55%, #6d5ae0 100%) !important;
@@ -135,11 +142,20 @@
       visibility: visible !important;
     }
 
-    /* ---- Bios / program committee readability ---- */
-    #organizers .org-bios { margin-top: 10px; }
-    #organizers .org-bios p { margin-bottom: 14px; }
+    /* ---- Bios / program committee: fix white text + pastel box ---- */
+    #organizers { --default-color: #211f45; }   /* .speakers forces white; restore dark text here */
+    .pastel-box {
+      background: #f4f1fd;                       /* pastel lavender */
+      border: 1px solid #e4ddf7;
+      border-radius: 14px;
+      padding: 22px 26px;
+      margin-top: 12px;
+    }
+    .pastel-box p { color: #211f45; margin-bottom: 14px; }
+    .pastel-box p:last-child { margin-bottom: 0; }
+    .pastel-box strong { color: #211f45; }
 
-    /* ---- CogInterp-style colour shading for the schedule ---- */
+    /* ---- Colour-coded shading for the schedule ---- */
     .schedule .schedule-item {
       padding: 12px 16px;
       margin-bottom: 6px;
@@ -509,6 +525,7 @@
           <h2>Bios<br></h2>
         </div>
 
+        <div class="pastel-box">
         <p>
           <strong>Paula Buttery</strong> (pjb48@cam.ac.uk) is the Deputy Head of the Department of Computer Science &amp;
           Technology at the University of Cambridge and a Full Professor of Language and Machine Learning. She is
@@ -561,11 +578,13 @@
           Gong. He does research at the intersection of computer vision and developmental learning, and was a co-author on
           the BabyVLM-v2 team.
         </p>
+        </div>
 
         <div class="section-title mt-5" data-aos="fade-up">
           <h2>Program Committee<br></h2>
         </div>
 
+        <div class="pastel-box">
         <p>
           Our program committee draws on eight institutions across four countries (the US, the UK, the Netherlands, and
           Germany), with expertise in multimodal machine learning, language modeling, evaluation, and training dynamics:
@@ -576,6 +595,7 @@
           (Boston U), Piotr Teterwak (Boston U), Dheeraj Varghese (U Amsterdam), Manushree Vasu (Boston U), and Michael
           Wakeham (Boston U).
         </p>
+        </div>
 
       </div>
 
@@ -902,7 +922,7 @@
             © Copyright <strong><span>BabyVLM 2026</span></strong>. All Rights Reserved.
           </div>
           <div class="credits">
-            Prefer a different look? View the <a href="/coginterp/">alternate (CogInterp-style) layout</a>.<br>
+            Prefer a different look? View the <a href="/alternate/">alternate layout</a>.<br>
             Site made by <a href="https://www.cst.cam.ac.uk/people/sas245" target="_blank" rel="noopener">Suchir Salhan</a>.<br>
             <!-- All the links in the footer should remain intact. -->
             <!-- You can delete the links only if you purchased the pro version. -->
