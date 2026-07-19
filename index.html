@@ -9,14 +9,28 @@
   <meta name="keywords" content="BabyVLM, BabyLM, vision language models, multimodal, sample-efficient, developmental, NeurIPS 2026">
 
   <!-- Favicons -->
-  <link href="assets/img/logo.png" rel="icon">
-  <link href="assets/img/logo.png" rel="apple-touch-icon">
+  <link href="assets/img/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
+  <link href="assets/img/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180">
+
+  <!-- Social share (Open Graph + Twitter) -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://babyvlm.github.io/">
+  <meta property="og:title" content="The BabyVLM Workshop — NeurIPS 2026">
+  <meta property="og:description" content="Toward developmentally plausible, sample-efficient multimodal systems. NeurIPS 2026, Atlanta, Georgia, USA.">
+  <meta property="og:image" content="https://babyvlm.github.io/assets/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The BabyVLM Workshop — NeurIPS 2026">
+  <meta name="twitter:description" content="How can we get multimodal models to learn as efficiently as human infants? BabyVLM @ NeurIPS 2026.">
+  <meta name="twitter:image" content="https://babyvlm.github.io/assets/img/og-image.png">
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Nunito:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&display=swap"
     rel="stylesheet">
 
   <!-- Vendor CSS Files -->
@@ -215,6 +229,46 @@
     .stat-machine { background: linear-gradient(160deg, #8a7bf0, #6d5ae0); }
     .stat-gap { background: linear-gradient(160deg, #ffb28a, #ff7a9c); }
     .gap-note { text-align: center; font-size: 14px; color: color-mix(in srgb, var(--default-color), transparent 35%); margin-top: 22px; }
+
+    /* ---- Rounded "baby" typography ---- */
+    :root {
+      --heading-font: "Quicksand", sans-serif;
+      --default-font: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --nav-font: "Quicksand", sans-serif;
+    }
+
+    /* ---- Softer, rounder cards ---- */
+    .speakers .member { border-radius: 18px; }
+
+    /* ---- Pastel section alternation for rhythm ---- */
+    #themes, #challenge, #speakers, #venue { background-color: #f7f6fe; }
+
+    /* ---- Developmental trajectory timeline ---- */
+    .dev-timeline { display: flex; flex-wrap: wrap; justify-content: center; margin-top: 24px; }
+    .dev-step { flex: 1 1 0; min-width: 150px; max-width: 220px; text-align: center; position: relative; padding: 0 8px; }
+    .dev-step .dot {
+      width: 60px; height: 60px; border-radius: 50%;
+      background: linear-gradient(160deg, #8a7bf0, #6d5ae0); color: #fff;
+      display: flex; align-items: center; justify-content: center; font-size: 25px;
+      margin: 0 auto 14px; box-shadow: 0 6px 16px rgba(109, 90, 224, 0.3); position: relative; z-index: 2;
+    }
+    .dev-step:not(:last-child):after {
+      content: ""; position: absolute; top: 30px; left: 50%; width: 100%; height: 3px;
+      background: #e0dbf7; z-index: 1;
+    }
+    .dev-step h4 { font-size: 16px; margin: 0 0 4px; }
+    .dev-step p { font-size: 13px; color: color-mix(in srgb, var(--default-color), transparent 25%); margin: 0; }
+    @media (max-width: 767px) {
+      .dev-step:not(:last-child):after { display: none; }
+      .dev-step { margin-bottom: 20px; flex-basis: 45%; }
+    }
+
+    /* ---- Partner / lineage strip ---- */
+    .partners { background: #211f45; color: #fff; padding: 42px 0; text-align: center; }
+    .partners img { height: 44px; width: 44px; vertical-align: middle; margin-right: 12px; }
+    .partners .partner-line { font-size: 17px; }
+    .partners .partner-line a { color: #c9bfff; text-decoration: underline; }
+    .partners .partner-sub { font-size: 14px; opacity: 0.72; margin-top: 8px; }
   </style>
 
   <!-- =======================================================
@@ -353,7 +407,7 @@
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
             <div class="stat-card stat-human">
               <i class="bi bi-emoji-smile"></i>
-              <div class="stat-num">~100M</div>
+              <div class="stat-num" data-count="100" data-prefix="~" data-suffix="M">~100M</div>
               <div class="stat-label">words a child hears during typical development</div>
             </div>
           </div>
@@ -361,7 +415,7 @@
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
             <div class="stat-card stat-machine">
               <i class="bi bi-cpu"></i>
-              <div class="stat-num">1T+</div>
+              <div class="stat-num" data-count="1" data-prefix="" data-suffix="T+">1T+</div>
               <div class="stat-label">words used to train today's frontier language models</div>
             </div>
           </div>
@@ -369,7 +423,7 @@
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
             <div class="stat-card stat-gap">
               <i class="bi bi-arrows-collapse"></i>
-              <div class="stat-num">~10,000&times;</div>
+              <div class="stat-num" data-count="10000" data-prefix="~" data-suffix="&times;">~10,000&times;</div>
               <div class="stat-label">the data-efficiency gap we aim to close</div>
             </div>
           </div>
@@ -416,6 +470,46 @@
       </div>
 
     </section><!-- /Themes Section -->
+
+    <!-- Developmental Trajectory Timeline -->
+    <section id="trajectory" class="trajectory section">
+
+      <div class="container section-title" data-aos="fade-up">
+        <h2><i class="bi bi-graph-up-arrow"></i>From Babble to Grounding</h2>
+        <p>BabyVLM asks how multimodal learners might traverse a developmental trajectory&mdash;much like children do&mdash;rather than memorising trillions of words.</p>
+      </div>
+
+      <div class="container">
+        <div class="dev-timeline">
+          <div class="dev-step" data-aos="fade-up" data-aos-delay="100">
+            <div class="dot"><i class="bi bi-soundwave"></i></div>
+            <h4>Perception</h4>
+            <p>Sights &amp; sounds ground the earliest learning</p>
+          </div>
+          <div class="dev-step" data-aos="fade-up" data-aos-delay="200">
+            <div class="dot"><i class="bi bi-hand-index-thumb"></i></div>
+            <h4>First words</h4>
+            <p>Mapping words to objects and actions</p>
+          </div>
+          <div class="dev-step" data-aos="fade-up" data-aos-delay="300">
+            <div class="dot"><i class="bi bi-link-45deg"></i></div>
+            <h4>Grounding</h4>
+            <p>Language meets the visual world</p>
+          </div>
+          <div class="dev-step" data-aos="fade-up" data-aos-delay="400">
+            <div class="dot"><i class="bi bi-puzzle"></i></div>
+            <h4>Syntax</h4>
+            <p>Compositional structure emerges</p>
+          </div>
+          <div class="dev-step" data-aos="fade-up" data-aos-delay="500">
+            <div class="dot"><i class="bi bi-lightbulb"></i></div>
+            <h4>Generalization</h4>
+            <p>Rich meaning learned from little data</p>
+          </div>
+        </div>
+      </div>
+
+    </section><!-- /Developmental Trajectory Timeline -->
 
     <!-- CfP Section -->
     <section id="cfp" class="cfp section">
@@ -503,7 +597,7 @@
 
           <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="100">
             <div class="member">
-              <img src="assets/img/avatar.png" class="img-fluid" alt="">
+              <img src="assets/img/people/buttery.jpg" class="img-fluid" alt="Paula Buttery">
               <div class="member-info">
                 <div class="member-info-content">
                   <h4><a href="https://www.cl.cam.ac.uk/~pjb48/" target="_blank" rel="noopener">Paula Buttery</a></h4>
@@ -515,7 +609,7 @@
 
           <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="150">
             <div class="member">
-              <img src="assets/img/avatar.png" class="img-fluid" alt="">
+              <img src="assets/img/people/choshen.jpg" class="img-fluid" alt="Leshem Choshen">
               <div class="member-info">
                 <div class="member-info-content">
                   <h4><a href="https://ktilana.wixsite.com/leshem-choshen" target="_blank" rel="noopener">Leshem Choshen</a></h4>
@@ -527,7 +621,7 @@
 
           <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="200">
             <div class="member">
-              <img src="assets/img/avatar.png" class="img-fluid" alt="">
+              <img src="assets/img/people/gong.jpg" class="img-fluid" alt="Boqing Gong">
               <div class="member-info">
                 <div class="member-info-content">
                   <h4><a href="https://boqinggong.info/" target="_blank" rel="noopener">Boqing Gong</a></h4>
@@ -539,7 +633,7 @@
 
           <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="250">
             <div class="member">
-              <img src="assets/img/avatar.png" class="img-fluid" alt="">
+              <img src="assets/img/people/mueller.jpg" class="img-fluid" alt="Aaron Mueller">
               <div class="member-info">
                 <div class="member-info-content">
                   <h4><a href="https://aaronmueller.github.io/" target="_blank" rel="noopener">Aaron Mueller</a></h4>
@@ -551,7 +645,7 @@
 
           <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="300">
             <div class="member">
-              <img src="assets/img/avatar.png" class="img-fluid" alt="">
+              <img src="assets/img/people/salhan.jpg" class="img-fluid" alt="Suchir Salhan">
               <div class="member-info">
                 <div class="member-info-content">
                   <h4><a href="https://www.cst.cam.ac.uk/people/sas245" target="_blank" rel="noopener">Suchir Salhan</a></h4>
@@ -563,7 +657,7 @@
 
           <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="350">
             <div class="member">
-              <img src="assets/img/avatar.png" class="img-fluid" alt="">
+              <img src="assets/img/people/swang.jpg" class="img-fluid" alt="Shengao Wang">
               <div class="member-info">
                 <div class="member-info-content">
                   <h4>Shengao Wang</h4>
@@ -575,7 +669,7 @@
 
           <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="400">
             <div class="member">
-              <img src="assets/img/avatar.png" class="img-fluid" alt="">
+              <img src="assets/img/people/wwang.jpg" class="img-fluid" alt="Wenqi Wang">
               <div class="member-info">
                 <div class="member-info-content">
                   <h4>Wenqi Wang</h4>
@@ -587,7 +681,7 @@
 
           <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="450">
             <div class="member">
-              <img src="assets/img/avatar.png" class="img-fluid" alt="">
+              <img src="assets/img/people/whitton.jpg" class="img-fluid" alt="Max Whitton">
               <div class="member-info">
                 <div class="member-info-content">
                   <h4>Max Whitton</h4>
@@ -693,7 +787,7 @@
 
           <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="100">
             <div class="member">
-              <img src="assets/img/avatar.png" class="img-fluid" alt="">
+              <img src="assets/img/people/frank.jpg" class="img-fluid" alt="Michael C. Frank">
               <div class="member-info">
                 <div class="member-info-content">
                   <h4>Michael C. Frank</h4>
@@ -705,7 +799,7 @@
 
           <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="150">
             <div class="member">
-              <img src="assets/img/avatar.png" class="img-fluid" alt="">
+              <img src="assets/img/people/hasson.jpg" class="img-fluid" alt="Uri Hasson">
               <div class="member-info">
                 <div class="member-info-content">
                   <h4>Uri Hasson</h4>
@@ -717,7 +811,7 @@
 
           <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="200">
             <div class="member">
-              <img src="assets/img/avatar.png" class="img-fluid" alt="">
+              <img src="assets/img/people/shi.jpg" class="img-fluid" alt="Freda Shi">
               <div class="member-info">
                 <div class="member-info-content">
                   <h4>Freda Shi</h4>
@@ -729,7 +823,7 @@
 
           <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="250">
             <div class="member">
-              <img src="assets/img/avatar.png" class="img-fluid" alt="">
+              <img src="assets/img/people/grauman.jpg" class="img-fluid" alt="Kristen Grauman">
               <div class="member-info">
                 <div class="member-info-content">
                   <h4>Kristen Grauman</h4>
@@ -741,7 +835,7 @@
 
           <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="300">
             <div class="member">
-              <img src="assets/img/avatar.png" class="img-fluid" alt="">
+              <img src="assets/img/people/schmid.jpg" class="img-fluid" alt="Cordelia Schmid">
               <div class="member-info">
                 <div class="member-info-content">
                   <h4>Cordelia Schmid</h4>
@@ -762,7 +856,7 @@
 
           <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="100">
             <div class="member">
-              <img src="assets/img/avatar.png" class="img-fluid" alt="">
+              <img src="assets/img/people/frank.jpg" class="img-fluid" alt="Michael C. Frank">
               <div class="member-info">
                 <div class="member-info-content">
                   <h4>Michael C. Frank</h4>
@@ -774,7 +868,7 @@
 
           <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="150">
             <div class="member">
-              <img src="assets/img/avatar.png" class="img-fluid" alt="">
+              <img src="assets/img/people/grauman.jpg" class="img-fluid" alt="Kristen Grauman">
               <div class="member-info">
                 <div class="member-info-content">
                   <h4>Kristen Grauman</h4>
@@ -786,7 +880,7 @@
 
           <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="200">
             <div class="member">
-              <img src="assets/img/avatar.png" class="img-fluid" alt="">
+              <img src="assets/img/people/shi.jpg" class="img-fluid" alt="Freda Shi">
               <div class="member-info">
                 <div class="member-info-content">
                   <h4>Freda Shi</h4>
@@ -798,7 +892,7 @@
 
           <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="250">
             <div class="member">
-              <img src="assets/img/avatar.png" class="img-fluid" alt="">
+              <img src="assets/img/people/hasson.jpg" class="img-fluid" alt="Uri Hasson">
               <div class="member-info">
                 <div class="member-info-content">
                   <h4>Uri Hasson</h4>
@@ -944,6 +1038,17 @@
 
     </section><!-- /Venue Section -->
 
+    <!-- Partner / Lineage Strip -->
+    <section class="partners" data-aos="fade-up">
+      <div class="container">
+        <div class="partner-line">
+          <img src="assets/img/logo.png" alt="BabyLM">In partnership with the
+          <a href="https://babylm.github.io/" target="_blank" rel="noopener">BabyLM Challenge</a> team.
+        </div>
+        <div class="partner-sub">Hosted at NeurIPS 2026 &middot; Atlanta, Georgia, USA</div>
+      </div>
+    </section><!-- /Partner Strip -->
+
     <!-- Contact Section -->
     <section id="contact" class="contact section">
 
@@ -1031,6 +1136,31 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <!-- Animated count-up for the data-efficiency stats -->
+  <script>
+    (function () {
+      function animate(el) {
+        var target = +el.dataset.count, pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
+        var dur = 1400, start = null;
+        function step(ts) {
+          if (!start) start = ts;
+          var p = Math.min((ts - start) / dur, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          el.innerHTML = pre + Math.round(target * eased).toLocaleString('en-US') + suf;
+          if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+      if (!('IntersectionObserver' in window)) return;
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { animate(e.target); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.4 });
+      document.querySelectorAll('.stat-num[data-count]').forEach(function (el) { io.observe(el); });
+    })();
+  </script>
 
 </body>
 
