@@ -8,7 +8,7 @@ This is a static single-page site built on the [TheEvent](https://bootstrapmade.
 
 - `index.html` — the whole site (hero, overview, themes, call for papers, challenge, speakers, schedule, organizers, venue, contact)
 - `assets/` — CSS, JS, images, and vendored libraries; `assets/img/logo.png` is the BabyLM "pacifier" logo
-- `forms/` — contact form stub (unused)
+- `forms/` — contact form stub (unused) 
 
 Edit `index.html` directly — no build step. Open it in a browser to preview, or serve locally with `python3 -m http.server`.
 
