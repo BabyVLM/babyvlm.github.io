@@ -30,7 +30,7 @@
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Nunito:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Nunito:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
     rel="stylesheet">
 
   <!-- Vendor CSS Files -->
@@ -61,7 +61,7 @@
     .section-title h2:after { background: var(--accent-color); }
 
     /* ---- Header ---- */
-    .header .logo img { max-height: 44px; }
+    .header .logo img { max-height: 56px; }
 
     /* Scrolled header: light-blue BabyVLM brand banner (was brown) with dark nav text */
     .scrolled .header {
@@ -89,8 +89,8 @@
     .hero .baby-logo {
       position: static;         /* override template's full-bleed background img rule */
       inset: auto;
-      width: 108px;
-      height: 108px;
+      width: 200px;
+      height: 200px;
       object-fit: contain;
       z-index: 3;
       margin: 0 auto 20px;
@@ -169,36 +169,112 @@
     .pastel-box p:last-child { margin-bottom: 0; }
     .pastel-box strong { color: #211f45; }
 
-    /* ---- Colour-coded shading for the schedule ---- */
-    .schedule .schedule-item {
-      padding: 12px 16px;
-      margin-bottom: 6px;
-      border-bottom: 0;
-      border-radius: 8px;
-      background: #f4f4f6;         /* default (organizer/admin) rows */
-      transition: background-color 0.3s;
+    /* ═══════════════ Schedule — the Program Tape ═══════════════
+       A single-day, single-track program, rendered like a timecode
+       counter: one continuous ruler of real clock-time, with each
+       session drawn as a block whose height is its actual duration.
+       Placement and length are the data — not a decorative dot-and-
+       line list where a 10-minute item and a 90-minute lunch look
+       the same size. Palette matches the rest of the site exactly
+       (the BabyVLM indigo-violet accent, the same pastel section
+       tint used by Speakers/Venue on either side) — the tape is a
+       structural idea, not a colour departure. */
+    #schedule {
+      background-color: #f7f6fe;
+      --sch-display: "Space Grotesk", var(--heading-font);
+      --sch-mono:    "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      --sch-line:    #e6e1f5;
+      --c-invited: #6d5ae0;   /* == var(--accent-color) */
+      --c-oral:    #2f6fed;
+      --c-poster:  #e0794b;
+      --c-break:   #3a9d6d;
+      --c-session: #8b88ab;
+      --px-per-min: 2.8;   /* kept in sync with PX_PER_MIN in the schedule script below */
     }
-    .schedule .schedule-item.invited     { background: #ffe599; }  /* invited talks */
-    .schedule .schedule-item.contributed { background: #a4c2f4; }  /* oral highlights */
-    .schedule .schedule-item.poster      { background: #ffbaab; }  /* poster session */
-    .schedule .schedule-item.break       { background: #b6d7a8; }  /* breaks & lunch */
+    #schedule .sub-heading { font-style: normal; color: color-mix(in srgb, var(--default-color), transparent 22%); font-size: 16px; }
 
-    .schedule-legend {
-      text-align: center;
-      margin: 6px 0 24px;
-      font-size: 14px;
-      color: var(--default-color);
+    /* Eyebrow strip: the day's vitals at a glance — a fact, not decoration */
+    .sch-vitals { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px 22px; margin: 2px 0 30px; font-family: var(--sch-mono); font-size: 16px; color: #9c99bd; }
+    .sch-vitals b { font-weight: 600; color: var(--heading-color); }
+    .sch-vitals .sch-dot { width: 3px; height: 3px; border-radius: 50%; background: #cfc9ea; }
+
+    /* Filter strip — matches the Data Explorer's chip row: no wrapping
+       chrome, each chip carries its own border/fill. */
+    .sch-filters { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 2px 0 40px; }
+    .sch-filter { font-family: var(--heading-font); font-weight: 600; font-size: 13.5px; padding: 8px 16px; border-radius: 50px; border: 1px solid var(--sch-line); background: #fff; color: #6b6788; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
+      transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease, transform 0.1s ease, box-shadow 0.2s ease; }
+    .sch-filter[data-filter="invited"] { --fc: var(--c-invited); }
+    .sch-filter[data-filter="oral"]    { --fc: var(--c-oral); }
+    .sch-filter[data-filter="poster"]  { --fc: var(--c-poster); }
+    .sch-filter[data-filter="break"]   { --fc: var(--c-break); }
+    .sch-filter[data-filter="session"] { --fc: var(--c-session); }
+    .sch-filter .sch-swatch { width: 9px; height: 9px; border-radius: 50%; background: var(--fc, #b9b5d6); flex-shrink: 0; }
+    .sch-filter .sch-n { font-family: var(--sch-mono); font-size: 11px; color: #adaac9; font-variant-numeric: tabular-nums; }
+    .sch-filter:hover { border-color: color-mix(in srgb, var(--fc, var(--accent-color)), #fff 45%); color: var(--heading-color); }
+    .sch-filter:active { transform: scale(0.96); }
+    .sch-filter:focus-visible { outline: 2px solid var(--fc, var(--accent-color)); outline-offset: 2px; }
+    .sch-filter.active { color: #fff; background: var(--fc, var(--heading-color)); border-color: var(--fc, var(--heading-color)); box-shadow: 0 5px 15px color-mix(in srgb, var(--fc, var(--heading-color)), transparent 66%); }
+    .sch-filter.active .sch-swatch { background: #fff; }
+    .sch-filter.active .sch-n { color: rgba(255,255,255,0.85); }
+
+    /* The tape: ruler column + block column, both driven off one
+       minutes-since-dayStart → px function (see schedule script). */
+    .sch-tape { position: relative; display: grid; grid-template-columns: 64px 1fr; gap: 22px; }
+    .sch-ruler { position: relative; }
+    .sch-tick { position: absolute; left: 0; right: 0; display: flex; align-items: center; gap: 8px; transform: translateY(-50%); }
+    .sch-tick time { font-family: var(--sch-mono); font-size: 13px; color: #9c99bd; font-variant-numeric: tabular-nums; }
+    .sch-tick::after { content: ""; flex: 1; height: 1px; background: var(--sch-line); }
+    .sch-tick.sch-tick-lo::after { background: color-mix(in srgb, var(--sch-line), transparent 55%); }
+
+    .sch-blocks { position: relative; }
+    .sch-blocks::before { content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 1px; background: var(--sch-line); }
+
+    .sch-item { position: absolute; left: 0; right: 0; padding-left: 27px; }
+    .sch-item.sch-hide { opacity: 0; pointer-events: none; }
+    .sch-item[data-type="invited"] { --tc: var(--c-invited); }
+    .sch-item[data-type="oral"]    { --tc: var(--c-oral); }
+    .sch-item[data-type="poster"]  { --tc: var(--c-poster); }
+    .sch-item[data-type="break"]   { --tc: var(--c-break); }
+    .sch-item[data-type="session"] { --tc: var(--c-session); }
+
+    /* Tick mark centred exactly on the spine (.sch-blocks::before, left: 0),
+       level with the block's start time */
+    .sch-item::before { content: ""; position: absolute; left: -3.5px; top: 0; width: 7px; height: 7px; border-radius: 1.5px; background: var(--tc); transform: translate(0, -1px) rotate(45deg); box-shadow: 0 0 0 3px #f7f6fe; }
+
+    .sch-card { position: relative; height: 100%; min-height: 100%; background: #fff; border: 1px solid var(--sch-line); border-left: 2.5px solid var(--tc); border-radius: 0 8px 8px 0; padding: 7px 16px; display: flex; flex-direction: column; justify-content: center; gap: 1px; overflow: hidden; box-shadow: 0 1px 2px rgba(33,31,69,0.04), 0 6px 16px rgba(33,31,69,0.05);
+      transition: background 0.16s ease, border-color 0.16s ease, transform 0.16s ease, box-shadow 0.2s ease; }
+    .sch-item:hover .sch-card, .sch-item:focus-within .sch-card { background: color-mix(in srgb, var(--tc), #fff 94%); border-color: color-mix(in srgb, var(--tc), #fff 45%); transform: translateX(3px); box-shadow: 0 2px 4px rgba(33,31,69,0.05), 0 14px 30px color-mix(in srgb, var(--tc), transparent 82%); }
+    .sch-item:hover::before { box-shadow: 0 0 0 3px #f7f6fe, 0 0 12px 2px color-mix(in srgb, var(--tc), transparent 40%); }
+
+    .sch-row1 { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+    .sch-type { font-family: var(--sch-mono); font-size: 12px; font-weight: 500; letter-spacing: 0.08em; color: var(--tc); white-space: nowrap; }
+    .sch-type::before { content: "["; } .sch-type::after { content: "]"; }
+    .sch-time-inline { font-family: var(--sch-mono); font-size: 12px; color: #b4b1cf; white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .sch-card h4 { font-family: var(--sch-display); font-size: 17px; font-weight: 600; color: var(--heading-color); margin: 1px 0 0; line-height: 1.3; }
+    .sch-who { font-family: var(--default-font); font-size: 14px; color: #6b6788; }
+
+    /* Compact blocks (≤ 20min) collapse to a single legible line. Row
+       direction flips which axis is which, so justify-content (inherited
+       as "center", meant to vertically centre the stacked column layout)
+       must be reset to flex-start or it centres the row horizontally instead. */
+    .sch-item.sch-compact .sch-card { flex-direction: row; align-items: center; justify-content: flex-start; gap: 10px; padding: 0 16px; }
+    .sch-item.sch-compact h4 { font-size: 15px; margin: 0; }
+    .sch-item.sch-compact .sch-who { display: none; }
+
+    /* Enter / re-stagger animation — armed by JS so items rest hidden until in view */
+    .sch-ready .sch-item:not(.sch-in) { opacity: 0; }
+    .sch-item.sch-in { animation: schIn 0.4s cubic-bezier(0.2, 0, 0, 1) both; }
+    .sch-item.sch-hide.sch-in { animation: none; }
+    @keyframes schIn { from { opacity: 0; transform: translateX(-6px); } to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) { .sch-item.sch-in { animation: none; } }
+
+    @media (max-width: 600px) {
+      .sch-tape { grid-template-columns: 46px 1fr; gap: 12px; }
+      .sch-tick time { font-size: 11.5px; }
+      .sch-card h4 { font-size: 15.5px; }
+      .sch-item.sch-compact .sch-card { flex-direction: column; align-items: flex-start; gap: 0; padding: 6px 14px; }
+      .sch-item.sch-compact h4 { font-size: 14px; }
     }
-    .schedule-legend span {
-      display: inline-block;
-      margin: 4px 6px;
-      padding: 3px 14px;
-      border-radius: 20px;
-    }
-    .schedule-legend .invited { background: #ffe599; }
-    .schedule-legend .contributed { background: #a4c2f4; }
-    .schedule-legend .poster { background: #ffbaab; }
-    .schedule-legend .break { background: #b6d7a8; }
 
     /* ---- Thematic touches ---- */
 
@@ -277,7 +353,7 @@
     .host-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: #6b6788; }
     .host-item .neurips-mark { height: 34px; width: auto; }
     .host-babylm { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: 16px; }
-    .host-babylm img { height: 30px; width: 30px; margin: 0; }
+    .host-babylm img { height: 48px; width: 48px; margin: 0; }
     .host-divider { width: 1px; height: 34px; background: #d9d3ef; }
     @media (max-width: 575px) { .host-divider { display: none; } }
 
@@ -320,7 +396,7 @@
     /* ---- Footer NeurIPS + BabyLM brand row ---- */
     .footer-brand { text-align: center; padding: 6px 0 26px; }
     .footer-brand img { height: 40px; width: auto; margin: 0 16px; vertical-align: middle; opacity: 0.95; }
-    .footer-brand .fb-babylm { height: 38px; width: 38px; }
+    .footer-brand .fb-babylm { height: 72px; width: 72px; }
 
     /* ---- Hero CTA buttons ---- */
     .hero-cta-row { margin-top: 22px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
@@ -328,6 +404,194 @@
     .hero .cta-btn.cta-primary:hover { background: #5a49c9; }
     .hero .cta-btn.cta-ghost { background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.5); }
     .hero .cta-btn.cta-ghost:hover { background: rgba(255, 255, 255, 0.22); }
+
+    /* ═══════════════ Data Explorer ═══════════════ */
+    /* The section reads like a lab instrument: a dataset registry up top, a
+       control panel below, footage rendered as captured frames. --src is the
+       active source's identity colour and is re-pointed by JS on selection. */
+    #dataset {
+      background: linear-gradient(180deg, #f3f1fb 0%, #ffffff 58%);
+      --src: #6d5ae0;
+      --dx-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      --dx-line: #eae5f7;
+    }
+    #dataset .dx-intro { max-width: 720px; margin: -4px auto 34px; text-align: center; font-size: 19px; line-height: 1.65; color: color-mix(in srgb, var(--default-color), transparent 8%); text-wrap: pretty; }
+    #dataset .dx-intro code { font-family: var(--dx-mono); font-size: 0.82em; background: #efeaff; color: #5a49c9; padding: 1px 6px; border-radius: 6px; }
+
+    /* Eyebrow above the registry */
+    #dataset .dx-eyebrow { font-family: var(--dx-mono); font-size: 13.5px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #9c99bd; display: flex; align-items: center; gap: 12px; margin: 0 2px 14px; }
+    #dataset .dx-eyebrow::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, var(--dx-line), transparent); }
+    #dataset .dx-eyebrow-lg { font-size: 17px; letter-spacing: 0.08em; color: var(--heading-color); font-weight: 600; }
+
+    /* ── Dataset registry — the three sources, colour-coded by provenance ── */
+    #dataset .dx-registry { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 36px; }
+    @media (max-width: 1100px) { #dataset .dx-registry { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { #dataset .dx-registry { grid-template-columns: 1fr; } }
+
+    #dataset .dx-ds { position: relative; text-align: left; background: #fff; border: 1px solid var(--dx-line); border-radius: 18px; padding: 17px 20px 16px 21px; cursor: pointer; overflow: hidden;
+      transition: border-color 0.18s ease, box-shadow 0.2s ease, transform 0.12s ease; }
+    #dataset .dx-ds[data-source="ego4d"]    { --src: #2f6fed; }
+    #dataset .dx-ds[data-source="saycam"]   { --src: #6d5ae0; }
+    #dataset .dx-ds[data-source="babyview"] { --src: #1f9e7a; }
+    #dataset .dx-ds[data-source="nih"]      { --src: #c67d2e; }
+    /* Provenance spine — always present, faint until the source is active */
+    #dataset .dx-ds::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--src); opacity: 0.28; transition: opacity 0.18s ease; }
+    #dataset .dx-ds:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--src), #fff 55%); box-shadow: 0 2px 4px rgba(33,31,69,0.04), 0 14px 32px rgba(33,31,69,0.10); }
+    #dataset .dx-ds:hover::before { opacity: 0.55; }
+    #dataset .dx-ds:active { transform: translateY(0) scale(0.985); }
+    #dataset .dx-ds:focus-visible { outline: 2px solid var(--src); outline-offset: 2px; }
+    #dataset .dx-ds.current { border-color: color-mix(in srgb, var(--src), #fff 30%); box-shadow: 0 2px 4px rgba(33,31,69,0.04), 0 16px 36px color-mix(in srgb, var(--src), transparent 82%); }
+    #dataset .dx-ds.current::before { opacity: 1; }
+
+    #dataset .dx-ds-head { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+    #dataset .dx-ds-name { font-family: var(--heading-font); font-weight: 700; font-size: 19px; color: var(--heading-color); line-height: 1.1; }
+    #dataset .dx-ds-prov { font-family: var(--dx-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.02em; color: color-mix(in srgb, var(--src), #000 8%); background: color-mix(in srgb, var(--src), #fff 90%); padding: 3px 9px; border-radius: 50px; white-space: nowrap; }
+    #dataset .dx-ds-desc { font-size: 14.5px; color: #6b6788; line-height: 1.45; margin-top: 10px; text-wrap: pretty; }
+    #dataset .dx-ds-stats { display: flex; gap: 16px; margin-top: 13px; padding-top: 12px; border-top: 1px solid var(--dx-line); }
+    #dataset .dx-ds-stat { font-family: var(--dx-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: #9c99bd; }
+    #dataset .dx-ds-stat b { display: block; font-size: 17px; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--heading-color); font-variant-numeric: tabular-nums; }
+
+    /* ── Control panel — Split (when present) + Task, tinted by the active source ── */
+    #dataset .dx-toolbar { background: #fff; border: 1px solid var(--dx-line); border-radius: 20px; padding: 20px 22px 22px; box-shadow: 0 1px 3px rgba(33,31,69,0.04), 0 12px 30px rgba(33, 31, 69, 0.06); margin-bottom: 26px; }
+    #dataset .dx-ctl-label { font-family: var(--dx-mono); font-size: 12.5px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: #9c99bd; margin-bottom: 11px; }
+    #dataset .dx-split-row { margin-bottom: 20px; }
+    #dataset .dx-tab-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    /* Split segmented control */
+    #dataset .dx-tab { font-family: var(--dx-mono); font-weight: 500; font-size: 15px; letter-spacing: 0.02em; padding: 8px 18px; border-radius: 9px; border: 1px solid var(--dx-line); background: #fff; color: #6b6788; cursor: pointer; transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease, transform 0.1s ease; }
+    #dataset .dx-tab:hover { border-color: color-mix(in srgb, var(--src), #fff 45%); color: color-mix(in srgb, var(--src), #000 12%); }
+    #dataset .dx-tab:active { transform: scale(0.96); }
+    #dataset .dx-tab.active { background: var(--src); color: #fff; border-color: var(--src); box-shadow: 0 4px 12px color-mix(in srgb, var(--src), transparent 68%); }
+
+    #dataset .dx-chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+    #dataset .dx-chip { font-family: var(--heading-font); font-weight: 600; font-size: 16.5px; padding: 11px 22px; border-radius: 10px; border: 1px solid var(--dx-line); background: #fff; color: #6b6788; cursor: pointer; transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease, transform 0.1s ease; }
+    #dataset .dx-chip:hover { background: #faf9ff; border-color: color-mix(in srgb, var(--src), #fff 50%); color: var(--heading-color); }
+    #dataset .dx-chip:active { transform: scale(0.96); }
+    #dataset .dx-chip.active { background: color-mix(in srgb, var(--src), #fff 90%); border-color: color-mix(in srgb, var(--src), #fff 25%); color: color-mix(in srgb, var(--src), #000 22%); }
+
+    /* Task readout — the instrument's current-selection line */
+    #dataset .dx-readout { display: flex; align-items: flex-start; gap: 12px; background: color-mix(in srgb, var(--src), #fff 94%); border-radius: 12px; padding: 13px 16px; margin-top: 2px; }
+    #dataset .dx-readout-bar { flex-shrink: 0; width: 3px; align-self: stretch; border-radius: 3px; background: var(--src); }
+    #dataset .dx-readout-text { flex: 1; min-width: 0; }
+    #dataset .dx-task-desc { font-family: var(--default-font); font-size: 18.5px; line-height: 1.55; color: #4a4770; text-wrap: pretty; }
+
+    /* Card grid — every sample is a captured frame; the grid itself breaks out
+       of the container to run full page width, centred on the viewport. */
+    #dataset .dx-grid-bleed { width: auto; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); padding: 0 clamp(16px, 4vw, 56px); box-sizing: border-box; }
+    #dataset .dx-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 360px)); justify-content: center; gap: 26px; }
+    #dataset .dx-card { background: #fff; border: 1px solid var(--dx-line); border-radius: 16px; overflow: hidden; cursor: pointer; display: flex; flex-direction: column; box-shadow: 0 1px 2px rgba(33,31,69,0.04), 0 8px 22px rgba(33, 31, 69, 0.06); transition: box-shadow 0.2s ease, transform 0.15s ease, border-color 0.2s ease; }
+    #dataset .dx-card:hover, #dataset .dx-card:focus-visible { box-shadow: 0 2px 4px rgba(33,31,69,0.05), 0 24px 50px rgba(33, 31, 69, 0.15); transform: translateY(-4px); border-color: color-mix(in srgb, var(--src), #fff 45%); outline: none; }
+    #dataset .dx-card:focus-visible { border-color: var(--src); }
+    #dataset .dx-card:active { transform: translateY(-4px) scale(0.985); }
+    #dataset .dx-thumb-wrap { position: relative; width: 100%; aspect-ratio: 4 / 3; background: #efedf8; overflow: hidden; }
+    #dataset .dx-thumb { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease; outline: 1px solid rgba(0, 0, 0, 0.06); outline-offset: -1px; }
+    #dataset .dx-card:hover .dx-thumb { transform: scale(1.04); }
+    #dataset .dx-frame-idx { position: absolute; top: 10px; left: 10px; font-family: var(--dx-mono); font-size: 12.5px; font-weight: 500; color: #fff; background: rgba(20, 18, 43, 0.55); backdrop-filter: blur(4px); padding: 3px 8px; border-radius: 6px; display: flex; align-items: center; gap: 6px; font-variant-numeric: tabular-nums; }
+    #dataset .dx-frame-idx::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--src); box-shadow: 0 0 0 3px color-mix(in srgb, var(--src), transparent 65%); }
+    /* Viewfinder brackets — the signature: this is footage seen through a lens */
+    #dataset .dx-thumb-wrap::before, #dataset .dx-thumb-wrap::after { content: ""; position: absolute; width: 18px; height: 18px; border: 2px solid #fff; opacity: 0; transition: opacity 0.2s ease; pointer-events: none; }
+    #dataset .dx-thumb-wrap::before { top: 9px; left: 9px; border-right: none; border-bottom: none; }
+    #dataset .dx-thumb-wrap::after { bottom: 9px; right: 9px; border-left: none; border-top: none; }
+    #dataset .dx-card:hover .dx-thumb-wrap::before, #dataset .dx-card:hover .dx-thumb-wrap::after,
+    #dataset .dx-card:focus-visible .dx-thumb-wrap::before, #dataset .dx-card:focus-visible .dx-thumb-wrap::after { opacity: 0.85; }
+    #dataset .dx-card-body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 13px; flex: 1; }
+    #dataset .dx-card-q { font-size: 17px; color: var(--heading-color); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    #dataset .dx-card-meta { display: flex; align-items: center; gap: 8px; margin-top: auto; }
+    #dataset .dx-badge { font-family: var(--heading-font); font-size: 13px; font-weight: 700; letter-spacing: 0.02em; padding: 4px 11px; border-radius: 50px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    #dataset .dx-badge-ans { background: #e4f7f4; color: #0b6e6a; max-width: 72%; }
+    #dataset .dx-badge-img { background: color-mix(in srgb, var(--src), #fff 90%); color: color-mix(in srgb, var(--src), #000 22%); flex-shrink: 0; font-variant-numeric: tabular-nums; }
+
+    /* Curated-subset note */
+    #dataset .dx-note { display: flex; gap: 12px; align-items: flex-start; font-size: 16.5px; color: #6b6788; background: #fff; border: 1px solid #ece7fa; border-left: 4px solid var(--accent-color); padding: 16px 18px; border-radius: 0 12px 12px 0; margin-top: 26px; }
+    #dataset .dx-note b { color: var(--heading-color); font-family: var(--heading-font); }
+
+    /* Curated-subset caveat — moved above the registry, styled as a clear warning */
+    #dataset .dx-alert { display: flex; gap: 12px; align-items: flex-start; font-size: 16.5px; line-height: 1.5; color: #b3261e; background: #fdeceb; border: 1px solid #f2c3bf; border-left: 4px solid #d1362b; padding: 15px 18px; border-radius: 0 12px 12px 0; margin: 0 0 30px; }
+    #dataset .dx-alert::before { content: "\F33A"; font-family: "bootstrap-icons"; font-size: 18px; line-height: 1.3; color: #d1362b; flex-shrink: 0; }
+    #dataset .dx-alert a { color: #b3261e; font-weight: 700; text-decoration: underline; }
+    #dataset .dx-alert a:hover { color: #8f1b15; }
+
+    /* Loading / empty states */
+    .dx-empty, .dx-loading { grid-column: 1 / -1; color: #9c99bd; font-size: 17px; padding: 56px 0; text-align: center; }
+    .dx-loading { display: flex; align-items: center; justify-content: center; gap: 12px; }
+    .dx-empty code, .dx-loading code { font-family: ui-monospace, Menlo, monospace; font-size: 0.85em; background: #efeaff; color: #5a49c9; padding: 1px 6px; border-radius: 5px; }
+    .dx-spinner { width: 18px; height: 18px; border: 2.5px solid #d9d3ef; border-top-color: var(--src, var(--accent-color)); border-radius: 50%; animation: dxSpin 0.8s linear infinite; }
+    @keyframes dxSpin { to { transform: rotate(360deg); } }
+
+    /* Modal (body-level to avoid stacking-context issues) */
+    .dx-overlay { position: fixed; inset: 0; background: rgba(20, 18, 43, 0.55); backdrop-filter: blur(4px); display: none; align-items: flex-start; justify-content: center; padding: 48px 16px; overflow-y: auto; z-index: 99999; }
+    .dx-overlay.open { display: flex; }
+    .dx-modal { background: #fff; border-radius: 20px; max-width: min(1200px, 94vw); width: 100%; padding: 28px 34px 32px; position: relative; box-shadow: 0 30px 80px rgba(20, 18, 43, 0.4); font-family: var(--default-font); animation: dxModalIn 0.22s ease; }
+    @keyframes dxModalIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+    .dx-modal-close { position: absolute; top: 16px; right: 18px; border: none; background: #efeaff; color: #5a49c9; width: 34px; height: 34px; border-radius: 50%; font-size: 20px; line-height: 1; cursor: pointer; transition: background 0.15s; }
+    .dx-modal-close:hover { background: #e2dbff; }
+    .dx-modal-tag { display: inline-block; font-family: var(--heading-font); font-size: 13.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 12px; border-radius: 50px; background: var(--heading-color); color: #fff; margin-bottom: 8px; }
+    .dx-modal-id { font-family: ui-monospace, Menlo, monospace; font-size: 13.5px; color: #9c99bd; margin-bottom: 22px; word-break: break-all; }
+    .dx-turn { margin-bottom: 18px; }
+    .dx-turn-role { font-family: var(--heading-font); font-size: 12.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #9c99bd; margin-bottom: 7px; display: flex; align-items: center; gap: 7px; }
+    .dx-turn-role::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #9c99bd; }
+    .dx-human .dx-turn-role::before { background: var(--accent-color); }
+    .dx-gpt .dx-turn-role::before { background: #0ea5a0; }
+    .dx-bubble { font-size: 17.5px; padding: 13px 17px; border-radius: 14px; line-height: 1.6; }
+    .dx-human .dx-bubble { background: #efeaff; color: #2c2559; border-bottom-left-radius: 4px; }
+    .dx-gpt .dx-bubble { background: #e4f7f4; color: #0b6e6a; font-weight: 700; border-bottom-left-radius: 4px; }
+    /* Structured media row — images/options load aligned in one row */
+    .dx-media-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px; align-items: flex-start; }
+    .dx-media-cell { display: flex; flex-direction: column; align-items: center; gap: 7px; margin: 0; }
+    .dx-media-cell img { height: 150px; width: auto; max-width: 100%; object-fit: contain; border-radius: 10px; border: 1px solid #d9d3ef; background: #faf9ff; display: block; }
+    .dx-media-cell img.dx-broken { height: 104px; padding: 8px; }
+    .dx-media-label { font-family: var(--heading-font); font-size: 13.5px; font-weight: 700; color: #5a49c9; background: #efeaff; border-radius: 50px; padding: 2px 13px; }
+    .dx-media-seq { flex-direction: column; }
+    .dx-media-seq .dx-media-cell { align-items: flex-start; width: 100%; }
+    .dx-media-seq .dx-media-cell img { height: auto; max-height: 320px; width: auto; max-width: 100%; }
+    .dx-seq-cap { font-family: var(--heading-font); font-size: 12.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #9c99bd; display: flex; align-items: center; gap: 6px; }
+
+    /* Horizontal sample layout: full-width prompt, then stimulus + choices in a row */
+    .dx-sample { display: flex; flex-direction: column; gap: 20px; }
+    .dx-col-label { font-family: var(--heading-font); font-size: 12.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #9c99bd; margin-bottom: 11px; display: flex; align-items: center; gap: 7px; }
+    .dx-col-label::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent-color); }
+    .dx-col-right .dx-col-label::before, .dx-full-grid .dx-col-label::before { background: #0ea5a0; }
+    .dx-prompt-text { font-size: 18.5px; line-height: 1.55; color: #2c2559; background: #efeaff; border-radius: 14px; padding: 13px 18px; }
+    .dx-body { display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start; }
+
+    /* Reference / stimulus image (single, large, left-hand side) */
+    .dx-stimulus { flex: 0 1 auto; max-width: 42%; }
+    .dx-stimulus img { max-height: 280px; width: auto; max-width: 100%; object-fit: contain; border-radius: 12px; border: 1px solid #d9d3ef; background: #faf9ff; display: block; }
+    .dx-stimulus .dx-seq-cap { margin-top: 8px; }
+    .dx-col-right { flex: 1 1 320px; min-width: 0; }
+    .dx-full-grid { width: 100%; }
+
+    /* Uniform choice grid — every card the same size, image or text */
+    .dx-choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; }
+    .dx-choice-card { border: 1.5px solid #ece7fa; border-radius: 14px; background: #fff; overflow: hidden; display: flex; flex-direction: column; transition: border-color 0.15s; }
+    .dx-choice-card.correct { border-color: #0ea5a0; box-shadow: 0 6px 18px rgba(14, 165, 160, 0.16); }
+    .dx-choice-thumb { width: 100%; aspect-ratio: 1 / 1; object-fit: contain; background: #f1eefa; display: block; }
+    .dx-choice-foot { display: flex; align-items: center; gap: 8px; padding: 9px 11px; }
+    .dx-choice-card.correct .dx-choice-foot { background: #e4f7f4; }
+    .dx-choice-badge { font-family: var(--heading-font); font-weight: 700; font-size: 14.5px; min-width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #efeaff; color: #5a49c9; flex-shrink: 0; }
+    .dx-choice-card.correct .dx-choice-badge { background: #0ea5a0; color: #fff; }
+    .dx-choice-text { font-size: 16px; color: #2c2559; line-height: 1.3; }
+    .dx-choice-card.correct .dx-choice-text { color: #0b6e6a; font-weight: 700; }
+    .dx-choice-card.text-only .dx-choice-foot { padding: 13px; }
+    .dx-tick { color: #0ea5a0; font-weight: 700; font-size: 14.5px; flex-shrink: 0; margin-left: auto; }
+    .dx-answer-card { font-family: var(--heading-font); font-weight: 700; font-size: 28px; color: #0b6e6a; background: #e4f7f4; border: 1.5px solid #0ea5a0; border-radius: 14px; padding: 20px 26px; text-align: center; word-break: break-word; display: inline-block; }
+    @media (max-width: 760px) { .dx-stimulus { max-width: 100%; } .dx-body { gap: 18px; } .dx-choices { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); } }
+
+    /* Card entrance + motion preferences */
+    @media (prefers-reduced-motion: no-preference) {
+      #dataset .dx-card { animation: dxCardIn 0.32s ease both; }
+      @keyframes dxCardIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #dataset .dx-card, .dx-modal, .dx-spinner { animation: none !important; }
+    }
+    @media (max-width: 575px) {
+      #dataset .dx-grid-bleed { padding: 0 12px; }
+      #dataset .dx-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 220px)); justify-content: center; gap: 14px; }
+      #dataset .dx-toolbar { padding: 18px 16px; }
+      #dataset .dx-task-desc { font-size: 17px; }
+      #dataset .dx-ds { padding: 16px 16px 15px; }
+      .dx-modal { padding: 26px 20px 28px; }
+    }
   </style>
 
   <!-- =======================================================
@@ -358,6 +622,7 @@
           <li><a href="#schedule">Schedule</a></li>
           <li><a href="#venue">Venue</a></li>
           <li><a href="#challenge">Challenge</a></li>
+          <li><a href="#dataset">Data Explorer</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -748,7 +1013,7 @@
 
       <div class="container">
 
-        <div class="row gy-4">
+        <div class="row gy-4 justify-content-center">
 
           <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="100">
             <div class="member">
@@ -817,7 +1082,7 @@
           <p>Panel discussion: Closing the Data Efficiency Gap</p>
         </div>
 
-        <div class="row gy-4">
+        <div class="row gy-4 justify-content-center">
 
           <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="100">
             <div class="member">
@@ -883,87 +1148,161 @@
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <p class="sub-heading">All talks include a Q&amp;A. Schedule is tentative and subject to change.</p>
 
-        <div class="schedule-legend">
-          Legend:
-          <span class="invited">invited talks</span>
-          <span class="contributed">oral highlights</span>
-          <span class="poster">poster session</span>
-          <span class="break">breaks &amp; lunch</span>
+        <div class="sch-vitals">
+          <span><b>15</b> sessions</span>
+          <span class="sch-dot"></span>
+          <span><b>8:50a&ndash;5:45p</b></span>
         </div>
 
-        <div class="schedule-item">
-          <time>8:50am--9:00am</time>
-          <h4>Opening Remarks <span>Organizers</span></h4>
+        <div class="sch-filters" id="schFilters" role="group" aria-label="Filter the schedule by track">
+          <button class="sch-filter active" data-filter="all" aria-pressed="true">All <span class="sch-n"></span></button>
+          <button class="sch-filter" data-filter="invited" aria-pressed="false"><span class="sch-swatch"></span>Invited <span class="sch-n"></span></button>
+          <button class="sch-filter" data-filter="oral" aria-pressed="false"><span class="sch-swatch"></span>Orals <span class="sch-n"></span></button>
+          <button class="sch-filter" data-filter="poster" aria-pressed="false"><span class="sch-swatch"></span>Posters <span class="sch-n"></span></button>
+          <button class="sch-filter" data-filter="session" aria-pressed="false"><span class="sch-swatch"></span>Sessions <span class="sch-n"></span></button>
+          <button class="sch-filter" data-filter="break" aria-pressed="false"><span class="sch-swatch"></span>Breaks <span class="sch-n"></span></button>
         </div>
 
-        <div class="schedule-item invited">
-          <time>9:00am--9:35am</time>
-          <h4>Invited Talk 1 <span>Michael C. Frank (Stanford, confirmed)</span></h4>
-        </div>
+        <!-- The tape: a ruler of real clock-time on the left, session
+             blocks positioned & sized to their actual place in the day
+             on the right. Both columns are driven off the same
+             minutes-since-8:50a → pixel scale, computed in schedule.js -->
+        <div class="sch-tape" id="schTape">
 
-        <div class="schedule-item invited">
-          <time>9:35am--10:10am</time>
-          <h4>Invited Talk 2 <span>Uri Hasson (Princeton, confirmed)</span></h4>
-        </div>
+          <div class="sch-ruler" id="schRuler">
+            <div class="sch-tick sch-tick-lo" data-min="530"><time>8:50a</time></div>
+            <div class="sch-tick" data-min="540"><time>9a</time></div>
+            <div class="sch-tick" data-min="600"><time>10a</time></div>
+            <div class="sch-tick" data-min="660"><time>11a</time></div>
+            <div class="sch-tick" data-min="720"><time>12p</time></div>
+            <div class="sch-tick" data-min="780"><time>1p</time></div>
+            <div class="sch-tick" data-min="840"><time>2p</time></div>
+            <div class="sch-tick" data-min="900"><time>3p</time></div>
+            <div class="sch-tick" data-min="960"><time>4p</time></div>
+            <div class="sch-tick" data-min="1020"><time>5p</time></div>
+            <div class="sch-tick sch-tick-lo" data-min="1065"><time>5:45p</time></div>
+          </div>
 
-        <div class="schedule-item contributed">
-          <time>10:10am--10:40am</time>
-          <h4>Oral Highlights 1</h4>
-        </div>
+          <div class="sch-blocks" id="schBlocks">
 
-        <div class="schedule-item break">
-          <time>10:40am--11:00am</time>
-          <h4>Coffee Break</h4>
-        </div>
+            <div class="sch-item" data-type="session" data-start="530" data-dur="10">
+              <div class="sch-card">
+                <div class="sch-row1"><span class="sch-type">Session</span><span class="sch-time-inline">8:50a &middot; 10 min</span></div>
+                <h4>Opening Remarks</h4>
+                <span class="sch-who">Organizers</span>
+              </div>
+            </div>
 
-        <div class="schedule-item poster">
-          <time>11:00am--12:00pm</time>
-          <h4>Poster Session</h4>
-        </div>
+            <div class="sch-item" data-type="invited" data-start="540" data-dur="35">
+              <div class="sch-card">
+                <div class="sch-row1"><span class="sch-type">Invited</span><span class="sch-time-inline">9:00a &middot; 35 min</span></div>
+                <h4>Invited Talk 1</h4>
+                <span class="sch-who">Michael C. Frank &middot; Stanford</span>
+              </div>
+            </div>
 
-        <div class="schedule-item break">
-          <time>12:00pm--1:30pm</time>
-          <h4>Lunch</h4>
-        </div>
+            <div class="sch-item" data-type="invited" data-start="575" data-dur="35">
+              <div class="sch-card">
+                <div class="sch-row1"><span class="sch-type">Invited</span><span class="sch-time-inline">9:35a &middot; 35 min</span></div>
+                <h4>Invited Talk 2</h4>
+                <span class="sch-who">Uri Hasson &middot; Princeton</span>
+              </div>
+            </div>
 
-        <div class="schedule-item invited">
-          <time>1:30pm--2:05pm</time>
-          <h4>Invited Talk 3 <span>Freda Shi (U Waterloo, confirmed)</span></h4>
-        </div>
+            <div class="sch-item" data-type="oral" data-start="610" data-dur="30">
+              <div class="sch-card">
+                <div class="sch-row1"><span class="sch-type">Oral highlights</span><span class="sch-time-inline">10:10a &middot; 30 min</span></div>
+                <h4>Oral Highlights 1</h4>
+                <span class="sch-who">Contributed papers</span>
+              </div>
+            </div>
 
-        <div class="schedule-item invited">
-          <time>2:05pm--2:40pm</time>
-          <h4>Invited Talk 4 <span>Kristen Grauman (UT Austin, confirmed)</span></h4>
-        </div>
+            <div class="sch-item" data-type="break" data-start="640" data-dur="20">
+              <div class="sch-card">
+                <div class="sch-row1"><span class="sch-type">Break</span><span class="sch-time-inline">10:40a &middot; 20 min</span></div>
+                <h4>Coffee Break</h4>
+              </div>
+            </div>
 
-        <div class="schedule-item">
-          <time>2:40pm--3:15pm</time>
-          <h4>BabyVLM: Kickoff &amp; Tutorial <span>Organizers</span></h4>
-        </div>
+            <div class="sch-item" data-type="poster" data-start="660" data-dur="60">
+              <div class="sch-card">
+                <div class="sch-row1"><span class="sch-type">Posters</span><span class="sch-time-inline">11:00a &middot; 1h</span></div>
+                <h4>Poster Session</h4>
+                <span class="sch-who">All accepted papers</span>
+              </div>
+            </div>
 
-        <div class="schedule-item break">
-          <time>3:15pm--3:30pm</time>
-          <h4>Coffee Break</h4>
-        </div>
+            <div class="sch-item" data-type="break" data-start="720" data-dur="90">
+              <div class="sch-card">
+                <div class="sch-row1"><span class="sch-type">Break</span><span class="sch-time-inline">12:00p &middot; 1h 30m</span></div>
+                <h4>Lunch</h4>
+              </div>
+            </div>
 
-        <div class="schedule-item invited">
-          <time>3:30pm--4:05pm</time>
-          <h4>Invited Talk 5 <span>Cordelia Schmid (Inria, France)</span></h4>
-        </div>
+            <div class="sch-item" data-type="invited" data-start="810" data-dur="35">
+              <div class="sch-card">
+                <div class="sch-row1"><span class="sch-type">Invited</span><span class="sch-time-inline">1:30p &middot; 35 min</span></div>
+                <h4>Invited Talk 3</h4>
+                <span class="sch-who">Freda Shi &middot; U Waterloo</span>
+              </div>
+            </div>
 
-        <div class="schedule-item contributed">
-          <time>4:05pm--4:35pm</time>
-          <h4>Oral Highlights 2</h4>
-        </div>
+            <div class="sch-item" data-type="invited" data-start="845" data-dur="35">
+              <div class="sch-card">
+                <div class="sch-row1"><span class="sch-type">Invited</span><span class="sch-time-inline">2:05p &middot; 35 min</span></div>
+                <h4>Invited Talk 4</h4>
+                <span class="sch-who">Kristen Grauman &middot; UT Austin</span>
+              </div>
+            </div>
 
-        <div class="schedule-item invited">
-          <time>4:35pm--5:35pm</time>
-          <h4>Panel Discussion: Closing the Data Efficiency Gap <span>Panelists</span></h4>
-        </div>
+            <div class="sch-item" data-type="session" data-start="880" data-dur="35">
+              <div class="sch-card">
+                <div class="sch-row1"><span class="sch-type">Session</span><span class="sch-time-inline">2:40p &middot; 35 min</span></div>
+                <h4>BabyVLM: Kickoff &amp; Tutorial</h4>
+                <span class="sch-who">Organizers</span>
+              </div>
+            </div>
 
-        <div class="schedule-item">
-          <time>5:35pm--5:45pm</time>
-          <h4>Paper Award and Closing Remarks <span>Organizers</span></h4>
+            <div class="sch-item" data-type="break" data-start="915" data-dur="15">
+              <div class="sch-card">
+                <div class="sch-row1"><span class="sch-type">Break</span><span class="sch-time-inline">3:15p &middot; 15 min</span></div>
+                <h4>Coffee Break</h4>
+              </div>
+            </div>
+
+            <div class="sch-item" data-type="invited" data-start="930" data-dur="35">
+              <div class="sch-card">
+                <div class="sch-row1"><span class="sch-type">Invited</span><span class="sch-time-inline">3:30p &middot; 35 min</span></div>
+                <h4>Invited Talk 5</h4>
+                <span class="sch-who">Cordelia Schmid &middot; Inria</span>
+              </div>
+            </div>
+
+            <div class="sch-item" data-type="oral" data-start="965" data-dur="30">
+              <div class="sch-card">
+                <div class="sch-row1"><span class="sch-type">Oral highlights</span><span class="sch-time-inline">4:05p &middot; 30 min</span></div>
+                <h4>Oral Highlights 2</h4>
+                <span class="sch-who">Contributed papers</span>
+              </div>
+            </div>
+
+            <div class="sch-item" data-type="invited" data-start="995" data-dur="60">
+              <div class="sch-card">
+                <div class="sch-row1"><span class="sch-type">Panel</span><span class="sch-time-inline">4:35p &middot; 1h</span></div>
+                <h4>Panel: Closing the Data Efficiency Gap</h4>
+                <span class="sch-who">Panelists</span>
+              </div>
+            </div>
+
+            <div class="sch-item" data-type="session" data-start="1055" data-dur="10">
+              <div class="sch-card">
+                <div class="sch-row1"><span class="sch-type">Session</span><span class="sch-time-inline">5:35p &middot; 10 min</span></div>
+                <h4>Paper Award &amp; Closing Remarks</h4>
+                <span class="sch-who">Organizers</span>
+              </div>
+            </div>
+
+          </div>
         </div>
 
       </div>
@@ -1047,6 +1386,8 @@
 
         <p><em>Details, datasets, and timeline will be released around the workshop&mdash;check back for updates.</em></p>
 
+        <p class="about-cta"><a class="cta-btn" href="#dataset">Explore the benchmark data <i class="bi bi-arrow-right"></i></a></p>
+
         <details class="disclosure">
           <summary>Challenge Steering Committee (confirmed) <i class="bi bi-chevron-right chev"></i></summary>
           <div class="disclosure-body">
@@ -1058,6 +1399,98 @@
             </ul>
           </div>
         </details>
+
+      </div>
+
+    </section>
+
+    <!-- ======= Data Explorer Section ======= -->
+    <section id="dataset" class="dataset section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2><i class="bi bi-camera-reels"></i>Data Explorer</h2>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <p class="dx-intro">
+          Every benchmark task is a vision&ndash;language conversation &mdash; a prompt carrying one or more
+          <code>&lt;image&gt;</code> tokens, paired with the ground-truth answer. The three sources differ in
+          whose eyes the footage comes from. Choose a source, then a task, to browse sample items.
+        </p>
+
+        <p class="dx-alert">
+          <span>Showing a curated subset for fast browsing. For the complete corpus and methodology, see the
+          <a href="https://shawnking98.github.io/BabyVLM-v2/" target="_blank" rel="noopener">BabyVLM-v2 project page</a>.</span>
+        </p>
+
+        <div class="dx-eyebrow dx-eyebrow-lg">Sources &amp; Their Role</div>
+        <div class="dx-registry" role="tablist" aria-label="Choose a source">
+          <div class="dx-ds" data-source="saycam" tabindex="0" role="tab" aria-selected="false">
+            <div class="dx-ds-head">
+              <span class="dx-ds-name">SAYCam</span>
+              <span class="dx-ds-prov">In-Distribution</span>
+            </div>
+            <div class="dx-ds-desc">Longitudinal infant head&#8209;cam footage &mdash; the training distribution.</div>
+            <div class="dx-ds-stats">
+              <span class="dx-ds-stat"><b>10</b>tasks</span>
+              <span class="dx-ds-stat"><b>3</b>splits</span>
+            </div>
+          </div>
+          <div class="dx-ds" data-source="babyview" tabindex="0" role="tab" aria-selected="false">
+            <div class="dx-ds-head">
+              <span class="dx-ds-name">BabyView</span>
+              <span class="dx-ds-prov">Out of Distribution Eval</span>
+            </div>
+            <div class="dx-ds-desc">A second longitudinal infant head&#8209;cam corpus, alongside SAYCam.</div>
+            <div class="dx-ds-stats">
+              <span class="dx-ds-stat"><b>4</b>tasks</span>
+            </div>
+          </div>
+          <div class="dx-ds" data-source="ego4d" tabindex="0" role="tab" aria-selected="false">
+            <div class="dx-ds-head">
+              <span class="dx-ds-name">Ego4D</span>
+              <span class="dx-ds-prov">Out of Distribution Eval</span>
+            </div>
+            <div class="dx-ds-desc">Adult egocentric video, held out to test out&#8209;of&#8209;distribution generalization.</div>
+            <div class="dx-ds-stats">
+              <span class="dx-ds-stat"><b>10</b>tasks</span>
+            </div>
+          </div>
+          <div class="dx-ds" data-source="nih" tabindex="0" role="tab" aria-selected="false">
+            <div class="dx-ds-head">
+              <span class="dx-ds-name">NIH</span>
+              <span class="dx-ds-prov">Inspiration</span>
+            </div>
+            <div class="dx-ds-desc">Synthetic stimuli from the Toolbox&reg; cognitive battery for inspiration.</div>
+            <div class="dx-ds-stats">
+              <span class="dx-ds-stat"><b>7</b>tasks</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dx-toolbar">
+          <div class="dx-split-row" id="dxSplitWrap" style="display:none;">
+            <div class="dx-ctl-label">Split</div>
+            <div class="dx-tab-row" id="dxSplitTabs"></div>
+          </div>
+
+          <div class="dx-ctl-label">Task</div>
+          <div class="dx-chip-row" id="dxTaskChips"></div>
+
+          <div class="dx-readout">
+            <span class="dx-readout-bar"></span>
+            <div class="dx-readout-text">
+              <div class="dx-task-desc" id="dxTaskDesc"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dx-eyebrow" style="margin-top:36px;">Samples</div>
+        <div class="dx-grid-bleed">
+          <div id="dxGrid" class="dx-grid"></div>
+        </div>
 
       </div>
 
@@ -1145,6 +1578,14 @@
   <!-- Preloader -->
   <div id="preloader"></div>
 
+  <!-- Data Explorer modal -->
+  <div class="dx-overlay" id="dxOverlay">
+    <div class="dx-modal" id="dxModal" role="dialog" aria-modal="true" aria-label="Sample detail">
+      <button class="dx-modal-close" id="dxModalClose" aria-label="Close">&times;</button>
+      <div id="dxModalContent"></div>
+    </div>
+  </div>
+
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
@@ -1178,6 +1619,703 @@
       }, { threshold: 0.4 });
       document.querySelectorAll('.stat-num[data-count]').forEach(function (el) { io.observe(el); });
     })();
+  </script>
+
+  <!-- Schedule: the Program Tape — proportional time-ruler layout,
+       track filtering, staggered reveal. PX_PER_MIN must match the
+       --px-per-min custom property set on #schedule in the CSS. -->
+  <script>
+  (function () {
+    const tape   = document.getElementById('schTape');
+    const ruler  = document.getElementById('schRuler');
+    const blocks = document.getElementById('schBlocks');
+    const filterBar = document.getElementById('schFilters');
+    if (!tape || !ruler || !blocks || !filterBar) return;
+
+    const PX_PER_MIN = 2.8;
+    const COMPACT_MAX_DUR = 20;   // minutes; shorter items collapse to one line
+
+    const items = Array.from(blocks.querySelectorAll('.sch-item'));
+    const ticks = Array.from(ruler.querySelectorAll('.sch-tick'));
+    const filters = Array.from(filterBar.querySelectorAll('.sch-filter'));
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const dayStart = Math.min(...items.map(it => +it.dataset.start));
+    const dayEnd = Math.max(...items.map(it => +it.dataset.start + +it.dataset.dur));
+    const totalPx = (dayEnd - dayStart) * PX_PER_MIN;
+    ruler.style.height = totalPx + 'px';
+    blocks.style.height = totalPx + 'px';
+
+    // Position every session block by its real start time & duration.
+    items.forEach(it => {
+      const start = +it.dataset.start, dur = +it.dataset.dur;
+      it.style.top = ((start - dayStart) * PX_PER_MIN) + 'px';
+      it.style.height = (dur * PX_PER_MIN) + 'px';
+      it.classList.toggle('sch-compact', dur <= COMPACT_MAX_DUR);
+    });
+
+    // Position every hour tick on the same scale.
+    ticks.forEach(t => {
+      const min = +t.dataset.min;
+      t.style.top = ((min - dayStart) * PX_PER_MIN) + 'px';
+    });
+
+    // Fill in per-track counts so the filter bar doubles as a tally.
+    const counts = { all: items.length };
+    items.forEach(it => { const t = it.dataset.type; counts[t] = (counts[t] || 0) + 1; });
+    filters.forEach(f => {
+      const n = f.querySelector('.sch-n');
+      if (n) n.textContent = counts[f.dataset.filter] || 0;
+    });
+
+    function stagger(visible) {
+      if (reduce) return;
+      visible.forEach((it, i) => {
+        it.classList.remove('sch-in');
+        void it.offsetWidth;                       // restart the animation
+        it.style.animationDelay = Math.min(i * 35, 380) + 'ms';
+        it.classList.add('sch-in');
+      });
+    }
+
+    // Filtering fades non-matching blocks out in place rather than
+    // collapsing the layout — the resulting gaps in the ruler are
+    // themselves informative ("here's where the posters sit in the day").
+    function apply(filter) {
+      const visible = [];
+      items.forEach(it => {
+        const show = filter === 'all' || it.dataset.type === filter;
+        it.classList.toggle('sch-hide', !show);
+        if (show) visible.push(it);
+      });
+      stagger(visible);
+    }
+
+    filters.forEach(f => {
+      f.addEventListener('click', () => {
+        filters.forEach(o => {
+          const on = o === f;
+          o.classList.toggle('active', on);
+          o.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+        apply(f.dataset.filter);
+      });
+    });
+
+    // Reveal on first scroll into view (matches the stat counters' behaviour).
+    if (!reduce && 'IntersectionObserver' in window) {
+      blocks.classList.add('sch-ready');
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { stagger(items); io.disconnect(); } });
+      }, { threshold: 0.12 });
+      io.observe(tape);
+    }
+  })();
+  </script>
+
+  <!-- Data Explorer logic -->
+  <script>
+  (function () {
+    // ── Task metadata ──
+    const TASK_INFO = {
+      'count':                  { label: 'Count',              desc: 'Object counting — how many of a given object appear in the frame.' },
+      'memory':                 { label: 'Memory',             desc: 'Recognition memory — touch the newly seen image across a growing sequence.' },
+      'vdr-binary':             { label: 'Visual Delayed Response (Binary)', desc: 'Visual delayed response — which corner does the object leave the frame from?' },
+      'vdr-open':               { label: 'Visual Delayed Response (Open)',   desc: 'Visual delayed response — which side of the frame does the object exit toward?' },
+      'localize':               { label: 'Localize',           desc: 'Spatial localization — which quadrant of the image is the object in?' },
+      'leftright':              { label: 'Left / Right',       desc: 'Viewpoint matching — pick the view that matches the reference.' },
+      'picture_vocabulary':     { label: 'Picture Vocabulary', desc: 'Receptive vocabulary — touch the image that matches the spoken word.' },
+      'picture_vocab':          { label: 'Picture Vocabulary', desc: 'Receptive vocabulary — touch the image matching the target word.' },
+      'picture_vocab_selected': { label: 'Picture Vocab (Selected)', desc: 'Curated receptive-vocabulary items.' },
+      'spatialdetails':         { label: 'Spatial Details',    desc: 'Fine-grained matching — which option contains exactly this object?' },
+      'spatial':                { label: 'Spatial',            desc: 'Spatial matching — which option contains exactly this object?' },
+      'compare_synthetic':      { label: 'Compare (Synthetic)',desc: 'Quantity comparison — which image has more of the object (synthetic).' },
+      'compare_real':           { label: 'Compare (Naturalistic)', desc: 'Quantity comparison — which image has more of the object (naturalistic).' },
+      'who_has_more':           { label: 'Who Has More',       desc: 'Quantity comparison — which image contains more of the object.' },
+      'vdr':                    { label: 'Visual Delayed Response', desc: 'Visual delayed response — track the object across frames and report its motion.' },
+      'whohasmore_synthetic':   { label: 'Who Has More',       desc: 'Quantity comparison — which image contains more of the object.' },
+    };
+
+    const EGO4D_TASKS    = ['count','memory','vdr-binary','vdr-open','localize','leftright','picture_vocabulary','spatialdetails','compare_synthetic','compare_real'];
+    const NIH_TASKS      = ['count','memory','picture_vocab','picture_vocab_selected','spatial','vdr','who_has_more'];
+    const BABYVIEW_TASKS = ['count','leftright','localize','whohasmore_synthetic'];
+    const SPLIT_LABELS = { train: 'Training', val: 'Validation', test: 'Testing' };
+
+    // Source order is fixed everywhere: SAYCam → BabyView → Ego4D → NIH.
+    const SOURCES = {
+      saycam:    { label: 'SAYCam',    color: '#6d5ae0', tasks: EGO4D_TASKS,    splits: ['train','val','test'], base: (t,s) => `data/saycam_data_sample/${s}/${t}` },
+      babyview:  { label: 'BabyView',  color: '#1f9e7a', tasks: BABYVIEW_TASKS, splits: null,                    base: (t)   => `data/babyview_sample/${t}` },
+      ego4d:     { label: 'Ego4D',     color: '#2f6fed', tasks: EGO4D_TASKS,    splits: null,                    base: (t)   => `data/ego4d_sample/${t}` },
+      nih:       { label: 'NIH',       color: '#c67d2e', tasks: NIH_TASKS,      splits: null,                    base: (t)   => `data/nih_toolbox_sample/${t}` },
+    };
+
+    // Curated subset — the ≤3 best/most-representative items per source × task,
+    // chosen for complete imagery and a clear, distinct answer; item indices into
+    // each task's data.json. Not an arbitrary truncation.
+    // For real egocentric footage (SAYCam, Ego4D, BabyView) curated selections
+    // are additionally screened to exclude any item containing a detected face
+    // (YuNet face detector), for participant privacy — not just picked for
+    // quality. Some combos below have fewer than 3 items, or none, because
+    // that's all that survived the face screen; we do not backfill with
+    // face-containing items. NIH Toolbox items are posed/stock stimulus photos
+    // (not participant footage), so no face screen applies there — picks are
+    // by quality/clarity alone. "nih//memory" is capped at 1 item because the
+    // source pool only contains a single growing-sequence memory task, not
+    // multiple independent clips.
+    const CURATED = {
+      "saycam/train/compare_real": [0, 2, 4],
+      "saycam/train/compare_synthetic": [0, 1, 2],
+      "saycam/train/count": [0, 1, 2],
+      "saycam/train/leftright": [0, 1, 3],
+      "saycam/train/localize": [0, 2, 3],
+      "saycam/train/memory": [1, 5, 6],
+      "saycam/train/picture_vocabulary": [1, 4],
+      "saycam/train/spatialdetails": [1, 3, 4],
+      "saycam/train/vdr-binary": [0, 1, 2],
+      "saycam/train/vdr-open": [0, 1, 2],
+      "saycam/val/compare_real": [5, 6, 7],
+      "saycam/val/compare_synthetic": [0, 2, 3],
+      "saycam/val/count": [0, 1, 2],
+      "saycam/val/leftright": [1, 2, 3],
+      "saycam/val/localize": [1, 2, 4],
+      "saycam/val/memory": [0, 3, 4],
+      "saycam/val/picture_vocabulary": [1, 2, 4],
+      "saycam/val/spatialdetails": [0, 2, 3],
+      "saycam/val/vdr-binary": [0, 1, 2],
+      "saycam/val/vdr-open": [0, 1, 2],
+      "saycam/test/compare_real": [0, 1, 2],
+      "saycam/test/compare_synthetic": [0, 3, 4],
+      "saycam/test/count": [0, 2, 3],
+      "saycam/test/leftright": [1, 2, 3],
+      "saycam/test/localize": [0, 1, 2],
+      "saycam/test/memory": [1, 2, 5],
+      "saycam/test/picture_vocabulary": [0, 1, 3],
+      "saycam/test/spatialdetails": [1, 2, 4],
+      "saycam/test/vdr-binary": [0, 1, 2],
+      "saycam/test/vdr-open": [0, 1, 2],
+      "babyview//count": [0, 3, 6],
+      "babyview//leftright": [0, 3, 6],
+      "babyview//localize": [0, 3, 6],
+      "babyview//whohasmore_synthetic": [0, 3, 6],
+      "ego4d//compare_real": [0, 1, 2],
+      "ego4d//compare_synthetic": [0, 1, 2],
+      "ego4d//count": [0, 1, 2],
+      "ego4d//leftright": [0, 1, 2],
+      "ego4d//localize": [0, 1, 2],
+      "ego4d//memory": [0, 1, 2],
+      "ego4d//picture_vocabulary": [0, 1, 2],
+      "ego4d//spatialdetails": [0, 1, 2],
+      "ego4d//vdr-binary": [0, 1, 2],
+      "ego4d//vdr-open": [0, 1, 2],
+      "nih//count": [0, 1, 2],
+      "nih//memory": [0],
+      "nih//picture_vocab": [0, 2, 4],
+      "nih//picture_vocab_selected": [0, 1, 3],
+      "nih//spatial": [0, 2, 3],
+      "nih//vdr": [0, 1, 2],
+      "nih//who_has_more": [0, 2, 3],
+    };
+    function curatedFor(source, split, task) {
+      const s = SOURCES[source];
+      const key = `${source}/${s.splits ? split : ''}/${task}`;
+      return CURATED[key] || null;
+    }
+
+    const state = { source: 'saycam', split: 'train', task: null };
+
+    const datasetRoot  = document.getElementById('dataset');
+    const splitWrap    = document.getElementById('dxSplitWrap');
+    const splitTabs    = document.getElementById('dxSplitTabs');
+    const taskChips    = document.getElementById('dxTaskChips');
+    const taskDescEl   = document.getElementById('dxTaskDesc');
+    const grid         = document.getElementById('dxGrid');
+    const overlay      = document.getElementById('dxOverlay');
+    const modalContent = document.getElementById('dxModalContent');
+    if (!grid) return;
+
+    function basePath() {
+      const s = SOURCES[state.source];
+      return s.splits ? s.base(state.task, state.split) : s.base(state.task);
+    }
+    function imgUrl(rel) { return `${basePath()}/${rel}`; }
+    function cleanText(t) { return t.replace(/<image>/g, ' ').replace(/\s+/g, ' ').trim(); }
+    function firstHumanQuestion(item) {
+      const h = item.conversations.find(c => c.from === 'human');
+      return h ? cleanText(h.value) : '';
+    }
+    function gtAnswer(item) {
+      const g = [...item.conversations].reverse().find(c => c.from === 'gpt');
+      return g ? g.value.trim() : '?';
+    }
+
+    const PLACEHOLDER = 'data:image/svg+xml;utf8,' + encodeURIComponent(
+      '<svg xmlns="http://www.w3.org/2000/svg" width="116" height="86"><rect width="116" height="86" fill="#efedf8"/><text x="58" y="46" font-size="9" fill="#9c99bd" text-anchor="middle" font-family="sans-serif">image n/a</text></svg>'
+    );
+    // Throttle concurrent image requests: over the OOD reverse proxy, firing
+    // a whole grid's worth of images (plus the data.json fetch) at once
+    // overwhelms the proxy's connection limit and requests get dropped
+    // ("Failed to fetch" / broken images) even though the same files load
+    // fine one at a time. Loading at most 2 at once avoids that.
+    function createThrottle(limit) {
+      let active = 0;
+      const queue = [];
+      function next() {
+        if (active >= limit || !queue.length) return;
+        active++;
+        const { fn, resolve } = queue.shift();
+        fn().then(v => { active--; resolve(v); next(); });
+      }
+      return (fn) => new Promise((resolve) => { queue.push({ fn, resolve }); next(); });
+    }
+    const imgThrottle = createThrottle(2);
+
+    function makeImg(rel) {
+      const img = document.createElement('img');
+      img.alt = rel;
+      imgThrottle(() => new Promise((resolve) => {
+        img.onload = () => resolve();
+        img.onerror = () => { img.onerror = null; img.classList.add('dx-broken'); img.src = PLACEHOLDER; resolve(); };
+        img.src = imgUrl(rel);
+      }));
+      return img;
+    }
+
+    // The dataset registry cards ARE the source selector — no duplicate tab row.
+    const registryCards = document.querySelectorAll('.dx-ds');
+    registryCards.forEach(card => {
+      const jump = () => {
+        const key = card.dataset.source;
+        if (!SOURCES[key] || key === state.source) return;
+        state.source = key; state.task = null; renderAll();
+      };
+      card.addEventListener('click', jump);
+      card.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); jump(); } });
+    });
+    function syncRegistry() {
+      registryCards.forEach(card => {
+        const on = card.dataset.source === state.source;
+        card.classList.toggle('current', on);
+        card.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      // Re-point the explorer's identity colour to the active source, so chips,
+      // split tabs and frame markers all pick it up.
+      datasetRoot.style.setProperty('--src', SOURCES[state.source].color);
+    }
+    function renderSplitTabs() {
+      const splits = SOURCES[state.source].splits;
+      if (!splits) { splitWrap.style.display = 'none'; return; }
+      splitWrap.style.display = '';
+      splitTabs.innerHTML = '';
+      for (const sp of splits) {
+        const b = document.createElement('button');
+        b.className = 'dx-tab' + (sp === state.split ? ' active' : '');
+        b.textContent = SPLIT_LABELS[sp] || sp;
+        b.onclick = () => { state.split = sp; renderSplitTabs(); loadTask(); };
+        splitTabs.appendChild(b);
+      }
+    }
+    function renderTaskChips() {
+      const tasks = SOURCES[state.source].tasks;
+      if (!state.task || !tasks.includes(state.task)) state.task = tasks[0];
+      taskChips.innerHTML = '';
+      for (const t of tasks) {
+        const info = TASK_INFO[t] || { label: t };
+        const b = document.createElement('button');
+        b.className = 'dx-chip' + (t === state.task ? ' active' : '');
+        b.textContent = info.label;
+        b.onclick = () => { state.task = t; renderTaskChips(); loadTask(); };
+        taskChips.appendChild(b);
+      }
+      taskDescEl.textContent = (TASK_INFO[state.task] || {}).desc || '';
+    }
+    function renderAll() { syncRegistry(); renderSplitTabs(); renderTaskChips(); loadTask(); }
+
+    async function fetchJsonWithRetry(url, attempts = 3) {
+      let lastErr;
+      for (let i = 0; i < attempts; i++) {
+        try {
+          const res = await fetch(url);
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          return await res.json();
+        } catch (e) {
+          lastErr = e;
+          // Transient proxy/connection hiccups (dropped socket, refused
+          // connection under load) are common over a reverse-proxied dev
+          // server — a short backoff-and-retry clears most of them without
+          // surfacing an error to the user at all.
+          if (i < attempts - 1) await new Promise(r => setTimeout(r, 300 * (i + 1)));
+        }
+      }
+      throw lastErr;
+    }
+
+    async function loadTask() {
+      grid.innerHTML = '<div class="dx-loading"><span class="dx-spinner"></span>Loading samples…</div>';
+      const url = `${basePath()}/data.json`;
+      let data;
+      try {
+        data = await fetchJsonWithRetry(url);
+      } catch (e) {
+        grid.innerHTML = `<div class="dx-empty">Couldn't load <code>${url}</code>: ${e.message || e}.<br>If this persists, confirm the site is being served over http (not opened as a local file) — e.g. <code>python3 -m http.server</code>.</div>`;
+        return;
+      }
+      if (!Array.isArray(data)) data = [data];
+      if (!data.length) { grid.innerHTML = '<div class="dx-empty">No samples for this task yet.</div>'; return; }
+      // Curated cap: show at most 3 hand-picked items per task per source,
+      // pre-screened to exclude any sample containing a detected face.
+      const pick = curatedFor(state.source, state.split, state.task);
+      if (pick) data = pick.filter(i => i < data.length).map(i => data[i]);
+      data = data.slice(0, 3);
+      if (!data.length) { grid.innerHTML = '<div class="dx-empty">No face-free samples available for this task yet.</div>'; return; }
+      grid.innerHTML = '';
+      data.forEach((item, i) => grid.appendChild(makeCard(item, i)));
+    }
+
+    // Which image the ground-truth answer actually points to — so the card
+    // thumbnail (and not just the modal) shows the correct picture, not
+    // just whichever frame happens to be first in the array.
+    function answerImageRel(item) {
+      const images = item.image || [];
+      if (!images.length) return '';
+      const conv = item.conversations || [];
+      if (conv.filter(c => c.from === 'human').length > 1) return images[0]; // multi-turn (memory) — not a single choice
+      const human = conv.find(c => c.from === 'human') || { value: '' };
+      const gptTurn = [...conv].reverse().find(c => c.from === 'gpt');
+      const answer = gptTurn ? gptTurn.value.trim() : '';
+      const answerLetter = /^[A-Za-z0-9]$/.test(answer) ? answer.toUpperCase() : '';
+      if (!answerLetter) return images[0];
+
+      const parts = human.value.split('<image>');
+      const nImg = parts.length - 1;
+      const stim = [], optImgs = [];
+      for (let k = 0; k < nImg && k < images.length; k++) {
+        const lab = optLabel(parts[k]);
+        if (lab) optImgs.push({ label: lab, rel: images[k] });
+        else stim.push(images[k]);
+      }
+      if (optImgs.length) {
+        const hit = optImgs.find(o => o.label === answerLetter);
+        return hit ? hit.rel : images[0];
+      }
+      if (stim.length > 1) {
+        const tc = parseTextChoices(human.value);
+        if (tc.length === stim.length) {
+          const idx = tc.findIndex(o => o.label === answerLetter);
+          if (idx >= 0) return stim[idx];
+        }
+      }
+      return images[0];
+    }
+
+    function makeCard(item, i) {
+      const card = document.createElement('div');
+      card.className = 'dx-card';
+      card.tabIndex = 0;
+      card.setAttribute('role', 'button');
+      card.style.animationDelay = Math.min(i * 35, 400) + 'ms';
+
+      const wrap = document.createElement('div');
+      wrap.className = 'dx-thumb-wrap';
+      const thumbRel = item.gif || answerImageRel(item) || '';
+      const thumb = makeImg(thumbRel);
+      thumb.className = 'dx-thumb';
+      wrap.appendChild(thumb);
+
+      const idx = document.createElement('span');
+      idx.className = 'dx-frame-idx';
+      idx.textContent = String(i + 1).padStart(2, '0');
+      wrap.appendChild(idx);
+
+      card.appendChild(wrap);
+
+      const body = document.createElement('div');
+      body.className = 'dx-card-body';
+      const q = document.createElement('div');
+      q.className = 'dx-card-q';
+      q.textContent = firstHumanQuestion(item);
+      body.appendChild(q);
+
+      const meta = document.createElement('div');
+      meta.className = 'dx-card-meta';
+      const ans = document.createElement('span');
+      ans.className = 'dx-badge dx-badge-ans';
+      ans.textContent = 'A: ' + gtAnswer(item);
+      meta.appendChild(ans);
+      const nimg = (item.image || []).length;
+      const ib = document.createElement('span');
+      ib.className = 'dx-badge dx-badge-img';
+      ib.textContent = item.gif ? (nimg + ' frames') : (nimg + (nimg === 1 ? ' img' : ' imgs'));
+      meta.appendChild(ib);
+      body.appendChild(meta);
+      card.appendChild(body);
+
+      const open = () => openModal(item);
+      card.onclick = open;
+      card.onkeydown = (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } };
+      return card;
+    }
+
+    function optLabel(seg) {
+      const m = (seg || '').match(/\(\s*([A-Za-z0-9])\s*\)/);
+      return m ? m[1].toUpperCase() : '';
+    }
+    function bubbleEl(text) {
+      const b = document.createElement('div');
+      b.className = 'dx-bubble';
+      b.textContent = text;
+      return b;
+    }
+    function mediaCell(rel, label) {
+      const cell = document.createElement('figure');
+      cell.className = 'dx-media-cell';
+      cell.appendChild(makeImg(rel));
+      if (label) {
+        const cap = document.createElement('figcaption');
+        cap.className = 'dx-media-label';
+        cap.textContent = label;
+        cell.appendChild(cap);
+      }
+      return cell;
+    }
+
+    function colLabel(text, side) {
+      const d = document.createElement('div');
+      d.className = 'dx-col-label';
+      d.textContent = text;
+      return d;
+    }
+    function choiceBadge(label) {
+      const b = document.createElement('div');
+      b.className = 'dx-choice-badge';
+      b.textContent = label;
+      return b;
+    }
+    function tickEl(withWord) {
+      const t = document.createElement('span');
+      t.className = 'dx-tick';
+      t.textContent = withWord ? '✓ correct' : '✓';
+      t.setAttribute('aria-label', 'correct answer');
+      return t;
+    }
+    // parse "(A) text (B) text ..." option lists from a prompt
+    function parseTextChoices(raw) {
+      const out = [];
+      const re = /\(([A-Za-z0-9])\)\s*([^()]*)/g;
+      let m;
+      while ((m = re.exec(raw)) !== null) {
+        let t = m[2].split(/\brespond\b|\banswer\b|\bchoose\b/i)[0];
+        t = t.replace(/<image>/g, ' ')
+             .replace(/\s*\bor\b\s*$/i, '')
+             .replace(/\s*of the (image|frame)\b.*$/i, '')
+             .replace(/[?.:,]+\s*$/, '')
+             .replace(/\s+/g, ' ').trim();
+        out.push({ label: m[1].toUpperCase(), text: t });
+      }
+      return out;
+    }
+    // "the first image" / "second image" / "3rd image" — a filler caption that
+    // just restates position, adding nothing once the image is shown directly
+    function isOrdinalFiller(t) {
+      return /^(the\s+)?(first|second|third|fourth|fifth|sixth|1st|2nd|3rd|4th|5th|6th)(\s+image)?$/i.test((t || '').trim());
+    }
+    // one uniform choice card — image variant (thumb + label) or text-only variant
+    function choiceCard(label, rel, caption, isCorrect) {
+      const c = document.createElement('div');
+      c.className = 'dx-choice-card' + (isCorrect ? ' correct' : '') + (rel ? '' : ' text-only');
+      if (rel) {
+        const img = makeImg(rel);
+        img.className = 'dx-choice-thumb';
+        c.appendChild(img);
+      }
+      const foot = document.createElement('div');
+      foot.className = 'dx-choice-foot';
+      foot.appendChild(choiceBadge(label));
+      if (caption) {
+        const t = document.createElement('div');
+        t.className = 'dx-choice-text';
+        t.textContent = caption;
+        foot.appendChild(t);
+      }
+      if (isCorrect) foot.appendChild(tickEl(!rel));
+      c.appendChild(foot);
+      return c;
+    }
+
+    // Multi-turn tasks (e.g. memory): stacked prompt → image row → answer
+    function renderSequential(item) {
+      const frag = document.createDocumentFragment();
+      const images = item.image || [];
+      let imgIdx = 0;
+      for (const turn of item.conversations) {
+        const wrap = document.createElement('div');
+        wrap.className = 'dx-turn ' + (turn.from === 'gpt' ? 'dx-gpt' : 'dx-human');
+        const role = document.createElement('div');
+        role.className = 'dx-turn-role';
+        role.textContent = turn.from === 'gpt' ? 'Answer' : 'Prompt';
+        wrap.appendChild(role);
+        const parts = turn.value.split('<image>');
+        const nImg = parts.length - 1;
+        const q = cleanText(turn.value);
+        if (q) wrap.appendChild(bubbleEl(q));
+        if (nImg >= 1) {
+          const row = document.createElement('div');
+          row.className = 'dx-media-row';
+          for (let i = 0; i < nImg && imgIdx < images.length; i++) {
+            row.appendChild(mediaCell(images[imgIdx++], optLabel(parts[i])));
+          }
+          wrap.appendChild(row);
+        }
+        frag.appendChild(wrap);
+      }
+      return frag;
+    }
+
+    // Single-turn tasks: full-width prompt, then stimulus + answer choices side by side
+    function renderSample(item) {
+      const conv = item.conversations || [];
+      if (conv.filter(c => c.from === 'human').length > 1) return renderSequential(item);
+
+      const human = conv.find(c => c.from === 'human') || { value: '' };
+      const gptTurn = [...conv].reverse().find(c => c.from === 'gpt');
+      const answer = gptTurn ? gptTurn.value.trim() : '';
+      const answerLetter = /^[A-Za-z0-9]$/.test(answer) ? answer.toUpperCase() : '';
+
+      const images = item.image || [];
+      const parts = human.value.split('<image>');
+      const nImg = parts.length - 1;
+
+      const stim = [], optImgs = [];
+      for (let i = 0; i < nImg && i < images.length; i++) {
+        const lab = optLabel(parts[i]);
+        if (lab) optImgs.push({ label: lab, rel: images[i] });
+        else stim.push(images[i]);
+      }
+      const textChoices = optImgs.length ? [] : parseTextChoices(human.value);
+
+      // "Touch the image of X — (A) the first image (B) the second image…":
+      // several bunched, unlabeled images that the text choices refer to by
+      // position. Pair each image directly with its choice — one clean grid,
+      // instead of a redundant image dump next to a disconnected text list.
+      const bunchedChoices = (!optImgs.length && stim.length > 1 && stim.length === textChoices.length)
+        ? stim.map((rel, i) => ({ label: textChoices[i].label, rel, caption: isOrdinalFiller(textChoices[i].text) ? '' : textChoices[i].text }))
+        : null;
+
+      const grid = document.createElement('div');
+      grid.className = 'dx-sample';
+
+      // ── Full-width prompt on top ──
+      const promptBlock = document.createElement('div');
+      promptBlock.appendChild(colLabel('Prompt'));
+      const pt = document.createElement('div');
+      pt.className = 'dx-prompt-text';
+      pt.textContent = cleanText(human.value);
+      promptBlock.appendChild(pt);
+      grid.appendChild(promptBlock);
+
+      if (bunchedChoices) {
+        // ── One unified grid: the images ARE the answer choices ──
+        const full = document.createElement('div');
+        full.className = 'dx-full-grid';
+        full.appendChild(colLabel('Answer choices'));
+        const box = document.createElement('div');
+        box.className = 'dx-choices';
+        for (const o of bunchedChoices) {
+          box.appendChild(choiceCard(o.label, o.rel, o.caption, o.label === answerLetter));
+        }
+        full.appendChild(box);
+        grid.appendChild(full);
+        const frag = document.createDocumentFragment();
+        frag.appendChild(grid);
+        return frag;
+      }
+
+      // ── Body row: stimulus image / clip (left) + answer choices (right) ──
+      const body = document.createElement('div');
+      body.className = 'dx-body';
+
+      if (item.gif) {
+        const s = document.createElement('div');
+        s.className = 'dx-stimulus';
+        s.appendChild(makeImg(item.gif));
+        const cap = document.createElement('div');
+        cap.className = 'dx-seq-cap';
+        cap.textContent = 'Animated sequence — ' + images.length + ' frames';
+        s.appendChild(cap);
+        body.appendChild(s);
+      } else {
+        for (const rel of stim) {
+          const s = document.createElement('div');
+          s.className = 'dx-stimulus';
+          s.appendChild(makeImg(rel));
+          body.appendChild(s);
+        }
+      }
+
+      const right = document.createElement('div');
+      right.className = 'dx-col-right';
+      if (optImgs.length) {
+        right.appendChild(colLabel('Answer choices'));
+        const box = document.createElement('div');
+        box.className = 'dx-choices';
+        for (const o of optImgs) {
+          box.appendChild(choiceCard(o.label, o.rel, '', o.label === answerLetter));
+        }
+        right.appendChild(box);
+      } else if (textChoices.length >= 2) {
+        right.appendChild(colLabel('Answer choices'));
+        const box = document.createElement('div');
+        box.className = 'dx-choices';
+        for (const o of textChoices) {
+          box.appendChild(choiceCard(o.label, null, o.text || ('Option ' + o.label), o.label === answerLetter));
+        }
+        right.appendChild(box);
+      } else {
+        right.appendChild(colLabel('Answer'));
+        const card = document.createElement('div');
+        card.className = 'dx-answer-card';
+        card.textContent = answer || '—';
+        right.appendChild(card);
+      }
+      body.appendChild(right);
+      grid.appendChild(body);
+
+      const frag = document.createDocumentFragment();
+      frag.appendChild(grid);
+      return frag;
+    }
+
+    let lastFocused = null;
+    function openModal(item) {
+      lastFocused = document.activeElement;
+      modalContent.innerHTML = '';
+      const s = SOURCES[state.source];
+      const info = TASK_INFO[state.task] || { label: state.task };
+      const tag = document.createElement('div');
+      tag.className = 'dx-modal-tag';
+      tag.textContent = `${s.label} · ${info.label}` + (s.splits ? ` · ${SPLIT_LABELS[state.split] || state.split}` : '');
+      modalContent.appendChild(tag);
+
+      const idEl = document.createElement('div');
+      idEl.className = 'dx-modal-id';
+      idEl.textContent = 'id: ' + (item.id || '—');
+      modalContent.appendChild(idEl);
+
+      modalContent.appendChild(renderSample(item));
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      document.getElementById('dxModalClose').focus();
+    }
+    function closeModal() {
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+      if (lastFocused && lastFocused.focus) lastFocused.focus();
+    }
+    document.getElementById('dxModalClose').onclick = closeModal;
+    overlay.onclick = (e) => { if (e.target === overlay) closeModal(); };
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+    renderAll();
+  })();
   </script>
 
 </body>

@@ -1,0 +1,50 @@
+[
+  {
+    "id": "localize_0",
+    "conversations": [
+      {
+        "from": "human",
+        "value": "<image> Point at the bicycle. Is it in the (A) top left or (B) top right or (C) bottom left or (D) bottom right of the image?"
+      },
+      {
+        "from": "gpt",
+        "value": "B"
+      }
+    ],
+    "image": [
+      "images/localize_0000_0.jpeg"
+    ]
+  },
+  {
+    "id": "localize_1",
+    "conversations": [
+      {
+        "from": "human",
+        "value": "<image> Point at the basket. Is it in the (A) top left or (B) top right or (C) bottom left or (D) bottom right of the image?"
+      },
+      {
+        "from": "gpt",
+        "value": "D"
+      }
+    ],
+    "image": [
+      "images/localize_0001_0.jpeg"
+    ]
+  },
+  {
+    "id": "localize_8",
+    "conversations": [
+      {
+        "from": "human",
+        "value": "<image> Point at the bucket. Is it in the (A) top left or (B) top right or (C) bottom left or (D) bottom right of the image?"
+      },
+      {
+        "from": "gpt",
+        "value": "C"
+      }
+    ],
+    "image": [
+      "images/localize_0002_0.jpeg"
+    ]
+  }
+]

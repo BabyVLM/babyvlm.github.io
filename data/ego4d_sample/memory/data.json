@@ -1,0 +1,470 @@
+[
+  {
+    "id": "memory_task_26",
+    "conversations": [
+      {
+        "from": "human",
+        "value": "Touch the new image. (A) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "A"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "B"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "B"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "A"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "A"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "B"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "A"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "A"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "B"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "A"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "A"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "A"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "B"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "B"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "B"
+      }
+    ],
+    "image": [
+      "images/memory_0000_0.jpeg",
+      "images/memory_0000_1.jpeg",
+      "images/memory_0000_2.jpeg",
+      "images/memory_0000_3.jpeg",
+      "images/memory_0000_4.jpeg",
+      "images/memory_0000_5.jpeg",
+      "images/memory_0000_6.jpeg",
+      "images/memory_0000_7.jpeg",
+      "images/memory_0000_8.jpeg",
+      "images/memory_0000_9.jpeg",
+      "images/memory_0000_10.jpeg",
+      "images/memory_0000_11.jpeg",
+      "images/memory_0000_12.jpeg",
+      "images/memory_0000_13.jpeg",
+      "images/memory_0000_14.jpeg",
+      "images/memory_0000_15.jpeg",
+      "images/memory_0000_16.jpeg",
+      "images/memory_0000_17.jpeg",
+      "images/memory_0000_18.jpeg",
+      "images/memory_0000_19.jpeg",
+      "images/memory_0000_20.jpeg",
+      "images/memory_0000_21.jpeg",
+      "images/memory_0000_22.jpeg",
+      "images/memory_0000_23.jpeg",
+      "images/memory_0000_24.jpeg",
+      "images/memory_0000_25.jpeg",
+      "images/memory_0000_26.jpeg",
+      "images/memory_0000_27.jpeg",
+      "images/memory_0000_28.jpeg"
+    ]
+  },
+  {
+    "id": "memory_task_199",
+    "conversations": [
+      {
+        "from": "human",
+        "value": "Touch the new image. (A) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "A"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "B"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "B"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "B"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "B"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "B"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "B"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "A"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "B"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "A"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "A"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "B"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "A"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "A"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "B"
+      }
+    ],
+    "image": [
+      "images/memory_0001_0.jpeg",
+      "images/memory_0001_1.jpeg",
+      "images/memory_0001_2.jpeg",
+      "images/memory_0001_3.jpeg",
+      "images/memory_0001_4.jpeg",
+      "images/memory_0001_5.jpeg",
+      "images/memory_0001_6.jpeg",
+      "images/memory_0001_7.jpeg",
+      "images/memory_0001_8.jpeg",
+      "images/memory_0001_9.jpeg",
+      "images/memory_0001_10.jpeg",
+      "images/memory_0001_11.jpeg",
+      "images/memory_0001_12.jpeg",
+      "images/memory_0001_13.jpeg",
+      "images/memory_0001_14.jpeg",
+      "images/memory_0001_15.jpeg",
+      "images/memory_0001_16.jpeg",
+      "images/memory_0001_17.jpeg",
+      "images/memory_0001_18.jpeg",
+      "images/memory_0001_19.jpeg",
+      "images/memory_0001_20.jpeg",
+      "images/memory_0001_21.jpeg",
+      "images/memory_0001_22.jpeg",
+      "images/memory_0001_23.jpeg",
+      "images/memory_0001_24.jpeg",
+      "images/memory_0001_25.jpeg",
+      "images/memory_0001_26.jpeg",
+      "images/memory_0001_27.jpeg",
+      "images/memory_0001_28.jpeg"
+    ]
+  },
+  {
+    "id": "memory_task_5",
+    "conversations": [
+      {
+        "from": "human",
+        "value": "Touch the new image. (A) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "A"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "A"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "B"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "B"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "A"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "B"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "B"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "B"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "A"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "B"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "A"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "B"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "A"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "B"
+      },
+      {
+        "from": "human",
+        "value": "Let's try more. Touch the new image. (A) <image> (B) <image>"
+      },
+      {
+        "from": "gpt",
+        "value": "A"
+      }
+    ],
+    "image": [
+      "images/memory_0002_0.jpeg",
+      "images/memory_0002_1.jpeg",
+      "images/memory_0002_2.jpeg",
+      "images/memory_0002_3.jpeg",
+      "images/memory_0002_4.jpeg",
+      "images/memory_0002_5.jpeg",
+      "images/memory_0002_6.jpeg",
+      "images/memory_0002_7.jpeg",
+      "images/memory_0002_8.jpeg",
+      "images/memory_0002_9.jpeg",
+      "images/memory_0002_10.jpeg",
+      "images/memory_0002_11.jpeg",
+      "images/memory_0002_12.jpeg",
+      "images/memory_0002_13.jpeg",
+      "images/memory_0002_14.jpeg",
+      "images/memory_0002_15.jpeg",
+      "images/memory_0002_16.jpeg",
+      "images/memory_0002_17.jpeg",
+      "images/memory_0002_18.jpeg",
+      "images/memory_0002_19.jpeg",
+      "images/memory_0002_20.jpeg",
+      "images/memory_0002_21.jpeg",
+      "images/memory_0002_22.jpeg",
+      "images/memory_0002_23.jpeg",
+      "images/memory_0002_24.jpeg",
+      "images/memory_0002_25.jpeg",
+      "images/memory_0002_26.jpeg",
+      "images/memory_0002_27.jpeg",
+      "images/memory_0002_28.jpeg"
+    ]
+  }
+]

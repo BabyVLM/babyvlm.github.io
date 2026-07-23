@@ -1,0 +1,70 @@
+[
+ {
+  "id": "c8bf04e6-74f2-4a5e-8c26-615246886744/7200_7332_lamp",
+  "conversations": [
+   {
+    "from": "human",
+    "value": "<image><image><image><image><image><image><image><image> does the lamp leave the frame through the right side of the frame or the left side of the frame? respond ONLY with 'right' or 'left'."
+   },
+   {
+    "from": "gpt",
+    "value": "left"
+   }
+  ],
+  "image": [
+   "images/vdr_0000_0.jpg",
+   "images/vdr_0000_1.jpg",
+   "images/vdr_0000_2.jpg",
+   "images/vdr_0000_3.jpg",
+   "images/vdr_0000_4.jpg",
+   "images/vdr_0000_5.jpg",
+   "images/vdr_0000_6.jpg",
+   "images/vdr_0000_7.jpg"
+  ],
+  "gif": "images/vdr_0000.gif"
+ },
+ {
+  "id": "549770ba-bca9-40cf-b09d-9c6d00432557/342_474_hoop",
+  "conversations": [
+   {
+    "from": "human",
+    "value": "<image><image><image><image><image><image> does the hoop leave the frame through the bottom side of the frame or the top side of the frame? respond ONLY with 'bottom' or 'top'."
+   },
+   {
+    "from": "gpt",
+    "value": "top"
+   }
+  ],
+  "image": [
+   "images/vdr_0001_0.jpg",
+   "images/vdr_0001_1.jpg",
+   "images/vdr_0001_2.jpg",
+   "images/vdr_0001_3.jpg",
+   "images/vdr_0001_4.jpg",
+   "images/vdr_0001_5.jpg"
+  ],
+  "gif": "images/vdr_0001.gif"
+ },
+ {
+  "id": "56c1dc45-24f5-45aa-8273-ed5835bce1f3/6174_6306_basket",
+  "conversations": [
+   {
+    "from": "human",
+    "value": "<image><image><image><image><image><image> does the basket leave the frame through the top side of the frame or the bottom side of the frame? respond ONLY with 'top' or 'bottom'."
+   },
+   {
+    "from": "gpt",
+    "value": "bottom"
+   }
+  ],
+  "image": [
+   "images/vdr_0002_0.jpg",
+   "images/vdr_0002_1.jpg",
+   "images/vdr_0002_2.jpg",
+   "images/vdr_0002_3.jpg",
+   "images/vdr_0002_4.jpg",
+   "images/vdr_0002_5.jpg"
+  ],
+  "gif": "images/vdr_0002.gif"
+ }
+]
