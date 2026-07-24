@@ -599,6 +599,21 @@
     }
   </style>
 
+  <style>
+    /* Embed mode: hide everything except the data explorer section */
+    html.embed-mode #header,
+    html.embed-mode #footer,
+    html.embed-mode section:not(#dataset) {
+      display: none !important;
+    }
+    html.embed-mode body { padding-top: 0 !important; }
+  </style>
+
+  <script>
+    if (new URLSearchParams(location.search).has('embed'))
+      document.documentElement.classList.add('embed-mode');
+  </script>
+
   <!-- =======================================================
   * Template Name: TheEvent
   * Template URL: https://bootstrapmade.com/theevent-conference-event-bootstrap-template/
