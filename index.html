@@ -607,6 +607,55 @@
       display: none !important;
     }
     html.embed-mode body { padding-top: 0 !important; }
+
+    /* Embed mode: retheme explorer to match challenge page navy/blue palette */
+    html.embed-mode #dataset {
+      --dx-line:      #e2e8f0;
+      --accent-color: #2563eb;
+      background: #fff;
+      padding-top: 28px;
+    }
+
+    /* Section title / eyebrow */
+    html.embed-mode #dataset .dx-eyebrow       { color: #94a3b8; }
+    html.embed-mode #dataset .dx-eyebrow-lg    { color: #1a2744; }
+
+    /* Task description readout strip */
+    html.embed-mode #dataset .dx-task-desc     { color: #334155; }
+
+    /* Dataset cards (registry row) */
+    html.embed-mode #dataset .dx-ds[data-source="ego4d"]    { --src: #2563eb; }
+    html.embed-mode #dataset .dx-ds[data-source="saycam"]   { --src: #0d9488; }
+    html.embed-mode #dataset .dx-ds[data-source="babyview"] { --src: #1d4ed8; }
+    html.embed-mode #dataset .dx-ds[data-source="nih"]      { --src: #0369a1; }
+
+    /* Body text inside cards */
+    html.embed-mode #dataset .dx-ds-desc  { color: #475569; }
+    html.embed-mode #dataset .dx-ds-stat  { color: #94a3b8; }
+
+    /* Toolbar tabs */
+    html.embed-mode #dataset .dx-tab      { color: #475569; border-color: #e2e8f0; }
+
+    /* Chip filter buttons */
+    html.embed-mode #dataset .dx-chip     { color: #475569; border-color: #e2e8f0; }
+    html.embed-mode #dataset .dx-chip:hover { background: #f8fafc; border-color: #bfdbfe; color: #1e293b; }
+
+    /* Image grid cards */
+    html.embed-mode #dataset .dx-thumb-wrap { background: #f1f5f9; }
+    html.embed-mode #dataset .dx-card-q     { color: #1a2744; }
+
+    /* Answer badge: green → teal; keep source badge as-is */
+    html.embed-mode #dataset .dx-badge-ans  { background: #f0fdf4; color: #0d9488; }
+
+    /* Inline code chips */
+    html.embed-mode #dataset .dx-intro code  { background: #eff6ff; color: #1d4ed8; }
+    html.embed-mode .dx-empty code,
+    html.embed-mode .dx-loading code        { background: #eff6ff; color: #1d4ed8; }
+    html.embed-mode .dx-empty,
+    html.embed-mode .dx-loading             { color: #94a3b8; }
+
+    /* Note callout border */
+    html.embed-mode #dataset .dx-note { border-color: #e2e8f0; border-left-color: #2563eb; }
   </style>
 
   <script>
