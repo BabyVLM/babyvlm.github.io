@@ -411,6 +411,36 @@
     .hero .cta-btn.cta-ghost { background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.5); }
     .hero .cta-btn.cta-ghost:hover { background: rgba(255, 255, 255, 0.22); }
 
+    /* ═══════════════ Discord banner ═══════════════ */
+    .discord-banner {
+      background: linear-gradient(135deg, #5865F2 0%, #4752c4 100%);
+      color: #fff;
+    }
+    .discord-banner .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 26px;
+      flex-wrap: wrap;
+      text-align: left;
+      padding: 34px 20px;
+    }
+    .discord-banner .discord-icon i { font-size: 54px; line-height: 1; }
+    .discord-banner .discord-copy { max-width: 620px; }
+    .discord-banner .discord-copy h3 { color: #fff; font-weight: 800; font-size: 1.6rem; margin: 0 0 6px; }
+    .discord-banner .discord-copy p { color: rgba(255, 255, 255, 0.92); margin: 0; font-size: 1.02rem; }
+    .discord-banner .discord-cta {
+      display: inline-flex; align-items: center; gap: 9px;
+      background: #fff; color: #4752c4; font-weight: 700; font-size: 16px;
+      padding: 14px 30px; border-radius: 50px; text-decoration: none;
+      white-space: nowrap; transition: 0.3s; box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+    }
+    .discord-banner .discord-cta:hover { transform: translateY(-2px); background: #f2f3ff; }
+    .discord-banner .discord-cta i { font-size: 20px; }
+    @media (max-width: 640px) {
+      .discord-banner .container { flex-direction: column; text-align: center; gap: 18px; }
+    }
+
     /* ═══════════════ Data Explorer ═══════════════ */
     /* The section reads like a lab instrument: a dataset registry up top, a
        control panel below, footage rendered as captured frames. --src is the
@@ -728,6 +758,19 @@
         <br>
       </div>
 
+    </section>
+
+    <section class="discord-banner" data-aos="fade-up">
+      <div class="container">
+        <div class="discord-icon"><i class="bi bi-discord"></i></div>
+        <div class="discord-copy">
+          <h3>Join the BabyVLM Discord Server!</h3>
+          <p>Check out the BabyVLM community on Discord &mdash; the best way to connect with the organisers, ask questions, and stay up to date.</p>
+        </div>
+        <a class="discord-cta" href="https://discord.gg/6ZKkRF6CYD" target="_blank" rel="noopener">
+          <i class="bi bi-discord"></i> Join the Discord
+        </a>
+      </div>
     </section>
 
     <section class="hostbar" data-aos="fade-up">
