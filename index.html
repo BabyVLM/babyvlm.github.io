@@ -399,6 +399,140 @@
     .date-card .d-when { font-weight: 700; font-size: 16px; color: var(--heading-color); }
     .date-card .d-what { font-size: 13px; color: color-mix(in srgb, var(--default-color), transparent 25%); margin-top: 3px; }
 
+    /* ---- Announcement topbar ---- */
+    #topbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 10000;
+      background: #f59e0b;
+      text-align: center;
+      padding: 11px 20px;
+      font-family: var(--heading-font);
+      font-weight: 700;
+      font-size: 14.5px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    #topbar a {
+      color: #1a1836;
+      text-decoration: none;
+    }
+    #topbar a:hover { text-decoration: underline; }
+    #topbar .tb-arrow { margin-left: 8px; font-size: 16px; vertical-align: middle; }
+    #topbar .tb-deadline { font-size: 12.5px; font-weight: 500; letter-spacing: 0.06em; margin-left: 14px; opacity: 0.78; text-transform: uppercase; }
+    #header { top: 42px !important; }
+
+    /* ---- Fast-Track section ---- */
+    #fast-track {
+      background: linear-gradient(135deg, #1a1836 0%, #2d2a5e 60%, #3a2e7a 100%);
+      color: #fff;
+      padding: 60px 0 56px;
+    }
+    #fast-track .ft-eyebrow {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #f59e0b;
+      margin-bottom: 10px;
+    }
+    #fast-track h2 {
+      font-size: clamp(26px, 4vw, 38px);
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 6px;
+      line-height: 1.15;
+    }
+    #fast-track .ft-deadline-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(245,158,11,0.18);
+      border: 1.5px solid rgba(245,158,11,0.55);
+      border-radius: 50px;
+      padding: 8px 22px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 15px;
+      font-weight: 600;
+      color: #fcd34d;
+      margin: 18px 0 30px;
+    }
+    #fast-track .ft-deadline-badge .ft-dot {
+      width: 8px; height: 8px;
+      background: #f59e0b;
+      border-radius: 50%;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 3px rgba(245,158,11,0.3);
+      animation: ft-pulse 1.8s ease-in-out infinite;
+    }
+    @keyframes ft-pulse {
+      0%, 100% { box-shadow: 0 0 0 3px rgba(245,158,11,0.3); }
+      50%       { box-shadow: 0 0 0 7px rgba(245,158,11,0.1); }
+    }
+    #fast-track .ft-intro {
+      font-size: 17px;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.82);
+      max-width: 620px;
+      margin-bottom: 32px;
+    }
+    #fast-track .ft-steps {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    #fast-track .ft-steps li {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 14px;
+      padding: 16px 20px;
+      transition: background 0.2s;
+    }
+    #fast-track .ft-steps li:hover { background: rgba(255,255,255,0.10); }
+    #fast-track .ft-num {
+      flex-shrink: 0;
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      background: #6d5ae0;
+      color: #fff;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 13px;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 1px;
+    }
+    #fast-track .ft-steps li strong { color: #fff; }
+    #fast-track .ft-steps li span { color: rgba(255,255,255,0.78); font-size: 15.5px; line-height: 1.55; }
+    #fast-track .ft-steps li.ft-important { border-color: rgba(245,158,11,0.35); background: rgba(245,158,11,0.08); }
+    #fast-track .ft-steps li.ft-important .ft-num { background: #f59e0b; color: #1a1836; }
+    #fast-track .ft-cta {
+      margin-top: 34px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #f59e0b;
+      color: #1a1836;
+      font-family: var(--heading-font);
+      font-weight: 800;
+      font-size: 15px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 14px 36px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 6px 28px rgba(245,158,11,0.35);
+    }
+    #fast-track .ft-cta:hover { background: #fbbf24; transform: translateY(-2px); }
+    #fast-track .ft-cta .bi { font-size: 18px; }
+
     /* ---- Footer NeurIPS + BabyLM brand row ---- */
     .footer-brand { text-align: center; padding: 6px 0 26px; }
     .footer-brand img { height: 40px; width: auto; margin: 0 16px; vertical-align: middle; opacity: 0.95; }
@@ -705,6 +839,13 @@
 
 <body class="index-page">
 
+  <div id="topbar">
+    <a href="#fast-track">
+      Fast Track Submission<span class="tb-arrow">&#8594;</span>
+    </a>
+    <span class="tb-deadline">Deadline: Sunday, Sep 28 AoE</span>
+  </div>
+
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
@@ -715,6 +856,7 @@
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="#hero" class="active">Home</a></li>
+          <li><a href="#fast-track" style="color:#f59e0b;font-weight:700;">Fast Track</a></li>
           <li><a href="#overview">About</a></li>
           <li><a href="#cfp">Call for Papers</a></li>
           <li><a href="#organizers">Organizers</a></li>
@@ -795,6 +937,58 @@
         </div>
       </div>
     </section>
+
+    <!-- ══════════════ NeurIPS Fast Track / Expedited Review ══════════════ -->
+    <section id="fast-track">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-9">
+
+            <p class="ft-eyebrow">NeurIPS Fast Track</p>
+            <h2>Expedited Review</h2>
+
+            <div class="ft-deadline-badge">
+              <span class="ft-dot"></span>
+              Deadline: Sunday, September 28, 2026 (AoE)
+            </div>
+
+            <p class="ft-intro">
+              We offer a dedicated NeurIPS expedited review process for relevant papers submitted
+              to the NeurIPS 2026 main conference.
+            </p>
+
+            <ul class="ft-steps">
+              <li>
+                <span class="ft-num">1</span>
+                <span><strong>Scope &amp; Eligibility</strong> — We consider accepted or rejected NeurIPS papers on relevant topics.</span>
+              </li>
+              <li>
+                <span class="ft-num">2</span>
+                <span><strong>Paper Format</strong> — Format following the NeurIPS main conference full paper. Please submit your NeurIPS main conference submission directly.</span>
+              </li>
+              <li class="ft-important">
+                <span class="ft-num">3</span>
+                <span><strong>[Important] NeurIPS 2026 Reviews Required</strong> — Please append all of your NeurIPS 2026 reviews (including metareviews, rebuttal, and the corresponding discussion) at the end of your paper. This can be done by printing the review page to PDF.</span>
+              </li>
+              <li>
+                <span class="ft-num">4</span>
+                <span><strong>Review Mechanism</strong> — The expedited review decision will be solely based on the paper and these reviews. No additional reviewers will be assigned.</span>
+              </li>
+              <li>
+                <span class="ft-num">5</span>
+                <span><strong>Deadline</strong> — The fast-track deadline is <strong>Sunday, September 28, 2026 AoE</strong>.</span>
+              </li>
+            </ul>
+
+            <a href="https://openreview.net/forum?id=IT3ngiX8Rf" target="_blank" rel="noopener" class="ft-cta">
+              <i class="bi bi-send-fill"></i> Submit Now
+            </a>
+
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
 
     <section id="overview" class="about section">
 
