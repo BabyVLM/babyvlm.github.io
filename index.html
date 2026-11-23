@@ -825,6 +825,30 @@
 
     /* Note callout border */
     html.embed-mode #dataset .dx-note { border-color: #e2e8f0; border-left-color: #2563eb; }
+
+    /* ---- Selected Submissions ---- */
+    #submissions { background: #f7f6fe; }
+    .paper-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.75rem;
+    }
+    .paper-card {
+      background: #fff;
+      border: 1px solid #e2e0f0;
+      border-radius: 10px;
+      padding: 1.1rem 1.2rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: .45rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,.04);
+      transition: box-shadow .2s, transform .2s;
+    }
+    .paper-card:hover { box-shadow: 0 6px 18px rgba(0,0,0,.1); transform: translateY(-2px); }
+    .paper-card a { font-weight: 700; color: #3b2d8f; font-size: .93rem; line-height: 1.45; text-decoration: none; }
+    .paper-card a:hover { text-decoration: underline; }
+    .paper-card .paper-authors { font-size: .82rem; color: #666; line-height: 1.55; }
   </style>
 
   <script>
@@ -868,6 +892,7 @@
           <li><a href="#speakers">Speakers</a></li>
           <li><a href="#schedule">Schedule</a></li>
           <li><a href="#venue">Venue</a></li>
+          <li><a href="#submissions">Selected Submissions</a></li>
           <li><a href="#challenge">Challenge</a></li>
           <!-- <li><a href="#dataset">Data Explorer</a></li> -->
           <li><a href="#contact">Contact</a></li>
@@ -1770,6 +1795,76 @@
 
     </section>
     -->
+
+    <section id="submissions" class="submissions section">
+
+      <div class="container section-title" data-aos="fade-up">
+        <h2><i class="bi bi-file-earmark-text"></i>Selected Submissions</h2>
+        <p>Accepted papers to be presented at the workshop.</p>
+      </div>
+
+      <div class="container">
+        <div class="paper-grid">
+
+          <div class="paper-card" data-aos="fade-up" data-aos-delay="50">
+            <a href="https://arxiv.org/abs/2603.09160" target="_blank" rel="noopener">RubiCap: Rubric-Guided Reinforcement Learning for Dense Image Captioning</a>
+            <div class="paper-authors">Tzu-Heng Huang, Sirajul Salekin, Javier Movellan, Frederic Sala, Manjot Bilkhu</div>
+          </div>
+
+          <div class="paper-card" data-aos="fade-up" data-aos-delay="100">
+            <a href="https://drive.google.com/file/d/1QET2OCRqCSgNeayUC8hD9X6pP8Gx_LjW/view?usp=sharing" target="_blank" rel="noopener">GAVAGAI: Referential Alignment for Infant-Scale Vision-Language Models via Balanced Optimal Transport</a>
+            <div class="paper-authors">Rajdeep Pal, Jotiraditya Banerjee, Saptarshi Pani</div>
+          </div>
+
+          <div class="paper-card" data-aos="fade-up" data-aos-delay="150">
+            <a href="https://drive.google.com/file/d/1lTi886zcxbpe4igA8Qdm48x9y9eSktKW/view?usp=sharing" target="_blank" rel="noopener">LeVLWM: Text-Goal Control with a Single Vision-Language World Model</a>
+            <div class="paper-authors">Qiuyi Hua, Ahitagni Das, Vivek Boominathan, Randall Balestriero</div>
+          </div>
+
+          <div class="paper-card" data-aos="fade-up" data-aos-delay="200">
+            <a href="https://arxiv.org/pdf/2605.08412" target="_blank" rel="noopener">SYNCR: A Cross-Video Reasoning Benchmark with Synthetic Grounding</a>
+            <div class="paper-authors">Sara Ghazanfari, Siddharth Garg, Prashanth Krishnamurthy, Farshad Khorrami</div>
+          </div>
+
+          <div class="paper-card" data-aos="fade-up" data-aos-delay="250">
+            <a href="https://drive.google.com/file/d/1qVFkx4spJQqzXgZrTaczMNXHKABCg1LM/view?usp=sharing" target="_blank" rel="noopener">Give the Model a Finger: Developmentally Aligned Evaluation of Counting in Vision&ndash;Language Models</a>
+            <div class="paper-authors">Yingxin Jia, Hui Geng, Wenxin Yang, Mohan Zhang</div>
+          </div>
+
+          <div class="paper-card" data-aos="fade-up" data-aos-delay="300">
+            <a href="https://drive.google.com/file/d/1SmemIbepl1HoxRXad7XNB8F_3ApjZCGF/view?usp=drive_link" target="_blank" rel="noopener">Ordinal Age Prediction from Infant Egocentric Video: A Feasibility Study of Interpretable Object-Engagement Representations</a>
+            <div class="paper-authors">Amrata Swami, Adriana Kovashka</div>
+          </div>
+
+          <div class="paper-card" data-aos="fade-up" data-aos-delay="350">
+            <a href="https://drive.google.com/file/d/1hxyKFZDrugDc_1wslfOz1esE2Tb0g25Z/view?usp=sharing" target="_blank" rel="noopener">Measuring the Visual Diet of the First Year: Cohort-Scale Object Frequency from Naturalistic Infant Headcam Video</a>
+            <div class="paper-authors">Imrul Huda</div>
+          </div>
+
+          <div class="paper-card" data-aos="fade-up" data-aos-delay="400">
+            <a href="https://drive.google.com/file/d/1q_upl5emVolyPdxfB99SDtraywUw3VZ1/view?usp=share_link" target="_blank" rel="noopener">MindTopo: Can Foundation Models Reason in Topological Space?</a>
+            <div class="paper-authors">Yunfei Ge, Anbang Liu, Qineng Wang, Johnalbert Garnica, Jianwen Lyu, Zihan Wang, Reuben Tan, Jianfeng Gao, Ruohan Zhang, Yining Hong, Jiajun Wu, Manling Li</div>
+          </div>
+
+          <div class="paper-card" data-aos="fade-up" data-aos-delay="450">
+            <a href="https://drive.google.com/file/d/1lQVkWHOGuNEItVInfZ80A1t1_S8mFeIU/view?usp=sharing" target="_blank" rel="noopener">Alignment Without Binding: A Credit-Depth Threshold for Cross-Modal Transfer in Local Learning</a>
+            <div class="paper-authors">Anthony An-Chih Yeh, Simon Lap Sang</div>
+          </div>
+
+          <div class="paper-card" data-aos="fade-up" data-aos-delay="500">
+            <a href="https://drive.google.com/file/d/1h3bxs_5FQX-g68Bm6INSzJd5Q2qz8WP-/view?usp=sharing" target="_blank" rel="noopener">Continual Visual and Verbal Learning Through a Child's Egocentric Input</a>
+            <div class="paper-authors">Xiaoyang Jiang, Yanlai Yang, Kenneth A. Norman, Brenden Lake, Mengye Ren</div>
+          </div>
+
+          <div class="paper-card" data-aos="fade-up" data-aos-delay="550">
+            <a href="https://arxiv.org/pdf/2611.18979" target="_blank" rel="noopener">Probing Where Surprise Happens: Localized Violation-of-Expectation Evaluation of Video World Models</a>
+            <div class="paper-authors">Yanbin Xu, Ming Bo Cai</div>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
 
     <section id="contact" class="contact section">
 
